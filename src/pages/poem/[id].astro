@@ -3,6 +3,7 @@
 import Layout from "../../layouts/Layout.astro";
 // Components
 import ShowCasePoem from '../../components/ShowCasePoem.vue'
+import ShowCasePoet from '../../components/ShowCasePoet.vue'
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Utils
 import {baseHttp} from '../../utils/axios'
@@ -20,7 +21,12 @@ const poem: Poem = await baseHttp.get(`/poem/${id}`).then(
 <Layout title="Adeeb :: Poem">
     <main>
         <div class="container">
-            <section id="related-data"></section>
+            <section id="related-data">
+                <a href=`/poet/${poem.poet.id}` class="link">
+                    <ShowCasePoet details={poem.poet} client:idle/>
+                </a>
+                
+            </section>
             <ShowCasePoem verses={poem.verses} client:idle/>
 
         </div>
