@@ -1,0 +1,27 @@
+---
+// Layout
+import Layout from "../../layouts/Layout.astro";
+// Components
+import ShowCasePoem from '../../components/ShowCasePoem.vue'
+// Utils
+import {baseHttp} from '../../utils/axios'
+// Types
+import type { Poem } from "../../stores/__types__";
+export const prerender = false;
+const {  id } = Astro.params;
+
+
+const poem: Poem = await baseHttp.get(`/poem/${id}`).then(
+    (response) => response.data
+).catch((err )=> console.error(err));
+---
+
+<Layout title="Adeeb :: Poem">
+    <main>
+        <div class="container">
+            <section id="related-data"></section>
+            <ShowCasePoem verses={poem.verses}/>
+
+        </div>
+    </main>
+</Layout>
