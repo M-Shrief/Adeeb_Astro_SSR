@@ -30,16 +30,11 @@ import {appStore} from '../stores/index'
 import {usePrintsStore} from '../stores/prints'
 // types
 import type { ChosenVerse, Print } from '../stores/__types__';
-defineProps({
-  chosenVerses: {
-    type: Array<ChosenVerse>,
-    required: true,
-  },
-  routeName: {
-    type: String,
-    required: false,
-  },
-});
+
+defineProps<{
+  chosenVerses: ChosenVerse[],
+  routeName?: string
+}>()
 
 
 const printsStore = usePrintsStore(appStore);

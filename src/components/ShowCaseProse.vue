@@ -26,23 +26,16 @@ import {usePrintsStore} from '../stores/prints'
 // types
 import type { Prose, Print } from '../stores/__types__';
 
-defineProps({
-  proses: {
-    type: Array<Prose>,
-    required: true,
-  },
-  routeName: {
-    type: String,
-    required: false
-  }
-});
+defineProps<{
+  proses: Prose[],
+  routeName?: string
+}>()
 
 const printsStore = usePrintsStore(appStore);
 function addPrint(print: Print) {
   return printsStore.addPrint(print);
 }
 
-// defineEmits(['print']);
 </script>
 
 <style lang="scss" scoped>

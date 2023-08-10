@@ -23,7 +23,6 @@ const printsStore = usePrintsStore(appStore);
 function addPrint(print: Print) {
   return printsStore.addPrint(print);
 }
-// defineEmits(['print']);
 </script>
 
 <style lang="scss" scoped>

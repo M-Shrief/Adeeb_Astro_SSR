@@ -32,12 +32,9 @@ function removePrint(print: Print) {
   return printsStore.removePrint(print);
 }
 
-defineProps({
-  isPartner: {
-    type: Boolean,
-    required: true
-  }
-})
+defineProps<{
+  isPartner: boolean
+}>()
 
 </script>
 

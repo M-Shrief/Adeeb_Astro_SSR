@@ -31,7 +31,6 @@ defineProps<{
   partner: Partner | null
 }>()
 
-// defineEmits(['logout']);
 </script>
 
 <style lang="scss" scoped>
