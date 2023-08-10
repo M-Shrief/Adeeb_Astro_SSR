@@ -4,13 +4,11 @@ export interface Verse {
 }
 
 export interface Poet {
-  details: {
-    id: string;
-    name: string;
-    time_period: string;
-    bio: string;
-    reviewed: boolean;
-  };
+  id: string;
+  name: string;
+  time_period: string;
+  bio: string;
+  reviewed: boolean;
   poems: Poem[];
   chosenVerses: ChosenVerse[];
   proses: Prose[];
@@ -19,7 +17,7 @@ export interface Poet {
 export interface Poem {
   id: string;
   intro: string;
-  poet: Poet['details'];
+  poet: Poet;
   verses: Verse[];
   reviewed: boolean;
   createdAt: string;
@@ -28,7 +26,7 @@ export interface Poem {
 
 export interface ChosenVerse {
   id: string;
-  poet: Poet['details'];
+  poet: Poet;
   poem: string | Poem;
   tags: string;
   verses: Verse[];
@@ -37,7 +35,7 @@ export interface ChosenVerse {
 
 export interface Prose {
   id: string;
-  poet: Poet['details'];
+  poet: Poet;
   tags: string;
   qoute: string;
   reviewed: boolean;

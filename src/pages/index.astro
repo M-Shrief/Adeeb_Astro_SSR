@@ -16,7 +16,7 @@ const getPoems: Poem[] = await baseHttp.get('/poems').then(
     (response) => response.data
 ).catch(err => console.error(err));
 
-const getPoets: Poet['details'][] = await baseHttp.get('/poets').then(
+const getPoets: Poet[] = await baseHttp.get('/poets').then(
     (response) => response.data
 ).catch(err => console.error(err));
 

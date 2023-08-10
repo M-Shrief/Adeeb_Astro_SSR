@@ -8,8 +8,8 @@ import type { Poet } from './__types__';
 // import { useAxiosError } from '../composables/error';
 
 export const usePoetStore = defineStore('poets', () => {
- const poets = ref<Poet['details'][]>([])
- const getPoets = computed<Poet['details'][]>(() => poets.value)
+ const poets = ref<Poet[]>([])
+ const getPoets = computed<Poet[]>(() => poets.value)
  async function fetchPoets() {
   try {
     const req = await baseHttp.get(`/poets`);

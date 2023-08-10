@@ -6,10 +6,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { Poet } from '../stores/__types__';
 
 defineProps<{
-  details: Poet['details'];
+  details: {
+    name: string;
+    time_period: string;
+    bio: string;
+  };
 }>()
 </script>
 
