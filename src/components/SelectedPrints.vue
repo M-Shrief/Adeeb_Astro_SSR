@@ -44,8 +44,8 @@ defineProps({
 <style lang="scss" scoped>
 @import '../assets/mixins.scss';
 
-$mainColor: var(--text1);
-$secondaryColor: var(--surface4);
+$mainColor: var(--surface2);
+$secondaryColor: var(--text1);
 
 #selected-prints {
   position: fixed;
