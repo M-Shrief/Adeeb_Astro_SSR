@@ -1,5 +1,5 @@
 <template>
-  <div id="selected-prints" dir="rtl">
+  <div id="selected-prints" >
     <p><a :href="isPartner ? '/partners/ordering' : '/ordering'"
         class="title">للطباعة</a> </p>
     <ul class="prints">

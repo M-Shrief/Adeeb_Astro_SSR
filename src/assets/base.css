@@ -103,4 +103,5 @@ body {
   box-sizing: border-box;
   background: var(--surface4);
   color: var(--text1);
+  direction: rtl;
 }
