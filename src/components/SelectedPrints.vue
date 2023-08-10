@@ -50,7 +50,7 @@ $secondaryColor: var(--text1);
 #selected-prints {
   position: fixed;
   bottom: 0.3rem;
-  right: 0.1rem;
+  right: 0.9rem;
   display: flex;
   flex-direction: row;
   background: $secondaryColor;
