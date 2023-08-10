@@ -4,6 +4,8 @@ import Layout from "../../layouts/Layout.astro";
 // Components
 import ShowCasePoet from "../../components/ShowCasePoet.vue";
 import ShowCasePoems from "../../components/ShowCasePoems.vue";
+import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
+import ShowCaseProse from "../../components/ShowCaseProse.vue";
 // Utils
 import {baseHttp} from '../../utils/axios'
 // Types
@@ -14,19 +16,21 @@ const {  id } = Astro.params;
 const poet: Poet = await baseHttp.get(`/poet/${id}`).then(
     (response) => response.data
 ).catch((err )=> console.error(err));
-
-console.info(poet)
-
 ---
 
 <Layout title="Adeeb :: Poet" >
     <main>
         <div class="container">
-            <ShowCasePoet details={{ name: poet.name, time_period: poet.time_period,bio: poet.bio}} />
-            <ShowCasePoems poems={poet.poems}>
-                <h3 class="poems-title">قصائده</h3>
-            </ShowCasePoems>
+          <ShowCasePoet details={{ name: poet.name, time_period: poet.time_period,bio: poet.bio}} />
+
+          <ShowCasePoems poems={poet.poems}>
+              <h3 class="poems-title">قصائده</h3>
+          </ShowCasePoems>
         </div>
+
+        <ShowCasePoetry chosenVerses={poet.chosenVerses} routeName={'poet'} client:idle/>
+
+        <ShowCaseProse proses={poet.proses} routeName={'poet'} client:idle/>
     </main>
 </Layout>
 
