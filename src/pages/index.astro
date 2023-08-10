@@ -1,3 +1,129 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import ShowCasePoems from '../components/ShowCasePoems.vue';
+// Utils
+import {baseHttp} from '../utils/axios'
 
+const getPoems = await baseHttp.get('/poems').then(
+    (response) => response.data
+);
 ---
+
+<Layout title="Adeeb::Main">
+	<!-- <header></header> -->
+	<main>
+		<h1>أديب</h1>
+		<p>لطباعة الادب العربي شعراً ونثراً</p>
+
+		<div class="container" dir="rtl">
+            <ShowCasePoems poems={getPoems} grid={'grid'} >
+                <h2 class="poems-title">القصائد</h2>
+            </ShowCasePoems>
+		</div>
+	</main>
+</Layout>
+
+<style lang="scss">
+@import '../assets/mixins.scss';
+
+h1,
+p {
+	text-align: center;
+}
+
+h1 {
+	font-size: 4rem;
+}
+
+p {
+	font-size: 1.5rem;
+}
+
+.container {
+	margin-top: 1rem;
+	display: grid;
+	grid-template-columns: 70% 30%;
+}
+
+.poems-title,
+.poets-title {
+	text-align: center;
+	padding: 0.3rem;
+	border-radius: 1.5rem;
+	width: 50%;
+	margin: 1rem auto;
+}
+
+.poems-title {
+	background-color: var(--text1);
+	color: var(--surface3);
+}
+
+.poets-title {
+	background-color: var(--text1);
+	color: var(--surface2);
+}
+
+@include mQ($breakpoint-lg) {
+	h1 {
+	font-size: 2.5rem;
+	}
+
+	p {
+	font-size: 1.5rem;
+	}
+
+	.container {
+	grid-template-columns: 65% 35%;
+	}
+
+	.poems-title,
+	.poets-title {
+	padding: 0.3rem;
+	margin: 0.6rem auto;
+	font-size: 1.3rem;
+	}
+}
+
+@include mQ($breakpoint-md) {
+	h1 {
+	font-size: 2rem;
+	}
+
+	p {
+	font-size: 1.2rem;
+	}
+
+	.container {
+	grid-template-columns: 65% 35%;
+	}
+
+	.poems-title,
+	.poets-title {
+	padding: 0.2rem;
+	margin: 0.5rem auto;
+	font-size: 1.2rem;
+	}
+}
+
+@include mQ($breakpoint-sm) {
+	h1 {
+	font-size: 1.6rem;
+	}
+
+	p {
+	font-size: 1rem;
+	}
+
+	.container {
+	grid-template-columns: 65% 35%;
+	}
+
+	.poems-title,
+	.poets-title {
+	padding: 0.1rem;
+	margin: 0.3rem auto;
+	font-size: 1rem;
+	}
+}
+</style>
