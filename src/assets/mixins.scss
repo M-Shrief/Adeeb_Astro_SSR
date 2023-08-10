@@ -1,0 +1,77 @@
+$breakpoint-sm: 640px;
+$breakpoint-md: 760px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px; // default development size
+
+@mixin mQ($arg...) {
+  @if length($arg) == 1 {
+    @media screen and (max-width: nth($arg, 1)) {
+      @content;
+    }
+  }
+  @if length($arg) == 2 {
+    @media screen and (max-width: nth($arg, 1)) and (min-width: nth($arg, 2)) {
+      @content;
+    }
+  }
+}
+
+@mixin fade-transition {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+}
+
+@mixin add-print-btn {
+  background: $secondaryColor;
+  border: 1px solid $mainColor;
+  position: absolute;
+  bottom: 0.7rem;
+  left: 0.7rem;
+  border-radius: 1.5rem;
+  color: $mainColor;
+  padding: 0.1rem;
+  cursor: pointer;
+  &:hover {
+    background: $mainColor;
+    color: $secondaryColor;
+  }
+  @include mQ($breakpoint-sm) {
+    font-size: 0.5rem;
+  }
+  @include mQ($breakpoint-md) {
+    font-size: 0.6rem;
+  }
+  @include mQ($breakpoint-lg) {
+    font-size: 0.6rem;
+  }
+}
+
+@mixin submit-btn {
+  border: none;
+  border-radius: 1.5rem;
+  background: #e0f2e9;
+  color: #1f2124;
+  padding: 0.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  @include mQ($breakpoint-md) {
+    margin: 0.5rem auto;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  @include mQ($breakpoint-sm) {
+    margin: 0.3rem auto;
+    padding: 0.1rem;
+    font-size: 0.7rem;
+  }
+}
