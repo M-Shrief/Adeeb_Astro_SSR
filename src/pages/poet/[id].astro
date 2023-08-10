@@ -6,6 +6,7 @@ import ShowCasePoet from "../../components/ShowCasePoet.vue";
 import ShowCasePoems from "../../components/ShowCasePoems.vue";
 import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
+import SelectedPrints from "../../components/SelectedPrints.vue";
 // Utils
 import {baseHttp} from '../../utils/axios'
 // Types
@@ -31,6 +32,7 @@ const poet: Poet = await baseHttp.get(`/poet/${id}`).then(
         <ShowCasePoetry chosenVerses={poet.chosenVerses} routeName={'poet'} client:idle/>
 
         <ShowCaseProse proses={poet.proses} routeName={'poet'} client:idle/>
+        <SelectedPrints isPartner={false} client:idle/>
     </main>
 </Layout>
 
