@@ -22,18 +22,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue';
 // Types
 import type { Partner } from '../stores/__types__'
 // Components
 import ThemeSwitch from './ThemeSwitch.vue';
 
-defineProps({
-  partner: {
-    type: Object as PropType<Partner | null>,
-    required: true,
-  }
-})
+defineProps<{
+  partner: Partner | null
+}>()
+
 // defineEmits(['logout']);
 </script>
 
