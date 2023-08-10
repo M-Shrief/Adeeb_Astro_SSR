@@ -12,24 +12,25 @@ import {baseHttp} from '../utils/axios'
 // Types
 import type { Poem, Poet, ChosenVerse, Prose } from "../stores/__types__";
 
-const getPoems: Poem[] = await baseHttp.get('/poems').then(
-    (response) => response.data
-).catch(err => console.error(err));
+let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProses: Prose[];
 
-const getPoets: Poet[] = await baseHttp.get('/poets').then(
-    (response) => response.data
-).catch(err => console.error(err));
+ [getPoems, getPoets, getChosenVerses, getProses] = await Promise.all([
+	await baseHttp.get('/poems_intros')
+	.then(response => response.data)
+	.catch(err => console.error(err)),
 
+	await baseHttp.get('/poets')
+	.then(response => response.data)
+	.catch(err => console.error(err)),
 
-const getChosenVerses: ChosenVerse[] = await baseHttp.get('/chosenverses').then(
-    (response) => response.data
-).catch(err => console.error(err));
+	await baseHttp.get('/chosenverses')
+	.then(response => response.data)
+	.catch(err => console.error(err)),
 
-
-const getProses: Prose[] = await baseHttp.get('/proses').then(
-    (response) => response.data
-).catch(err => console.error(err));
-
+	await baseHttp.get('/proses')
+	.then(response => response.data)
+	.catch(err => console.error(err))
+	])
 ---
 
 <Layout title="Adeeb :: Main">
