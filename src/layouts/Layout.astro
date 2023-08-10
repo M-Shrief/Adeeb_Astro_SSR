@@ -1,4 +1,7 @@
 --- 
+// Components
+import Navbar from '../components/Navbar.vue';
+
 interface Props {
 	title: string;
 }
@@ -17,6 +20,9 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<header>
+			<Navbar partner={false} client:only="vue" />
+		</header>
 		<slot />
 	</body>
 </html>
