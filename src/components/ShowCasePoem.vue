@@ -1,7 +1,7 @@
 <template>
   <section v-if="verses" dir="rtl" id="poem">
-    <div v-for="verse in verses" :key="verse.id" class="verse"
-      @dblclick="$emit('print', { id: verse.id, verses: [{ first: verse.first, sec: verse.sec }] })">
+    <div v-for="verse, index in verses" :key="index" class="verse"
+      @dblclick="addPrint({ id: `${index}`, verses: [{ first: verse.first, sec: verse.sec }] })">
       <p class="first">{{ verse.first }}</p>
       <p class="sec" dir="ltr">{{ verse.sec }}</p>
     </div>
@@ -9,7 +9,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { Verse } from '../stores/__types__';
+// stores
+import {appStore} from '../stores/index';
+import {usePrintsStore} from '../stores/prints';
+// Types
+import type { Verse, Print } from '../stores/__types__';
 
 defineProps({
   verses: {
@@ -17,7 +21,11 @@ defineProps({
     required: true
   }
 });
-defineEmits(['print']);
+const printsStore = usePrintsStore(appStore);
+function addPrint(print: Print) {
+  return printsStore.addPrint(print);
+}
+// defineEmits(['print']);
 </script>
 
 <style lang="scss" scoped>
