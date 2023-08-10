@@ -9,28 +9,30 @@ import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
 // Utils
 import {baseHttp} from '../utils/axios'
+// Types
+import type { Poem, Poet, ChosenVerse, Prose } from "../stores/__types__";
 
-const getPoems = await baseHttp.get('/poems').then(
+const getPoems: Poem[] = await baseHttp.get('/poems').then(
     (response) => response.data
 ).catch(err => console.error(err));
 
-const getPoets = await baseHttp.get('/poets').then(
+const getPoets: Poet['details'][] = await baseHttp.get('/poets').then(
     (response) => response.data
 ).catch(err => console.error(err));
 
 
-const getChosenVerses = await baseHttp.get('/chosenverses').then(
+const getChosenVerses: ChosenVerse[] = await baseHttp.get('/chosenverses').then(
     (response) => response.data
 ).catch(err => console.error(err));
 
 
-const getProses = await baseHttp.get('/proses').then(
+const getProses: Prose[] = await baseHttp.get('/proses').then(
     (response) => response.data
 ).catch(err => console.error(err));
 
 ---
 
-<Layout title="Adeeb::Main">
+<Layout title="Adeeb :: Main">
 	<!-- <header></header> -->
 	<main>
 		<h1>أديب</h1>
