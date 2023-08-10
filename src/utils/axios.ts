@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export const baseHttp = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: import.meta.env.PUBLIC_API,
     withCredentials: false,
 })
 
 // export const withAuthHttp = axios.create({
-//     baseURL: import.meta.env.VITE_API_URL,
+//     baseURL: import.meta.env.PUBLIC_API,
 //     withCredentials: true,
 //     headers: {
 //         common: {
