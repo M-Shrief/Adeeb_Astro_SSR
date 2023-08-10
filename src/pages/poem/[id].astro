@@ -3,6 +3,7 @@
 import Layout from "../../layouts/Layout.astro";
 // Components
 import ShowCasePoem from '../../components/ShowCasePoem.vue'
+import ShowCasePoems from '../../components/ShowCasePoems.vue'
 import ShowCasePoet from '../../components/ShowCasePoet.vue'
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Utils
@@ -16,6 +17,20 @@ const {  id } = Astro.params;
 const poem: Poem = await baseHttp.get(`/poem/${id}`).then(
     (response) => response.data
 ).catch((err )=> console.error(err));
+
+
+async function fetchOtherPoems(id: string) {
+    const response = await baseHttp.get(`/poems_intros`)
+
+    let poemIndex = response.data
+    .map((poem: Poem) => poem.id)
+    .indexOf(id);
+    response.data.splice(poemIndex, 1);
+    return response.data;
+}
+
+const otherPoems: Poem[] = await fetchOtherPoems(poem.id);
+
 ---
 
 <Layout title="Adeeb :: Poem">
@@ -25,7 +40,10 @@ const poem: Poem = await baseHttp.get(`/poem/${id}`).then(
                 <a href=`/poet/${poem.poet.id}` class="link">
                     <ShowCasePoet details={poem.poet} client:idle/>
                 </a>
-                
+
+                <ShowCasePoems poems={otherPoems} >
+                    <h2>قصائد اخري</h2>
+                </ShowCasePoems>                
             </section>
             <ShowCasePoem verses={poem.verses} client:idle/>
 
