@@ -4,7 +4,7 @@
     <div :class="routeName == 'main' ? 'grid-main' : 'grid-poet'">
       <div v-for="chosenVerse in chosenVerses" :key="chosenVerse.id"
         class="poetry-item">
-        <div v-for="verse in chosenVerse.verses" :key="verse.id"
+        <div v-for="verse, index in chosenVerse.verses" :key="index"
           :class="chosenVerse.verses.length == 1 ? 'one-verse' : 'two-verse'">
           <p class="first">{{ verse.first }}</p>
           <p class="sec" dir="ltr">{{ verse.sec }}</p>

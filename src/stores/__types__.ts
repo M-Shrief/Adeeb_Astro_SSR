@@ -1,5 +1,4 @@
 export interface Verse {
-  id: string;
   first: string;
   sec: string;
 }
