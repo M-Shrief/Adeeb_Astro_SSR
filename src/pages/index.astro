@@ -12,19 +12,22 @@ import {baseHttp} from '../utils/axios'
 
 const getPoems = await baseHttp.get('/poems').then(
     (response) => response.data
-);
+).catch(err => console.error(err));
 
 const getPoets = await baseHttp.get('/poets').then(
     (response) => response.data
-);
+).catch(err => console.error(err));
+
 
 const getChosenVerses = await baseHttp.get('/chosenverses').then(
     (response) => response.data
-);
+).catch(err => console.error(err));
+
 
 const getProses = await baseHttp.get('/proses').then(
     (response) => response.data
-);
+).catch(err => console.error(err));
+
 ---
 
 <Layout title="Adeeb::Main">
