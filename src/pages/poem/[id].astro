@@ -27,3 +27,37 @@ const poem: Poem = await baseHttp.get(`/poem/${id}`).then(
         <SelectedPrints isPartner={false} client:idle/>
     </main>
 </Layout>
+
+<style lang="scss">
+@import '../../assets/mixins.scss';
+
+.container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin: 1rem;
+}
+
+#related-data {
+    .link {
+    text-decoration: none;
+    }
+
+    h2 {
+    color: var(--text1);
+    text-align: center;
+
+    @include mQ($breakpoint-lg) {
+        font-size: 1.1rem;
+    }
+
+    @include mQ($breakpoint-md) {
+        font-size: 1rem;
+    }
+
+    @include mQ($breakpoint-sm) {
+        font-size: 1rem;
+    }
+    }
+}
+</style>
+    
