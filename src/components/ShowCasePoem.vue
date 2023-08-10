@@ -15,12 +15,10 @@ import {usePrintsStore} from '../stores/prints';
 // Types
 import type { Verse, Print } from '../stores/__types__';
 
-defineProps({
-  verses: {
-    type: Array<Verse>,
-    required: true
-  }
-});
+defineProps<{
+  verses: Verse[]
+}>();
+
 const printsStore = usePrintsStore(appStore);
 function addPrint(print: Print) {
   return printsStore.addPrint(print);
