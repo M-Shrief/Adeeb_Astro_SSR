@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import ShowCasePoems from '../components/ShowCasePoems.vue';
 import ShowCasePoets from "../components/ShowCasePoets.vue";
 import ShowCasePoetry from '../components/ShowCasePoetry.vue';
+import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
 // Utils
 import {baseHttp} from '../utils/axios'
@@ -21,6 +22,9 @@ const getChosenVerses = await baseHttp.get('/chosenverses').then(
     (response) => response.data
 );
 
+const getProses = await baseHttp.get('/proses').then(
+    (response) => response.data
+);
 ---
 
 <Layout title="Adeeb::Main">
@@ -39,6 +43,7 @@ const getChosenVerses = await baseHttp.get('/chosenverses').then(
             </ShowCasePoets>
             <ShowCasePoetry chosenVerses={getChosenVerses} routeName={'main'} client:idle/>
 
+            <ShowCaseProse proses={getProses} routeName={'main'} client:idle/>
         </div>
         <SelectedPrints isPartner={false} client:idle/>
 	</main>
