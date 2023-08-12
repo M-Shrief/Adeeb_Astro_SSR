@@ -1,6 +1,7 @@
 --- 
 // Components
 import Navbar from '../components/Navbar.vue';
+import ThemeSwitch from '../components/ThemeSwitch.vue';
 
 interface Props {
 	title: string;
@@ -21,7 +22,9 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<header>
-			<Navbar partner={null} client:only="vue" />
+			<Navbar partner={null}  client:idle>
+				<ThemeSwitch slot="theme-switch" client:only="vue" /><!-- theme-switch -->
+			</Navbar>
 		</header>
 		<slot />
 		<footer>

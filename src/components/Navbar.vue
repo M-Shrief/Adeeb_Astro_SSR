@@ -16,7 +16,8 @@
         الخروج</span>
       <a href="/partners" class="nav-item" active-class="active" v-else >كن
         شريكاً</a>
-      <ThemeSwitch class="nav-item" />
+      <slot name="theme-switch" />
+      <!-- <ThemeSwitch class="nav-item" /> -->
     </div>
   </nav>
 </template>
