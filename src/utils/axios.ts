@@ -5,13 +5,13 @@ export const baseHttp = axios.create({
     withCredentials: false,
 })
 
-// export const withAuthHttp = axios.create({
-//     baseURL: import.meta.env.PUBLIC_API,
-//     withCredentials: true,
-//     headers: {
-//         common: {
-//             Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`
-//         }
-//     }
-// })
+export const withAuthHttp = (token: string) => axios.create({
+    baseURL: import.meta.env.PUBLIC_API,
+    withCredentials: true,
+    headers: {
+        common: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+})
 
