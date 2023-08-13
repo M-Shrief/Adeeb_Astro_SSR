@@ -1,34 +1,32 @@
-import {ref, computed} from 'vue';
-import { defineStore } from 'pinia';
-import { AxiosError } from 'axios';
-import {baseHttp} from '../utils/axios'
-// types
-import type { ChosenVerse } from './__types__';
+import {map, atom, action} from 'nanostores';
 // Composables
-// import { useAxiosError } from '../composables/error';
+// import {useAxiosError} from '../composables/errorsNotifications';
+// Utils
+import {baseHttp} from '../utils/axios';
+// Types
+import type {ChosenVerse} from './__types__';
+import {AxiosError} from 'axios';
 
-export const useChosenVerseStore = defineStore('chosenVerses', () => {
-  const chosenVerses =  ref<ChosenVerse[]>([]);
-  const getChosenVerses = computed<ChosenVerse[]>(() => chosenVerses.value);
-  async function fetchChosenVerses() {
+export const $chosenVerses = atom<ChosenVerse[]>([]);
+export const fetchChosenVerses = action($chosenVerses, 'fetchChosenVerses', async(chosenVerses) => {
     try {
-      const req = await baseHttp.get(`/chosenverses`);
-      chosenVerses.value = req.data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        // useAxiosError(error);
-        return;
+        const req = await baseHttp.get(`/chosenverses`);
+        chosenVerses.set(req.data);
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          // useAxiosError(error);
+          return;
+        }
+        alert(error);
       }
-      alert(error);
-    }
-  };
+})
 
-  const randomChosenVerses =ref<ChosenVerse[]>([]);
-  const getRandomChosenVerses = computed<ChosenVerse[]>(() => randomChosenVerses.value);
-  async function fetchRandomChosenVerses(num: number) {
+
+export const $randomChosenVerses = atom<ChosenVerse[]>([]);
+export const fetchRandomChosenVerses = action($randomChosenVerses, 'fetchRandomChosenVerses', async(randomChosenVerses, num: number) => {
     try {
       const req = await baseHttp.get(`/chosenverses/random?num=${num}`);
-      randomChosenVerses.value = req.data;
+      randomChosenVerses.set(req.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         // useAxiosError(error);
@@ -36,7 +34,5 @@ export const useChosenVerseStore = defineStore('chosenVerses', () => {
       }
       alert(error);
     }
-  };
+})
 
-    return {getChosenVerses, fetchChosenVerses, getRandomChosenVerses, fetchRandomChosenVerses}
-});
