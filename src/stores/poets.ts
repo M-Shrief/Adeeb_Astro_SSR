@@ -24,11 +24,10 @@ export const fetchPoets = action($poets, 'fetchPoets', async () => {
 });
 
 export const $poet = map<Poet>();
-export const $poetId = atom<string>('');
-export const fetchPoet = action($poetId, 'fetchPoet', async ($poetId) => {
+export const fetchPoet = action($poet, 'fetchPoet', async (poet, id: string) => {
     try {
-        const req = await baseHttp.get(`/poet/${$poetId.get()}`);
-        $poet.set(req.data);
+        const req = await baseHttp.get(`/poet/${id}`);
+        poet.set(req.data);
     } catch (error) {
         if (error instanceof AxiosError) {
             // useAxiosError(error);

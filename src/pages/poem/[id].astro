@@ -15,7 +15,6 @@ const {  id } = Astro.params;
 
 if(!id) Astro.redirect('/');
 else {
-    // $poemId.set(id);
     await fetchPoem(id)
     await allTasks()
 }

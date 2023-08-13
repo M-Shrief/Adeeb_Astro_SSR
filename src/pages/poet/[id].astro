@@ -1,4 +1,5 @@
 ---
+import { allTasks } from "nanostores";
 // Layout
 import Layout from "../../layouts/Layout.astro";
 // Components
@@ -7,21 +8,16 @@ import ShowCasePoems from "../../components/ShowCasePoems.vue";
 import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
-// Utils
-import {fetchPoet, $poetId, $poet} from '../../stores/poets'
-import {baseHttp} from '../../utils/axios'
-// Types
-import type { Poet } from "../../stores/__types__";
+// Stores
+import {fetchPoet, $poet} from '../../stores/poets'
+
 export const prerender = false;
 const {  id } = Astro.params;
 
-// const poet: Poet = await baseHttp.get(`/poet/${id}`).then(
-//     (response) => response.data
-// ).catch((err )=> console.error(err));
 if(!id) Astro.redirect('/')
 else {
-  $poetId.set(id);
-  await fetchPoet();
+  await fetchPoet(id);
+  await allTasks()
 }
 ---
 
@@ -39,17 +35,7 @@ else {
 
         <ShowCaseProse proses={$poet.get().proses} routeName={'poet'} client:idle/>
 
-          <!-- <ShowCasePoet details={{ name: poet.name, time_period: poet.time_period,bio: poet.bio}} />
-
-          <ShowCasePoems poems={poet.poems}>
-              <h3 class="poems-title">قصائده</h3>
-          </ShowCasePoems>
-        </div>
-
-        <ShowCasePoetry chosenVerses={poet.chosenVerses} routeName={'poet'} client:idle/>
-
-        <ShowCaseProse proses={poet.proses} routeName={'poet'} client:idle/> -->
-        <SelectedPrints isPartner={false} client:idle/>
+       <SelectedPrints isPartner={false} client:idle/>
     </main>
 </Layout>
 
