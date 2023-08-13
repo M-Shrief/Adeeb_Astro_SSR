@@ -1,43 +1,41 @@
-import {ref, computed} from 'vue';
-import { defineStore } from 'pinia';
-import { AxiosError } from 'axios';
-import {baseHttp} from '../utils/axios'
-// types
-import type { Poem } from './__types__';
-// Composables
-// import { useAxiosError } from '../composables/error';
+import {atom, map, action} from 'nanostores';
+// Utils
+import {baseHttp} from '../utils/axios';
+// Types
+import type {Poem} from './__types__';
+import {AxiosError} from 'axios';
+ 
 
-export const usePoemStore = defineStore('poems', () => {
-  const poems = ref<Poem[]>([]);
-  const getPoems = computed<Poem[]>(() => poems.value);
+export const $poems = atom<Poem[]>([]);
 
-
-  async function fetchPoems() {
+export const fetchPoems = action($poems, 'fetchPoems', async() => {
     try {
-      const req = await baseHttp.get(
-        `/poems_intros`
-      );
-      poems.value = req.data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        // useAxiosError(error);
-        return;
-      }
-      alert(error);
+        const req = await baseHttp.get(
+          `/poems_intros`
+        );
+        $poems.set(req.data);
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          // useAxiosError(error);
+          return;
+        }
+        alert(error);
     }
-  };
+})
 
-  const poem = ref<Poem>({});
-  const getPoem = computed<Poem>(() => poem.value);
-  async function fetchOtherPoems(id: string) {
+export const $poem = map<Poem>();
+
+export const $poemId = atom<string>('');
+
+export const fetchOtherPoems = action($poemId, 'fetchOtherPoems', async($poemId) => {
     try {
       let reqPoemsIntros = await baseHttp.get(`/poems_intros`);
 
       let poemIndex = reqPoemsIntros.data
         .map((poem: Poem) => poem.id)
-        .indexOf(id);
+        .indexOf($poemId.get());
       reqPoemsIntros.data.splice(poemIndex, 1);
-      poems.value = reqPoemsIntros.data;
+      $poems.set(reqPoemsIntros.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         // useAxiosError(error);
@@ -45,22 +43,19 @@ export const usePoemStore = defineStore('poems', () => {
       }
       alert(error);
     }
-  };
-    
-  async function fetchPoemAndSuggestedPoems(id: string) {
+  }) 
+
+export const fetchPoem = action($poemId, 'fetchPoem', async($poemId) => {
     try {
-      let reqPoem = await baseHttp.get(`/poem/${id}`);
-      poem.value = reqPoem.data;
-
-      fetchOtherPoems(id);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        // useAxiosError(error);
-        return;
+        let reqPoem = await baseHttp.get(`/poem/${$poemId.get()}`);
+        $poem.set(reqPoem.data);
+  
+        fetchOtherPoems();
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          // useAxiosError(error);
+          return;
+        }
+        alert(error);
       }
-      alert(error);
-    }
-  };
-
-  return {getPoems, getPoem, fetchPoems, fetchOtherPoems, fetchPoemAndSuggestedPoems}
-});
+})

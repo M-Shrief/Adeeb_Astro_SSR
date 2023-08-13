@@ -9,6 +9,7 @@ import ShowCasePoetry from '../components/ShowCasePoetry.vue';
 import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
 // Stores
+import {$poems, fetchPoems} from '../stores/poems'
 import {$poets, fetchPoets} from '../stores/poets'
 // Utils
 import {baseHttp} from '../utils/axios'
@@ -17,10 +18,10 @@ import type { Poem, Poet, ChosenVerse, Prose } from "../stores/__types__";
 
 let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProses: Prose[];
 
- [getPoems, getChosenVerses, getProses] = await Promise.all([
-	await baseHttp.get('/poems_intros')
-	.then(response => response.data)
-	.catch(err => console.error(err)),
+ [ getChosenVerses, getProses] = await Promise.all([
+	// await baseHttp.get('/poems_intros')
+	// .then(response => response.data)
+	// .catch(err => console.error(err)),
 
 	// await baseHttp.get('/poets')
 	// .then(response => response.data)
@@ -35,6 +36,7 @@ let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProse
 	.catch(err => console.error(err))
 	])
 
+	await fetchPoems()
 	await fetchPoets()
 
 	await allTasks();
@@ -47,7 +49,7 @@ let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProse
 		<p>لطباعة الادب العربي شعراً ونثراً</p>
 
 		<div class="container">
-            <ShowCasePoems poems={getPoems} grid={'grid'} >
+            <ShowCasePoems poems={$poems.get()} grid={'grid'} >
                 <h2 class="poems-title">القصائد</h2>
             </ShowCasePoems>
 
@@ -166,3 +168,4 @@ p {
 	}
 }
 </style>
+../stores/poems
