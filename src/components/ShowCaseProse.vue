@@ -21,21 +21,14 @@
 
 <script lang="ts" setup>
 // Stores
-import {appStore} from '../stores/index'
-import {usePrintsStore} from '../stores/prints'
+import {addPrint} from '../stores/prints'
 // types
-import type { Prose, Print } from '../stores/__types__';
+import type { Prose } from '../stores/__types__';
 
 defineProps<{
   proses: Prose[],
   routeName?: string
 }>()
-
-const printsStore = usePrintsStore(appStore);
-function addPrint(print: Print) {
-  return printsStore.addPrint(print);
-}
-
 </script>
 
 <style lang="scss" scoped>

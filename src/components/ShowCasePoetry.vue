@@ -26,23 +26,15 @@
 
 <script lang="ts" setup>
 // Stores
-import {appStore} from '../stores/index'
-import {usePrintsStore} from '../stores/prints'
+import {addPrint} from '../stores/prints'
 // types
-import type { ChosenVerse, Print } from '../stores/__types__';
+import type { ChosenVerse } from '../stores/__types__';
 
 defineProps<{
   chosenVerses: ChosenVerse[],
   routeName?: string
 }>()
 
-
-const printsStore = usePrintsStore(appStore);
-function addPrint(print: Print) {
-  return printsStore.addPrint(print);
-}
-
-// defineEmits(['print'])
 </script>
 
 <style lang="scss" scoped>

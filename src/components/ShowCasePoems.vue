@@ -18,21 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted,computed } from 'vue';
-// // Stores
-import {appStore} from '../stores/index'
-import { usePoemStore } from '../stores/poems';
-// // types
+// types
 import type { Poem } from '../stores/__types__';
-
-// onMounted(() => {
-//   poemsStore.fetchPoems();
-// })
-
-// const poemsStore = usePoemStore(appStore);
-// const getPoems = computed<Poem[]>(() => {
-//   return poemsStore.getPoems;
-// });
 
 defineProps<{
   poems: Poem[],

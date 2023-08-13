@@ -15,22 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed} from 'vue'
-// Stores
-import {appStore} from '../stores/index'
-import {usePrintsStore} from '../stores/prints'
-// types
-import type { Print } from '../stores/__types__';
-
-
-const printsStore = usePrintsStore(appStore);
-const getPrints = computed(() => {
-  return printsStore.getPrints;
-});
-
-function removePrint(print: Print) {
-  return printsStore.removePrint(print);
-}
+import {getPrints, removePrint} from '../stores/prints'
 
 defineProps<{
   isPartner: boolean

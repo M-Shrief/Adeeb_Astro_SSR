@@ -10,19 +10,13 @@
 
 <script lang="ts" setup>
 // stores
-import {appStore} from '../stores/index';
-import {usePrintsStore} from '../stores/prints';
+import {addPrint} from '../stores/prints';
 // Types
 import type { Verse, Print } from '../stores/__types__';
 
 defineProps<{
   verses: Verse[]
 }>();
-
-const printsStore = usePrintsStore(appStore);
-function addPrint(print: Print) {
-  return printsStore.addPrint(print);
-}
 </script>
 
 <style lang="scss" scoped>
