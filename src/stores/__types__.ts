@@ -27,7 +27,7 @@ export interface Poem {
 export interface ChosenVerse {
   id: string;
   poet: Poet;
-  poem: string | Poem;
+  poem: Poem;
   tags: string;
   verses: Verse[];
   reviewed: boolean;

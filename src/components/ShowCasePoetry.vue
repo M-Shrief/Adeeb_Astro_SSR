@@ -9,7 +9,7 @@
           <p class="first">{{ verse.first }}</p>
           <p class="sec" dir="ltr">{{ verse.sec }}</p>
         </div>
-        <a :href="'/poem/' + chosenVerse.poem" class="details">{{
+        <a :href="'/poem/' + chosenVerse.poem.id" class="details">{{
           routeName == 'poet'
           ? 'القصيدة الكاملة'
           : chosenVerse.poet.name + ' - القصيدة الكاملة'
