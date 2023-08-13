@@ -12,24 +12,14 @@ import SelectedPrints from '../components/SelectedPrints.vue';
 import {$poems, fetchPoems} from '../stores/poems'
 import {$poets, fetchPoets} from '../stores/poets'
 import {$chosenVerses, fetchChosenVerses} from '../stores/chosenVerses'
-// Utils
-import {baseHttp} from '../utils/axios'
-// Types
-import type { Prose } from "../stores/__types__";
+import {$proses, fetchProses} from '../stores/proses'
 
-let getProses: Prose[];
+await fetchPoems()
+await fetchPoets()
+await fetchChosenVerses()
+await fetchProses()
 
- [  getProses] = await Promise.all([
-	await baseHttp.get('/proses')
-	.then(response => response.data)
-	.catch(err => console.error(err))
-	])
-
-	await fetchPoems()
-	await fetchPoets()
-	await fetchChosenVerses()
-
-	await allTasks();
+await allTasks();
 ---
 
 <Layout title="Adeeb :: Main">
@@ -48,7 +38,7 @@ let getProses: Prose[];
             </ShowCasePoets>
             <ShowCasePoetry chosenVerses={$chosenVerses.get()} routeName={'main'} client:idle/>
 
-            <ShowCaseProse proses={getProses} routeName={'main'} client:idle/>
+            <ShowCaseProse proses={$proses.get()} routeName={'main'} client:idle/>
         </div>
         <SelectedPrints isPartner={false} client:idle/>
 	</main>
