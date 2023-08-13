@@ -10,7 +10,7 @@ import {AxiosError} from 'axios';
 export const $poets = atom<Poet[]>([]);
 
 
-export const fetchPoetsReq = action($poets, 'fetchPoetsReq', async () => {
+export const fetchPoets = action($poets, 'fetchPoets', async () => {
     try {
         const req = await baseHttp.get(`/poets`);
         $poets.set(req.data);
@@ -25,7 +25,7 @@ export const fetchPoetsReq = action($poets, 'fetchPoetsReq', async () => {
 
 export const $poet = map<Poet>();
 export const $poetId = atom<string>('');
-export const fetchPoetReq = action($poetId, 'fetchPoetReq', async ($poetId) => {
+export const fetchPoet = action($poetId, 'fetchPoet', async ($poetId) => {
     try {
         const req = await baseHttp.get(`/poet/${$poetId.get()}`);
         $poet.set(req.data);

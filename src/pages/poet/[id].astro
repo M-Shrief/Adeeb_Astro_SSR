@@ -8,7 +8,7 @@ import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Utils
-import {fetchPoetReq, $poetId, $poet} from '../../stores/poets'
+import {fetchPoet, $poetId, $poet} from '../../stores/poets'
 import {baseHttp} from '../../utils/axios'
 // Types
 import type { Poet } from "../../stores/__types__";
@@ -21,7 +21,7 @@ const {  id } = Astro.params;
 if(!id) Astro.redirect('/')
 else {
   $poetId.set(id);
-  await fetchPoetReq();
+  await fetchPoet();
 }
 ---
 

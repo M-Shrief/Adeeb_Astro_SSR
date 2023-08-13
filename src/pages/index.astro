@@ -9,7 +9,7 @@ import ShowCasePoetry from '../components/ShowCasePoetry.vue';
 import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
 // Stores
-import {$poets, fetchPoetsReq} from '../stores/poets'
+import {$poets, fetchPoets} from '../stores/poets'
 // Utils
 import {baseHttp} from '../utils/axios'
 // Types
@@ -35,7 +35,7 @@ let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProse
 	.catch(err => console.error(err))
 	])
 
-	await fetchPoetsReq()
+	await fetchPoets()
 
 	await allTasks();
 ---
