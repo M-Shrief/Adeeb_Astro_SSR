@@ -11,24 +11,12 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, onMounted} from 'vue'
-// Stores
-import {usePoetStore} from '../stores/poets'
-import {appStore} from '../stores/index'
 // types
 import type { Poet } from '../stores/__types__';
 
 defineProps<{
   poets: Poet[]
 }>()
-
-// const poetsStore = usePoetStore(appStore);
-// const getPoets = computed<Poet['details'][]>(() => {
-//   return poetsStore.getPoets;
-// });
-// onMounted(() => {
-//   if (!getPoets.value.length) poetsStore.fetchPoets();
-// })
 
 </script>
 

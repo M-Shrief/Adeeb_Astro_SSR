@@ -1,4 +1,5 @@
 ---
+import {allTasks} from 'nanostores';
 // Layout
 import Layout from "../layouts/Layout.astro";
 // Components
@@ -7,6 +8,8 @@ import ShowCasePoets from "../components/ShowCasePoets.vue";
 import ShowCasePoetry from '../components/ShowCasePoetry.vue';
 import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
+// Stores
+import {$poets, fetchPoetsReq} from '../stores/poets'
 // Utils
 import {baseHttp} from '../utils/axios'
 // Types
@@ -14,14 +17,14 @@ import type { Poem, Poet, ChosenVerse, Prose } from "../stores/__types__";
 
 let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProses: Prose[];
 
- [getPoems, getPoets, getChosenVerses, getProses] = await Promise.all([
+ [getPoems, getChosenVerses, getProses] = await Promise.all([
 	await baseHttp.get('/poems_intros')
 	.then(response => response.data)
 	.catch(err => console.error(err)),
 
-	await baseHttp.get('/poets')
-	.then(response => response.data)
-	.catch(err => console.error(err)),
+	// await baseHttp.get('/poets')
+	// .then(response => response.data)
+	// .catch(err => console.error(err)),
 
 	await baseHttp.get('/chosenverses')
 	.then(response => response.data)
@@ -31,6 +34,10 @@ let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProse
 	.then(response => response.data)
 	.catch(err => console.error(err))
 	])
+
+	await fetchPoetsReq()
+
+	await allTasks();
 ---
 
 <Layout title="Adeeb :: Main">
@@ -44,7 +51,7 @@ let getPoems: Poem[], getPoets: Poet[], getChosenVerses: ChosenVerse[], getProse
                 <h2 class="poems-title">القصائد</h2>
             </ShowCasePoems>
 
-			<ShowCasePoets poets={getPoets} >
+			<ShowCasePoets poets={$poets.get()} >
                 <h2 class="poets-title">الشعراء</h2>
             </ShowCasePoets>
             <ShowCasePoetry chosenVerses={getChosenVerses} routeName={'main'} client:idle/>

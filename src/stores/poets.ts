@@ -1,42 +1,40 @@
-import {ref, computed} from 'vue';
-import { defineStore } from 'pinia';
-import { AxiosError } from 'axios';
-import {baseHttp} from '../utils/axios'
-// Types
-import type { Poet } from './__types__';
+import {map, atom, action} from 'nanostores';
 // Composables
-// import { useAxiosError } from '../composables/error';
+// import {useAxiosError} from '../composables/errorsNotifications';
+// Utils
+import {baseHttp} from '../utils/axios';
+// Types
+import type {Poet} from './__types__';
+import {AxiosError} from 'axios';
 
-export const usePoetStore = defineStore('poets', () => {
- const poets = ref<Poet[]>([])
- const getPoets = computed<Poet[]>(() => poets.value)
- async function fetchPoets() {
-  try {
-    const req = await baseHttp.get(`/poets`);
-    poets.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      // useAxiosError(error);
-      return;
+export const $poets = atom<Poet[]>([]);
+
+
+export const fetchPoetsReq = action($poets, 'fetchPoetsReq', async () => {
+    try {
+        const req = await baseHttp.get(`/poets`);
+        $poets.set(req.data);
+    } catch (error) {
+        if (error instanceof AxiosError) {
+            // useAxiosError(error);
+        return;
     }
-    alert(error);
-  }
-};
-
- const poet = ref<Poet | null>(null)
- const getPoet = computed<Poet | null>(() => poet.value)
- async function fetchPoet(id: string) {
-  try {
-    const req = await baseHttp.get(`/poet/${id}`);
-    poet.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      // useAxiosError(error);
-      return;
+        alert(error);
     }
-    alert(error);
-  }
- };
+});
 
- return {getPoets, fetchPoets, getPoet, fetchPoet}
+export const $poet = map<Poet>();
+export const $poetId = atom<string>('');
+export const fetchPoetReq = action($poetId, 'fetchPoetReq', async ($poetId) => {
+    try {
+        const req = await baseHttp.get(`/poet/${$poetId.get()}`);
+        $poet.set(req.data);
+    } catch (error) {
+        if (error instanceof AxiosError) {
+            // useAxiosError(error);
+        return;
+    }
+        alert(error);
+    }
+
 });

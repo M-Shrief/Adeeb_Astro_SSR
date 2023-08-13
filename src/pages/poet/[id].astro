@@ -8,21 +8,38 @@ import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Utils
+import {fetchPoetReq, $poetId, $poet} from '../../stores/poets'
 import {baseHttp} from '../../utils/axios'
 // Types
 import type { Poet } from "../../stores/__types__";
 export const prerender = false;
 const {  id } = Astro.params;
 
-const poet: Poet = await baseHttp.get(`/poet/${id}`).then(
-    (response) => response.data
-).catch((err )=> console.error(err));
+// const poet: Poet = await baseHttp.get(`/poet/${id}`).then(
+//     (response) => response.data
+// ).catch((err )=> console.error(err));
+if(!id) Astro.redirect('/')
+else {
+  $poetId.set(id);
+  await fetchPoetReq();
+}
 ---
 
 <Layout title="Adeeb :: Poet" >
     <main>
         <div class="container">
-          <ShowCasePoet details={{ name: poet.name, time_period: poet.time_period,bio: poet.bio}} />
+          <ShowCasePoet details={{ name: $poet.get().name, time_period: $poet.get().time_period,bio: $poet.get().bio}} />
+
+          <ShowCasePoems poems={$poet.get().poems}>
+              <h3 class="poems-title">قصائده</h3>
+          </ShowCasePoems>
+        </div>
+
+        <ShowCasePoetry chosenVerses={$poet.get().chosenVerses} routeName={'poet'} client:idle/>
+
+        <ShowCaseProse proses={$poet.get().proses} routeName={'poet'} client:idle/>
+
+          <!-- <ShowCasePoet details={{ name: poet.name, time_period: poet.time_period,bio: poet.bio}} />
 
           <ShowCasePoems poems={poet.poems}>
               <h3 class="poems-title">قصائده</h3>
@@ -31,7 +48,7 @@ const poet: Poet = await baseHttp.get(`/poet/${id}`).then(
 
         <ShowCasePoetry chosenVerses={poet.chosenVerses} routeName={'poet'} client:idle/>
 
-        <ShowCaseProse proses={poet.proses} routeName={'poet'} client:idle/>
+        <ShowCaseProse proses={poet.proses} routeName={'poet'} client:idle/> -->
         <SelectedPrints isPartner={false} client:idle/>
     </main>
 </Layout>

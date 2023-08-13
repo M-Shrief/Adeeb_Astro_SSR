@@ -12,9 +12,11 @@
   "dependencies": {
     "@astrojs/node": "^5.3.2",
     "@astrojs/vue": "^2.2.1",
+    "@nanostores/vue": "^0.10.0",
     "@vueuse/core": "^10.3.0",
     "astro": "^2.10.4",
     "axios": "^1.4.0",
+    "nanostores": "^0.9.3",
     "open-props": "^1.5.11",
     "pinia": "^2.1.6",
     "sass": "^1.65.1",
