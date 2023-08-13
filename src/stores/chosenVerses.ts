@@ -1,6 +1,6 @@
 import {map, atom, action} from 'nanostores';
 // Composables
-// import {useAxiosError} from '../composables/errorsNotifications';
+import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
 // Types
@@ -14,7 +14,7 @@ export const fetchChosenVerses = action($chosenVerses, 'fetchChosenVerses', asyn
         chosenVerses.set(req.data);
       } catch (error) {
         if (error instanceof AxiosError) {
-          // useAxiosError(error);
+          useAxiosError(error);
           return;
         }
         alert(error);
@@ -29,7 +29,7 @@ export const fetchRandomChosenVerses = action($randomChosenVerses, 'fetchRandomC
       randomChosenVerses.set(req.data);
     } catch (error) {
       if (error instanceof AxiosError) {
-        // useAxiosError(error);
+        useAxiosError(error);
         return;
       }
       alert(error);

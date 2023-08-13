@@ -1,6 +1,6 @@
-import {map, atom, action} from 'nanostores';
+import { atom, action} from 'nanostores';
 // Composables
-// import {useAxiosError} from '../composables/errorsNotifications';
+import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
 // Types
@@ -14,7 +14,7 @@ export const fetchProses = action($proses, 'fetchProses', async(proses) => {
         proses.set(req.data);
       } catch (error) {
         if (error instanceof AxiosError) {
-          // useAxiosError(error);
+          useAxiosError(error);
           return;
         }
         alert(error);
@@ -28,7 +28,7 @@ export const fetchRandomProses = action($randomProses, 'fetchRandomProses', asyn
         randomProses.set(req.data);
       } catch (error) {
         if (error instanceof AxiosError) {
-          // useAxiosError(error);
+          useAxiosError(error);
           return;
         }
         alert(error);

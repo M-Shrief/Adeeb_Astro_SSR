@@ -1,4 +1,6 @@
 import {atom, map, action} from 'nanostores';
+// Composables
+import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
 // Types
@@ -16,7 +18,7 @@ export const fetchPoems = action($poems, 'fetchPoems', async() => {
         $poems.set(req.data);
       } catch (error) {
         if (error instanceof AxiosError) {
-          // useAxiosError(error);
+          useAxiosError(error);
           return;
         }
         alert(error);
@@ -40,7 +42,7 @@ export const fetchOtherPoems = action($poems, 'fetchOtherPoems', async(poems, id
       poems.set(reqPoemsIntros.data);
     } catch (error) {
       if (error instanceof AxiosError) {
-        // useAxiosError(error);
+        useAxiosError(error);
         return;
       }
       alert(error);
@@ -55,7 +57,7 @@ export const fetchPoem = action($poem, 'fetchPoem', async(poem, id: string) => {
         fetchOtherPoems(id);
       } catch (error) {
         if (error instanceof AxiosError) {
-          // useAxiosError(error);
+          useAxiosError(error);
           return;
         }
         alert(error);
