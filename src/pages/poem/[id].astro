@@ -8,15 +8,15 @@ import ShowCasePoems from '../../components/ShowCasePoems.vue'
 import ShowCasePoet from '../../components/ShowCasePoet.vue'
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
-import {$poem, $poemId, $poems, fetchPoem} from '../../stores/poems';
+import {$poem, $poems, fetchPoem} from '../../stores/poems';
 
 export const prerender = false;
 const {  id } = Astro.params;
 
 if(!id) Astro.redirect('/');
 else {
-    $poemId.set(id);
-    await fetchPoem()
+    // $poemId.set(id);
+    await fetchPoem(id)
     await allTasks()
 }
 ---

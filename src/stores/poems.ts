@@ -25,17 +25,19 @@ export const fetchPoems = action($poems, 'fetchPoems', async() => {
 
 export const $poem = map<Poem>();
 
-export const $poemId = atom<string>('');
+// We can limit server request, 
+// if we added another variable (otherPoems) that take data directly from $poems
+// and filter it, if ($poems.length ===0) it make the request.
 
-export const fetchOtherPoems = action($poemId, 'fetchOtherPoems', async($poemId) => {
+export const fetchOtherPoems = action($poems, 'fetchOtherPoems', async(poems, id: string) => {
     try {
       let reqPoemsIntros = await baseHttp.get(`/poems_intros`);
 
       let poemIndex = reqPoemsIntros.data
         .map((poem: Poem) => poem.id)
-        .indexOf($poemId.get());
+        .indexOf(id);
       reqPoemsIntros.data.splice(poemIndex, 1);
-      $poems.set(reqPoemsIntros.data);
+      poems.set(reqPoemsIntros.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         // useAxiosError(error);
@@ -45,12 +47,12 @@ export const fetchOtherPoems = action($poemId, 'fetchOtherPoems', async($poemId)
     }
   }) 
 
-export const fetchPoem = action($poemId, 'fetchPoem', async($poemId) => {
+export const fetchPoem = action($poem, 'fetchPoem', async(poem, id: string) => {
     try {
-        let reqPoem = await baseHttp.get(`/poem/${$poemId.get()}`);
-        $poem.set(reqPoem.data);
+        let reqPoem = await baseHttp.get(`/poem/${id}`);
+        poem.set(reqPoem.data);
   
-        fetchOtherPoems();
+        fetchOtherPoems(id);
       } catch (error) {
         if (error instanceof AxiosError) {
           // useAxiosError(error);
