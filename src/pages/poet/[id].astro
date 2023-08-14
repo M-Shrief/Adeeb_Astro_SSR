@@ -9,7 +9,8 @@ import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
-import {fetchPoet, $poet} from '../../stores/poets'
+// import {fetchPoet, $poet} from '../../stores/poets.nano'
+import {fetchPoet, getPoet} from '../../stores/poets.composition'
 
 export const prerender = false;
 const {  id } = Astro.params;
@@ -24,16 +25,16 @@ else {
 <Layout title="Adeeb :: Poet" >
     <main>
         <div class="container">
-          <ShowCasePoet details={{ name: $poet.get().name, time_period: $poet.get().time_period,bio: $poet.get().bio}} />
+          <ShowCasePoet details={{ name: getPoet.value.name, time_period: getPoet.value.time_period,bio: getPoet.value.bio}} />
 
-          <ShowCasePoems poems={$poet.get().poems}>
+          <ShowCasePoems poems={getPoet.value.poems}>
               <h3 class="poems-title">قصائده</h3>
           </ShowCasePoems>
         </div>
 
-        <ShowCasePoetry chosenVerses={$poet.get().chosenVerses} routeName={'poet'} client:idle/>
+        <ShowCasePoetry chosenVerses={getPoet.value.chosenVerses} routeName={'poet'} client:idle/>
 
-        <ShowCaseProse proses={$poet.get().proses} routeName={'poet'} client:idle/>
+        <ShowCaseProse proses={getPoet.value.proses} routeName={'poet'} client:idle/>
 
        <SelectedPrints isPartner={false} client:idle/>
     </main>

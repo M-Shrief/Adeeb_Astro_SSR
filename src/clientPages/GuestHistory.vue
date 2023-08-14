@@ -2,7 +2,7 @@
     <main >
       <h2>ادخل بيانات الطلب لمتابعته</h2>
   
-        <Form @submit="onSubmit" >
+      <Form @submit="onSubmit" >
 
         <div class="container">
           <label for="name">الاسم: </label>
