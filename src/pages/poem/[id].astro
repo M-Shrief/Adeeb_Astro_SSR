@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import { allTasks } from "nanostores";
 // Layout
 import Layout from "../../layouts/Layout.astro";
@@ -21,7 +22,9 @@ else {
 ---
 
 <Layout title="Adeeb :: Poem">
-    <main>
+    <ViewTransitions slot="transition"/>
+
+    <main transition:animate="slide">
         <div class="container">
             <section id="related-data">
                 <a href=`/poet/${$poem.get().poet.id}` class="link">

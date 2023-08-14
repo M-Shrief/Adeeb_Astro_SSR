@@ -10,6 +10,9 @@ export default defineConfig({
       // appEntrypoint: '/src/pages/_app' 
     })
   ],
+  experimental: {
+    viewTransitions: true
+  },
   server: {
     port: 5173
   },
