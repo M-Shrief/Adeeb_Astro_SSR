@@ -55,11 +55,11 @@
 <script lang="ts" setup>
   // Validation
   import {Form, Field, ErrorMessage} from 'vee-validate';
-  import {nameRules, phoneRules} from '../../utils/forms.schema'
+  import {nameRules, phoneRules} from '../utils/forms.schema'
   // Stores
-  import { getOrders, fetchOrders } from "../../stores/orders";
+  import { getOrders, fetchOrders } from "../stores/orders";
   // Types
-  import type { Product } from '../../stores/__types__';
+  import type { Product } from '../stores/__types__';
 
   async function onSubmit(values: any) {
     const {name, phone} = values
@@ -68,7 +68,7 @@
   </script>
   
   <style lang="scss" scoped>
-  @import '../../assets/mixins.scss';
+  @import '../assets/mixins.scss';
   
   $mainColor: var(--text1);
   $secondaryColor: var(--surface2);

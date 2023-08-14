@@ -53,16 +53,16 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 // stores
-import { getPrints, removePrint } from "../../stores/prints";
-import { $randomChosenVerses, fetchRandomChosenVerses } from "../../stores/chosenVerses";
-import { $randomProses, fetchRandomProses } from "../../stores/proses";
-import { colors, newOrder, reset, getProducts, addProduct } from '../../stores/orders';
+import { getPrints, removePrint } from "../stores/prints";
+import { $randomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
+import { $randomProses, fetchRandomProses } from "../stores/proses";
+import { colors, newOrder, reset, getProducts, addProduct } from '../stores/orders';
 // components
-import PrintCustomization from '../PrintCustomization.vue';
-import OrderForm from "../OrderForm.vue";
-import ShowCasePrints from '../ShowCasePrints.vue';
+import PrintCustomization from '../components/PrintCustomization.vue';
+import OrderForm from "../components/OrderForm.vue";
+import ShowCasePrints from '../components/ShowCasePrints.vue';
 // Types
-import type { Order,Prose, ChosenVerse, Print } from '../../stores/__types__';
+import type { Order,Prose, ChosenVerse, Print } from '../stores/__types__';
 
 let preview = ref({} as Print);
 let randomPrint = ref();
@@ -88,7 +88,7 @@ function getRandomProse(num: number) {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/mixins.scss';
+@import '../assets/mixins.scss';
 $mainColor: var(--text1);
 $secondaryColor: var(--surface2);
 
