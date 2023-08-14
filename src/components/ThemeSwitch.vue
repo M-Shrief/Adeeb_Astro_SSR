@@ -84,88 +84,86 @@ window
 </script>
 
 <style lang="scss" scoped>
-@import "../../node_modules/open-props/easings.min.css";
-
-button {
-  background-color: transparent;
-  border: none;
-  margin: auto 0;
-  cursor: pointer;
-}
-
-.sun-and-moon> :is(.moon, .sun, .sun-beams) {
-  transform-origin: center;
-}
-
-.sun-and-moon> :is(.moon, .sun) {
-  fill: var(--icon-fill);
-}
-
-.theme-toggle:is(:hover, :focus-visible)>.sun-and-moon> :is(.moon, .sun) {
-  fill: var(--icon-fill-hover);
-}
-
-.sun-and-moon>.sun-beams {
-  stroke: var(--icon-fill);
-  stroke-width: 2px;
-}
-
-.theme-toggle:is(:hover, :focus-visible) .sun-and-moon>.sun-beams {
-  stroke: var(--icon-fill-hover);
-}
-
-[color-scheme="dark"] .sun-and-moon>.sun {
-  transform: scale(1.75);
-}
-
-[color-scheme="dark"] .sun-and-moon>.sun-beams {
-  opacity: 0;
-}
-
-[color-scheme="dark"] .sun-and-moon>.moon>circle {
-  transform: translateX(-7px);
-}
-
-@supports (cx: 1) {
-  [color-scheme="dark"] .sun-and-moon>.moon>circle {
-    cx: 17;
-    transform: translateX(0);
+  button {
+    background-color: transparent;
+    border: none;
+    margin: auto 0;
+    cursor: pointer;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .sun-and-moon>.sun {
-    transition: transform .5s var(--ease-elastic-3);
+  .sun-and-moon> :is(.moon, .sun, .sun-beams) {
+    transform-origin: center;
+  }
+
+  .sun-and-moon> :is(.moon, .sun) {
+    fill: var(--icon-fill);
+  }
+
+  .theme-toggle:is(:hover, :focus-visible)>.sun-and-moon> :is(.moon, .sun) {
+    fill: var(--icon-fill-hover);
   }
 
   .sun-and-moon>.sun-beams {
-    transition: transform .5s var(--ease-elastic-4), opacity .5s var(--ease-3);
+    stroke: var(--icon-fill);
+    stroke-width: 2px;
   }
 
-  .sun-and-moon .moon>circle {
-    transition: transform .25s var(--ease-out-5);
-  }
-
-  @supports (cx: 1) {
-    .sun-and-moon .moon>circle {
-      transition: cx .25s var(--ease-out-5);
-    }
+  .theme-toggle:is(:hover, :focus-visible) .sun-and-moon>.sun-beams {
+    stroke: var(--icon-fill-hover);
   }
 
   [color-scheme="dark"] .sun-and-moon>.sun {
-    transition-timing-function: var(--ease-3);
-    transition-duration: .25s;
     transform: scale(1.75);
   }
 
   [color-scheme="dark"] .sun-and-moon>.sun-beams {
-    transition-duration: .15s;
-    transform: rotateZ(-25deg);
+    opacity: 0;
   }
 
   [color-scheme="dark"] .sun-and-moon>.moon>circle {
-    transition-duration: .5s;
-    transition-delay: .25s;
+    transform: translateX(-7px);
   }
-}
+
+  @supports (cx: 1) {
+    [color-scheme="dark"] .sun-and-moon>.moon>circle {
+      cx: 17;
+      transform: translateX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .sun-and-moon>.sun {
+      transition: transform .5s var(--ease-elastic-3);
+    }
+
+    .sun-and-moon>.sun-beams {
+      transition: transform .5s var(--ease-elastic-4), opacity .5s var(--ease-3);
+    }
+
+    .sun-and-moon .moon>circle {
+      transition: transform .25s var(--ease-out-5);
+    }
+
+    @supports (cx: 1) {
+      .sun-and-moon .moon>circle {
+        transition: cx .25s var(--ease-out-5);
+      }
+    }
+
+    [color-scheme="dark"] .sun-and-moon>.sun {
+      transition-timing-function: var(--ease-3);
+      transition-duration: .25s;
+      transform: scale(1.75);
+    }
+
+    [color-scheme="dark"] .sun-and-moon>.sun-beams {
+      transition-duration: .15s;
+      transform: rotateZ(-25deg);
+    }
+
+    [color-scheme="dark"] .sun-and-moon>.moon>circle {
+      transition-duration: .5s;
+      transition-delay: .25s;
+    }
+  }
 </style>
