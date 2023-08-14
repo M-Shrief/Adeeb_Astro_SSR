@@ -1,5 +1,5 @@
 <template>
-    <main dir="rtl">
+    <main >
       <h2>ادخل بيانات الطلب لمتابعته</h2>
   
         <Form @submit="onSubmit" >
