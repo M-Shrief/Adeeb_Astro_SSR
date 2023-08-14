@@ -19,13 +19,9 @@
 
 <script lang="ts" setup>
 // Stores
-import {appStore} from '../stores/index'
-import {useOrderStore} from '../stores/orders'
+import {colors} from '../stores/orders'
 // components
 import PreviewColors from "./PreviewColors.vue";
-
-const ordersStore = useOrderStore(appStore);
-const colors = ordersStore.colors
 
 
 defineEmits(['fontColor', 'backgroundColor']);
