@@ -16,10 +16,7 @@
 
 <script lang="ts" setup>
 import {getPrints, removePrint} from '../stores/prints'
-
-defineProps<{
-  isPartner: boolean
-}>()
+import { isPartner } from '../stores/partners';
 
 </script>
 

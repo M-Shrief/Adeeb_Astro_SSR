@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions, slide } from 'astro:transitions';
 import { allTasks } from "nanostores";
 // Layout
 import Layout from "../../layouts/Layout.astro";
@@ -24,7 +24,8 @@ else {
 <Layout title="Adeeb :: Poem">
     <ViewTransitions slot="transition"/>
 
-    <main transition:animate="slide">
+    <main transition:animate={slide({duration: '0.1s'})}>
+    <!-- <main > -->
         <div class="container">
             <section id="related-data">
                 <a href=`/poet/${$poem.get().poet.id}` class="link">
@@ -38,7 +39,7 @@ else {
             <ShowCasePoem verses={$poem.get().verses} client:idle/>
 
         </div>
-        <SelectedPrints isPartner={false} client:idle/>
+        <SelectedPrints client:only="vue"/>
     </main>
 </Layout>
 

@@ -14,6 +14,7 @@ import {$poems, fetchPoems} from '../stores/poems'
 import {getPoets, fetchPoets} from '../stores/poets.composition'
 import {getChosenVerses, fetchChosenVerses} from '../stores/chosenVerses'
 import {getProses, fetchProses} from '../stores/proses'
+import {isPartner} from '../stores/partners'
 
 await fetchPoems()
 await fetchPoets()
@@ -40,7 +41,7 @@ await allTasks();
 
             <ShowCaseProse proses={getProses.value} routeName={'main'} client:idle/>
         </div>
-        <SelectedPrints isPartner={false} client:idle/>
+        <SelectedPrints client:only="vue"/>
 	</main>
 </Layout>
 
