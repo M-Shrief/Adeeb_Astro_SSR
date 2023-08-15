@@ -3,18 +3,18 @@
   <nav id="nav-raw" dir="rtl">
     <a href="/" id="logo">أديب</a>
     <div class="nav-row-group">
-      <a :href="partner ? '/partners/ordering' : '/ordering'"
+      <a :href="getPartner ? '/partners/ordering' : '/ordering'"
         class="nav-item" active-class="active">طلباتك</a>
-      <a :href="partner ? '/partners/history' : '/history'"
+      <a :href="getPartner ? '/partners/history' : '/history'"
         class="nav-item" active-class="active">مراجعة
         الطلبات</a>
       <a :href="'/about'" class="nav-item"
         active-class="active">قصتنا</a>
 
-      <span v-if="partner" class="partner-name">{{ partner.name }}</span>
-      <span v-if="partner" class="nav-item" @click="$emit('logout')">تسجيل
+      <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
+      <span v-if="getPartner" class="nav-item" @click="logout">تسجيل
         الخروج</span>
-      <a href="/partners" class="nav-item" active-class="active" v-else >كن
+      <a href="/partners/auth" class="nav-item" active-class="active" v-else >كن
         شريكاً</a>
       <slot name="theme-switch" />
     </div>
@@ -22,13 +22,8 @@
 </template>
 
 <script lang="ts" setup>
-// Types
-import type { Partner } from '../stores/__types__'
-
-defineProps<{
-  partner: Partner | null
-}>()
-
+// Stores
+import { getPartner, logout } from '../stores/partners';
 </script>
 
 <style lang="scss" scoped>
