@@ -1,5 +1,4 @@
 import {ref, computed} from '@vue/reactivity'
-import {map, atom, action} from 'nanostores';
 // Composables
 import {useAxiosError} from '../composables/errorsNotifications';
 // Utils

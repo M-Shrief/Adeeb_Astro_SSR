@@ -13,7 +13,7 @@ import {$poems, fetchPoems} from '../stores/poems'
 // import {$poets, fetchPoets} from '../stores/poets.nano'
 import {getPoets, fetchPoets} from '../stores/poets.composition'
 import {getChosenVerses, fetchChosenVerses} from '../stores/chosenVerses'
-import {$proses, fetchProses} from '../stores/proses'
+import {getProses, fetchProses} from '../stores/proses'
 
 await fetchPoems()
 await fetchPoets()
@@ -38,7 +38,7 @@ await allTasks();
             </ShowCasePoets>
             <ShowCasePoetry chosenVerses={getChosenVerses.value} routeName={'main'} client:idle/>
 
-            <ShowCaseProse proses={$proses.get()} routeName={'main'} client:idle/>
+            <ShowCaseProse proses={getProses.value} routeName={'main'} client:idle/>
         </div>
         <SelectedPrints isPartner={false} client:idle/>
 	</main>

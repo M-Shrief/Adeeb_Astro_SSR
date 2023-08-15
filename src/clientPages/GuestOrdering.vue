@@ -55,7 +55,7 @@ import { ref } from 'vue';
 // stores
 import { getPrints, removePrint } from "../stores/prints";
 import { getRandomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
-import { $randomProses, fetchRandomProses } from "../stores/proses";
+import { getRandomProses, fetchRandomProses } from "../stores/proses";
 import { colors, newOrder, reset, getProducts, addProduct } from '../stores/orders';
 // components
 import PrintCustomization from '../components/PrintCustomization.vue';
@@ -83,7 +83,7 @@ function getRandomPoetry(num: number) {
 
 function getRandomProse(num: number) {
   fetchRandomProses(num);
-  randomPrint.value = ($randomProses.get() as Prose[])[0];
+  randomPrint.value = getRandomProses.value[0];
 }
 </script>
 

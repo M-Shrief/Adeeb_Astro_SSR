@@ -1,4 +1,5 @@
-import { atom, action} from 'nanostores';
+import {ref, computed} from '@vue/reactivity'
+// import { atom, action} from 'nanostores';
 // Composables
 import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
@@ -7,30 +8,40 @@ import {baseHttp} from '../utils/axios';
 import type {Prose} from './__types__';
 import {AxiosError} from 'axios';
 
-export const $proses = atom<Prose[]>([]);
-export const fetchProses = action($proses, 'fetchProses', async(proses) => {
-    try {
-        const req = await baseHttp.get(`/proses`);
-        proses.set(req.data);
-      } catch (error) {
-        if (error instanceof AxiosError) {
-          useAxiosError(error);
-          return;
-        }
-        alert(error);
-      }
-})
+const proses = ref<Prose[]>([]);
 
-export const $randomProses = atom<Prose[]>([]);
-export const fetchRandomProses = action($randomProses, 'fetchRandomProses', async(randomProses, num: number) => {
-    try {
-        const req = await baseHttp.get(`/proses/random?num=${num}`);
-        randomProses.set(req.data);
-      } catch (error) {
-        if (error instanceof AxiosError) {
-          useAxiosError(error);
-          return;
-        }
-        alert(error);
-      }
-})
+export const getProses = computed<Prose[]>(() => {
+  return proses.value;
+});
+
+export async function fetchProses() {
+  try {
+    const req = await baseHttp.get(`/proses`);
+    proses.value = req.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      useAxiosError(error);
+      return;
+    }
+    alert(error);
+  }
+}
+
+const randomProses = ref<Prose[]>([]);
+
+export const getRandomProses = computed<Prose[]>(() => {
+  return proses.value;
+});
+
+export async function fetchRandomProses(num: number) {
+  try {
+    const req = await baseHttp.get(`/proses/random?num=${num}`);
+    randomProses.value = req.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      useAxiosError(error);
+      return;
+    }
+    alert(error);
+  }
+}
