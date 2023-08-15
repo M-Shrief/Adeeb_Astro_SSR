@@ -28,15 +28,17 @@ const poem = ref<Poem>({} as Poem);
 
 export const getPoem = computed<Poem>(() => { return poem.value}); 
 
+const otherPoems = ref<Poem[]>([]);
+export const getOtherPoems = computed<Poem[]>(() => { return otherPoems.value});
+
 export async function fetchOtherPoems(id: string) {
   try {
-    let reqPoemsIntros = await baseHttp.get(`/poems_intros`);
-
-    let poemIndex = reqPoemsIntros.data
-      .map((poem: Poem) => poem.id)
-      .indexOf(id);
-    reqPoemsIntros.data.splice(poemIndex, 1);
-    poems.value = reqPoemsIntros.data ;
+    if(getPoems.value.length === 0) await fetchPoems();
+    console.log('used getPoems');
+    const poemsArr = [...getPoems.value];
+    let poemIndex = poemsArr.map((poem: Poem) => poem.id).indexOf(id);
+    poemsArr.splice(poemIndex, 1);
+    otherPoems.value = poemsArr;
   } catch (error) {
     if (error instanceof AxiosError) {
       useAxiosError(error);
@@ -51,7 +53,7 @@ export async function fetchPoem(id: string) {
     let reqPoem = await baseHttp.get(`/poem/${id}`);
     poem.value = reqPoem.data;
 
-    fetchOtherPoems(id);
+    await fetchOtherPoems(id)
   } catch (error) {
     if (error instanceof AxiosError) {
       useAxiosError(error);

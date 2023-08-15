@@ -7,15 +7,14 @@ import ShowCasePoems from '../../components/ShowCasePoems.vue'
 import ShowCasePoet from '../../components/ShowCasePoet.vue'
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
-import {getPoem, getPoems, fetchPoem} from '../../stores/poems';
+import {getPoem, getOtherPoems, fetchPoem} from '../../stores/poems';
 
 export const prerender = false;
 const {  id } = Astro.params;
 
-if(!id) Astro.redirect('/');
-else {
-    await fetchPoem(id)
-}
+if(!id) return Astro.redirect('/');
+await fetchPoem(id)
+
 ---
 
 <Layout title="Adeeb :: Poem">
@@ -26,7 +25,7 @@ else {
                     <ShowCasePoet details={getPoem.value.poet} client:idle/>
                 </a>
 
-                <ShowCasePoems poems={getPoems.value} >
+                <ShowCasePoems poems={getOtherPoems.value} >
                     <h2>قصائد اخري</h2>
                 </ShowCasePoems>                
             </section>
