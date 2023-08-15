@@ -23,7 +23,7 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<header>
-			<Navbar client:idle >
+			<Navbar client:only="vue" >
 				<ThemeSwitch slot="theme-switch"  client:only="vue"/>
 			</Navbar>
 		    <HttpPopUp />
