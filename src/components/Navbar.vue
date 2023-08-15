@@ -17,7 +17,6 @@
       <a href="/partners" class="nav-item" active-class="active" v-else >كن
         شريكاً</a>
       <slot name="theme-switch" />
-      <!-- <ThemeSwitch class="nav-item" /> -->
     </div>
   </nav>
 </template>
@@ -25,8 +24,6 @@
 <script lang="ts" setup>
 // Types
 import type { Partner } from '../stores/__types__'
-// Components
-import ThemeSwitch from './ThemeSwitch.vue';
 
 defineProps<{
   partner: Partner | null
