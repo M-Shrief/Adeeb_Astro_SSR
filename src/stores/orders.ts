@@ -1,5 +1,7 @@
 import {ref, computed} from 'vue';
 import  { AxiosError } from 'axios';
+import Cookies from 'js-cookie';
+// Utils
 import {baseHttp, withAuthHttp } from '../utils/axios'
 // types
 import type { Order, Product, ProductGroup, Print } from './__types__';
@@ -41,9 +43,9 @@ export async function fetchOrders(name: string, phone: string) {
 
 export async function fetchPartnerOrders(partner: string) {
     try {
-        const accessToken = sessionStorage.getItem("accessToken") ?? '';
+        const accessToken = Cookies.get("accessToken") ?? '';
         const req = await withAuthHttp(accessToken).get(`/orders/${partner}`);
-    orders.value = req.data;
+        orders.value = req.data;
     } catch (error) {
     if (error instanceof AxiosError) {
         useAxiosError(error);
