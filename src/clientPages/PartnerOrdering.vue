@@ -20,7 +20,6 @@
     </PrintCustomization>
 
     <div class="preview-prints">
-      <!-- use src/components/ShowCasePrint instead, only need addition is to make styles conditional-->
       <ShowCasePrints :prints="getPrints"
         :colors="[computed(() => fontColor as string), computed(() => backgroundColor as string)]"
         @remove="(print: Print) => removePrint(print)" />
@@ -38,13 +37,13 @@ import PrintCustomization from '../components/PrintCustomization.vue';
 import ShowCasePrints from '../components/ShowCasePrints.vue';
 import OrderForm from '../components/OrderForm.vue';
 // stores
-import { fetchRandomChosenVerses, $randomChosenVerses } from "../stores/chosenVerses";
-import { fetchRandomProses, $randomProses } from "../stores/proses";
+import { fetchRandomChosenVerses, getRandomChosenVerses } from "../stores/chosenVerses";
+import { fetchRandomProses, getRandomProses } from "../stores/proses";
 import { getPrints, removePrint, prepPrints, emptyPrints } from "../stores/prints";
 import { getPartner } from '../stores/partners';
 import { colors, getProductGroups, addProductGroup, newOrder, reset } from "../stores/orders";
 // types
-import type { ChosenVerse, Order, Print } from '../stores/__types__'
+import type { Order, Print } from '../stores/__types__'
 
 
 let fontColor = ref(colors[0]);
@@ -59,9 +58,6 @@ function onAddProductGroup(prints: Print[], colors: string[]) {
   emptyPrints();
 }
 
-const router = useRouter(); 
-
-
 const confirmPartnerOrder = async (order: Order) => {
     await newOrder(order)
     reset()
@@ -72,12 +68,15 @@ const confirmPartnerOrder = async (order: Order) => {
 
 async function preparePoetry() {
   const num = (document.getElementById('poetry') as HTMLInputElement).valueAsNumber;
-  await fetchRandomChosenVerses(num).then(() => prepPrints($randomChosenVerses.value as ChosenVerse[]));
+  await fetchRandomChosenVerses(num).then((res) => {
+    console.log(getRandomChosenVerses);
+    prepPrints(getRandomChosenVerses.value);
+  });
 }
 async function prepareProse() {
   const num = (document.getElementById('prose') as HTMLInputElement).valueAsNumber;
   await fetchRandomProses(num).then(() => {
-    prepPrints($randomProses.value );
+    prepPrints(getRandomProses.value);
   });
 }
 </script>

@@ -4,7 +4,7 @@
 **/ 
 import {ref, computed} from 'vue';
 // Types
-import type { Print } from './__types__';
+import type { Print, ChosenVerse, Prose } from './__types__';
 // Composables
 import {useSessionStorage} from '@vueuse/core';
 
@@ -21,9 +21,9 @@ export function addPrint(print: Print) {
   }
 };
 
-export function prepPrints(printsData: Print[]) {
+export function prepPrints(printsData: ChosenVerse[] | Prose[]) {
   // it's normal in big orders to repeat the same print
-  prints.value = prints.value.concat(printsData);
+  prints.value = prints.value.concat(printsData as Print[]);
 };
 
 export function removePrint(print: Print) {
