@@ -1,6 +1,4 @@
 ---
-import { ViewTransitions, slide } from 'astro:transitions';
-import { allTasks } from "nanostores";
 // Layout
 import Layout from "../../layouts/Layout.astro";
 // Components
@@ -9,7 +7,7 @@ import ShowCasePoems from '../../components/ShowCasePoems.vue'
 import ShowCasePoet from '../../components/ShowCasePoet.vue'
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
-import {$poem, $poems, fetchPoem} from '../../stores/poems';
+import {getPoem, getPoems, fetchPoem} from '../../stores/poems';
 
 export const prerender = false;
 const {  id } = Astro.params;
@@ -17,7 +15,6 @@ const {  id } = Astro.params;
 if(!id) Astro.redirect('/');
 else {
     await fetchPoem(id)
-    await allTasks()
 }
 ---
 
@@ -25,15 +22,15 @@ else {
     <main >
         <div class="container">
             <section id="related-data">
-                <a href=`/poet/${$poem.get().poet.id}` class="link">
-                    <ShowCasePoet details={$poem.get().poet} client:idle/>
+                <a href=`/poet/${getPoem.value.poet.id}` class="link">
+                    <ShowCasePoet details={getPoem.value.poet} client:idle/>
                 </a>
 
-                <ShowCasePoems poems={$poems.get()} >
+                <ShowCasePoems poems={getPoems.value} >
                     <h2>قصائد اخري</h2>
                 </ShowCasePoems>                
             </section>
-            <ShowCasePoem verses={$poem.get().verses} client:idle/>
+            <ShowCasePoem verses={getPoem.value.verses} client:idle/>
 
         </div>
         <SelectedPrints client:only="vue"/>

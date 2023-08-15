@@ -1,5 +1,4 @@
 ---
-import {allTasks} from 'nanostores';
 // Layout
 import Layout from "../layouts/Layout.astro";
 // Components
@@ -9,19 +8,16 @@ import ShowCasePoetry from '../components/ShowCasePoetry.vue';
 import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
 // Stores
-import {$poems, fetchPoems} from '../stores/poems'
+import {getPoems, fetchPoems} from '../stores/poems'
 // import {$poets, fetchPoets} from '../stores/poets.nano'
 import {getPoets, fetchPoets} from '../stores/poets.composition'
 import {getChosenVerses, fetchChosenVerses} from '../stores/chosenVerses'
 import {getProses, fetchProses} from '../stores/proses'
-import {isPartner} from '../stores/partners'
 
 await fetchPoems()
 await fetchPoets()
 await fetchChosenVerses()
 await fetchProses()
-
-await allTasks();
 ---
 
 <Layout title="Adeeb :: Main">
@@ -30,7 +26,7 @@ await allTasks();
 		<p>لطباعة الادب العربي شعراً ونثراً</p>
 
 		<div class="container">
-            <ShowCasePoems poems={$poems.get()} grid={'grid'} >
+            <ShowCasePoems poems={getPoems.value} grid={'grid'} >
                 <h2 class="poems-title">القصائد</h2>
             </ShowCasePoems>
 
