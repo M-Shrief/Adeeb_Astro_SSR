@@ -108,7 +108,7 @@ async function onSubmit(values: any) {
   let order: Order;
   if (props.partner && props.productGroups) {
     order = {
-      partner: props.partner.id,
+      partnerId: props.partner.id,
       name: props.partner.name,
       phone: props.partner.phone,
       ...values,

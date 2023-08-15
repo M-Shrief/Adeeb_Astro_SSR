@@ -75,7 +75,7 @@ export interface Partner {
 
 export interface Order {
   id?: string;
-  partner?: string;
+  partnerId?: string;
   products: Product[] | ProductGroup[];
   name: string;
   phone: string;
