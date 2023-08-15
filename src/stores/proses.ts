@@ -30,7 +30,7 @@ export async function fetchProses() {
 const randomProses = ref<Prose[]>([]);
 
 export const getRandomProses = computed<Prose[]>(() => {
-  return proses.value;
+  return randomProses.value;
 });
 
 export async function fetchRandomProses(num: number) {

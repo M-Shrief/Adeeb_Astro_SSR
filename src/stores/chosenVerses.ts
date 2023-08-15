@@ -29,7 +29,7 @@ export async function fetchChosenVerses() {
 const randomChosenVerses = ref<ChosenVerse[]>([]);
 
 export const getRandomChosenVerses = computed<ChosenVerse[]>(() => {
-  return chosenVerses.value;
+  return randomChosenVerses.value;
 })
 
 export async function fetchRandomChosenVerses(num: number) {
