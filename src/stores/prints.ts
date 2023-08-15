@@ -2,7 +2,7 @@
     Just using Vuejs' Composition API here
     Note: Only use on client
 **/ 
-import {ref, computed} from 'vue';
+import {ref, computed} from '@vue/reactivity';
 // Types
 import type { Print, ChosenVerse, Prose } from './__types__';
 // Composables
