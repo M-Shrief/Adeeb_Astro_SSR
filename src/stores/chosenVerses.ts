@@ -1,3 +1,4 @@
+import {ref, computed} from '@vue/reactivity'
 import {map, atom, action} from 'nanostores';
 // Composables
 import {useAxiosError} from '../composables/errorsNotifications';
@@ -7,32 +8,40 @@ import {baseHttp} from '../utils/axios';
 import type {ChosenVerse} from './__types__';
 import {AxiosError} from 'axios';
 
-export const $chosenVerses = atom<ChosenVerse[]>([]);
-export const fetchChosenVerses = action($chosenVerses, 'fetchChosenVerses', async(chosenVerses) => {
-    try {
-        const req = await baseHttp.get(`/chosenverses`);
-        chosenVerses.set(req.data);
-      } catch (error) {
-        if (error instanceof AxiosError) {
-          useAxiosError(error);
-          return;
-        }
-        alert(error);
-      }
+const chosenVerses = ref<ChosenVerse[]>([]);
+
+export const getChosenVerses = computed<ChosenVerse[]>(() => {
+  return chosenVerses.value;
 })
 
-
-export const $randomChosenVerses = atom<ChosenVerse[]>([]);
-export const fetchRandomChosenVerses = action($randomChosenVerses, 'fetchRandomChosenVerses', async(randomChosenVerses, num: number) => {
-    try {
-      const req = await baseHttp.get(`/chosenverses/random?num=${num}`);
-      randomChosenVerses.set(req.data);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        useAxiosError(error);
-        return;
-      }
-      alert(error);
+export async function fetchChosenVerses() {
+  try {
+    const req = await baseHttp.get(`/chosenverses`);
+    chosenVerses.value = req.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      useAxiosError(error);
+      return;
     }
+    alert(error);
+  }
+}
+
+const randomChosenVerses = ref<ChosenVerse[]>([]);
+
+export const getRandomChosenVerses = computed<ChosenVerse[]>(() => {
+  return chosenVerses.value;
 })
 
+export async function fetchRandomChosenVerses(num: number) {
+  try {
+    const req = await baseHttp.get(`/chosenverses/random?num=${num}`);
+    randomChosenVerses.value = req.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      useAxiosError(error);
+      return;
+    }
+    alert(error);
+  }
+}

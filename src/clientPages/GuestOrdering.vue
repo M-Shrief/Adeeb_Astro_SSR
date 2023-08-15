@@ -54,7 +54,7 @@
 import { ref } from 'vue';
 // stores
 import { getPrints, removePrint } from "../stores/prints";
-import { $randomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
+import { getRandomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
 import { $randomProses, fetchRandomProses } from "../stores/proses";
 import { colors, newOrder, reset, getProducts, addProduct } from '../stores/orders';
 // components
@@ -78,7 +78,7 @@ const confirmGuestOrder = async (order: Order) => {
 
 function getRandomPoetry(num: number) {
   fetchRandomChosenVerses(num);
-  randomPrint.value = ($randomChosenVerses.get() as ChosenVerse[])[0];
+  randomPrint.value = getRandomChosenVerses.value[0];
 }
 
 function getRandomProse(num: number) {
