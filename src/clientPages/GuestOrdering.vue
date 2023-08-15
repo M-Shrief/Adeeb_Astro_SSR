@@ -21,7 +21,7 @@
         <div>
         </div>
       </section>
-      <OrderForm :products="getProducts" @guest-order="(order: Order) => confirmGuestOrder(order)"/>
+      <OrderForm :products="getProducts" @guest-order="(order: Order) => onGuestOrder(order)"/>
     </div>
 
     <section id="prints">
@@ -70,7 +70,7 @@ let randomPrint = ref();
 let fontColor = ref(colors[0]);
 let backgroundColor = ref(colors[1]);
 
-const confirmGuestOrder = async (order: Order) => {
+const onGuestOrder = async (order: Order) => {
   await newOrder(order);
   reset();
   window.location.href = '/history/';

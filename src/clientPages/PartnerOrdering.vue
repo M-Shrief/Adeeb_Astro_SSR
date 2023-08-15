@@ -27,7 +27,7 @@
     <button @click="onAddProductGroup(getPrints, [fontColor, backgroundColor])">
       اضافة الطلبات</button>
   </section>
-  <OrderForm :productGroups="getProductGroups" :partner="getPartner" @partner-order="(order: Order) => confirmPartnerOrder(order)" />
+  <OrderForm :productGroups="getProductGroups" :partner="getPartner" @partner-order="(order: Order) => onPartnerOrder(order)" />
 </template>
 
 <script lang="ts" setup>
@@ -58,7 +58,7 @@ function onAddProductGroup(prints: Print[], colors: string[]) {
   emptyPrints();
 }
 
-const confirmPartnerOrder = async (order: Order) => {
+const onPartnerOrder = async (order: Order) => {
     await newOrder(order)
     reset()
     window.location.href = '/partners/history';
