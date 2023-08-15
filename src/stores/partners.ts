@@ -68,4 +68,5 @@ export async function logout() {
   reset();
   removeAllCookies()
   partner.value = null;
+  window.location.href = '/'
 };
