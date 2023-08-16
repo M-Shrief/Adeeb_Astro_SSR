@@ -13,10 +13,12 @@ import {getPoets, fetchPoets} from '../stores/poets'
 import {getChosenVerses, fetchChosenVerses} from '../stores/chosenVerses'
 import {getProses, fetchProses} from '../stores/proses'
 
-await fetchPoems()
-await fetchPoets()
-await fetchChosenVerses()
-await fetchProses()
+await Promise.allSettled([
+	await fetchPoems(),
+	await fetchPoets(),
+	await fetchChosenVerses(),
+	await fetchProses()
+])
 ---
 
 <Layout title="Adeeb :: Main">
