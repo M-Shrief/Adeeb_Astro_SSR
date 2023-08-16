@@ -1,5 +1,4 @@
 ---
-import { allTasks } from "nanostores";
 // Layout
 import Layout from "../../layouts/Layout.astro";
 // Components
@@ -9,17 +8,14 @@ import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
-// import {fetchPoet, $poet} from '../../stores/poets.nano'
-import {fetchPoet, getPoet} from '../../stores/poets.composition'
+import {fetchPoet, getPoet} from '../../stores/poets'
 
 export const prerender = false;
 const {  id } = Astro.params;
 
 if(!id) Astro.redirect('/')
-else {
-  await fetchPoet(id);
-  await allTasks()
-}
+else  await fetchPoet(id);
+
 ---
 
 <Layout title="Adeeb :: Poet" >
