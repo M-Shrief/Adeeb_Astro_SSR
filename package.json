@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "test": "vitest",
     "start": "PORT=5173 node ./dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview",
@@ -21,5 +22,8 @@
     "vee-validate": "^4.11.1",
     "vue": "^3.3.4",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "vitest": "^0.34.1"
   }
 }
