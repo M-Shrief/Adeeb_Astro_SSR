@@ -1,4 +1,5 @@
 import { defineConfig } from "cypress";
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   e2e: {
@@ -10,6 +11,9 @@ export default defineConfig({
     devServer: {
       framework: "vue",
       bundler: "vite",
+      viteConfig: {
+        plugins: [vue()],
+      }
     },
   },
 });
