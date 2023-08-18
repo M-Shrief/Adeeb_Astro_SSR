@@ -24,6 +24,6 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "vitest": "^0.34.1"
+    "cypress": "^12.17.4"
   }
 }
