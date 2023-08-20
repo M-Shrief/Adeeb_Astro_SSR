@@ -1,7 +1,7 @@
 --- 
 // Components
 import Navbar from '../components/Navbar.vue';
-import ThemeSwitch from '../components/ThemeSwitch.vue';
+import ThemeSwitch from '../components/ThemeSwitch.astro';
 import HttpPopUp from '../components/notifications/HttpPopUp.vue';
 interface Props {
 	title: string;
@@ -24,7 +24,7 @@ const { title } = Astro.props;
 	<body>
 		<header>
 			<Navbar client:only="vue" >
-				<ThemeSwitch slot="theme-switch"  client:only="vue"/>
+				<ThemeSwitch slot="theme-switch" />
 			</Navbar>
 		    <HttpPopUp />
 		</header>
