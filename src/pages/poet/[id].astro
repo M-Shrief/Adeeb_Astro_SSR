@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 // Components
 import ShowCasePoet from "../../components/ShowCasePoet.vue";
 import ShowCasePoems from "../../components/ShowCasePoems.vue";
-import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
+import ShowCaseChoseVerse from "../../components/ShowCaseChoseVerse.vue";
 import ShowCaseProse from "../../components/ShowCaseProse.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
@@ -28,7 +28,7 @@ else  await fetchPoet(id);
           </ShowCasePoems>
         </div>
 
-        <ShowCasePoetry chosenVerses={getPoet.value.chosenVerses} routeName={'poet'} client:idle/>
+        <ShowCaseChoseVerse chosenVerses={getPoet.value.chosenVerses} routeName={'poet'} client:idle/>
 
         <ShowCaseProse proses={getPoet.value.proses} routeName={'poet'} client:idle/>
 

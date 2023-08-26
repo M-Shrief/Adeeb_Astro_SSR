@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 // Components
 import ShowCasePoems from '../components/ShowCasePoems.vue';
 import ShowCasePoets from "../components/ShowCasePoets.vue";
-import ShowCasePoetry from '../components/ShowCasePoetry.vue';
+import ShowCaseChoseVerse from '../components/ShowCaseChoseVerse.vue';
 import ShowCaseProse from '../components/ShowCaseProse.vue';
 import SelectedPrints from '../components/SelectedPrints.vue';
 // Stores
@@ -34,7 +34,7 @@ await Promise.allSettled([
 			<ShowCasePoets poets={getPoets.value} >
                 <h2 class="poets-title">الشعراء</h2>
             </ShowCasePoets>
-            <ShowCasePoetry chosenVerses={getChosenVerses.value} routeName={'main'} client:idle/>
+            <ShowCaseChoseVerse chosenVerses={getChosenVerses.value} routeName={'main'} client:idle/>
 
             <ShowCaseProse proses={getProses.value} routeName={'main'} client:idle/>
         </div>
