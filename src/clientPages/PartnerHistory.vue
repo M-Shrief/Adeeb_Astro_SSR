@@ -49,7 +49,6 @@ import type { Partner, ProductGroup } from '../stores/__types__'
 
 onMounted(() => {
   let id = (getPartner.value as Partner).id;
-  console.log(id)
   fetchPartnerOrders(id);
 })
 

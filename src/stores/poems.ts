@@ -34,7 +34,6 @@ export const getOtherPoems = computed<Poem[]>(() => { return otherPoems.value});
 export async function fetchOtherPoems(id: string) {
   try {
     if(getPoems.value.length === 0) await fetchPoems();
-    console.log('used getPoems');
     const poemsArr = [...getPoems.value];
     let poemIndex = poemsArr.map((poem: Poem) => poem.id).indexOf(id);
     poemsArr.splice(poemIndex, 1);
