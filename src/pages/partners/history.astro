@@ -4,11 +4,13 @@ import Layout from "../../layouts/Layout.astro";
 // Client Page
 import PartnerHistory from "../../clientPages/PartnerHistory.vue";
 
-const isAuthenticated = Astro.request.headers.get('cookie')?.includes('accessToken=');
+const isAuthenticated = Astro.request.headers
+  .get("cookie")
+  ?.includes("accessToken=");
 
-if (!isAuthenticated) return Astro.redirect('/partners/auth');
+if (!isAuthenticated) return Astro.redirect("/partners/auth");
 ---
 
 <Layout title="Adeeb :: History">
-    <PartnerHistory client:idle />
+  <PartnerHistory client:idle />
 </Layout>

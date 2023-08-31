@@ -2,70 +2,68 @@
 // Layout
 import Layout from "../../layouts/Layout.astro";
 // Components
-import ShowCasePoem from '../../components/ShowCasePoem.vue'
-import ShowCasePoems from '../../components/ShowCasePoems.vue'
-import ShowCasePoet from '../../components/ShowCasePoet.vue'
+import ShowCasePoem from "../../components/ShowCasePoem.vue";
+import ShowCasePoems from "../../components/ShowCasePoems.vue";
+import ShowCasePoet from "../../components/ShowCasePoet.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
-import {getPoem, getOtherPoems, fetchPoem} from '../../stores/poems';
+import { getPoem, getOtherPoems, fetchPoem } from "../../stores/poems";
 
 export const prerender = false;
-const {  id } = Astro.params;
+const { id } = Astro.params;
 
-if(!id) return Astro.redirect('/');
-await fetchPoem(id)
-
+if (!id) return Astro.redirect("/");
+await fetchPoem(id);
 ---
 
 <Layout title="Adeeb :: Poem">
-    <main >
-        <div class="container">
-            <section id="related-data">
-                <a href=`/poet/${getPoem.value.poet.id}` class="link">
-                    <ShowCasePoet details={getPoem.value.poet} client:idle/>
-                </a>
+  <main>
+    <div class="container">
+      <section id="related-data">
+        <a href=`/poet/${getPoem.value.poet.id}` class="link">
+          <ShowCasePoet details={getPoem.value.poet} client:idle />
+        </a>
 
-                <ShowCasePoems poems={getOtherPoems.value} >
-                    <h2>قصائد اخري</h2>
-                </ShowCasePoems>                
-            </section>
-            <ShowCasePoem verses={getPoem.value.verses} client:idle/>
-
-        </div>
-        <SelectedPrints client:only="vue"/>
-    </main>
+        <ShowCasePoems poems={getOtherPoems.value}>
+          <h2>قصائد اخري</h2>
+        </ShowCasePoems>
+      </section>
+      <ShowCasePoem verses={getPoem.value.verses} client:idle />
+    </div>
+    <SelectedPrints client:only="vue" />
+  </main>
 </Layout>
 
 <style lang="scss">
-@import '../../assets/mixins.scss';
+  @import "../../assets/mixins.scss";
 
-.container {
+  .container {
     display: grid;
     grid-template-columns: 40% 60%;
     margin: 1rem;
-}
+  }
 
-#related-data {
+  #related-data {
     .link {
-    text-decoration: none;
+      text-decoration: none;
     }
 
     h2 {
-    color: var(--text1);
-    text-align: center;
+      color: var(--text1);
+      text-align: center;
 
-    @include mQ($breakpoint-lg) {
+      @include mQ($breakpoint-lg) {
         font-size: 1.1rem;
-    }
+      }
 
-    @include mQ($breakpoint-md) {
+      @include mQ($breakpoint-md) {
         font-size: 1rem;
-    }
+      }
 
-    @include mQ($breakpoint-sm) {
+      @include mQ($breakpoint-sm) {
         font-size: 1rem;
+      }
     }
-    }
-}
+  }
 </style>
-    ../../stores/poems
+ ../../stores/poems

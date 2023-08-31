@@ -2,148 +2,152 @@
 // Layout
 import Layout from "../layouts/Layout.astro";
 // Components
-import ShowCasePoems from '../components/ShowCasePoems.vue';
+import ShowCasePoems from "../components/ShowCasePoems.vue";
 import ShowCasePoets from "../components/ShowCasePoets.vue";
-import ShowCaseChoseVerse from '../components/ShowCaseChoseVerse.vue';
-import ShowCaseProse from '../components/ShowCaseProse.vue';
-import SelectedPrints from '../components/SelectedPrints.vue';
+import ShowCaseChoseVerse from "../components/ShowCaseChoseVerse.vue";
+import ShowCaseProse from "../components/ShowCaseProse.vue";
+import SelectedPrints from "../components/SelectedPrints.vue";
 // Stores
-import {getPoems, fetchPoems} from '../stores/poems'
-import {getPoets, fetchPoets} from '../stores/poets'
-import {getChosenVerses, fetchChosenVerses} from '../stores/chosenVerses'
-import {getProses, fetchProses} from '../stores/proses'
+import { getPoems, fetchPoems } from "../stores/poems";
+import { getPoets, fetchPoets } from "../stores/poets";
+import { getChosenVerses, fetchChosenVerses } from "../stores/chosenVerses";
+import { getProses, fetchProses } from "../stores/proses";
 
 await Promise.allSettled([
-	await fetchPoems(),
-	await fetchPoets(),
-	await fetchChosenVerses(),
-	await fetchProses()
-])
+  await fetchPoems(),
+  await fetchPoets(),
+  await fetchChosenVerses(),
+  await fetchProses(),
+]);
 ---
 
 <Layout title="Adeeb :: Main">
-	<main >
-		<h1>أديب</h1>
-		<p>لطباعة الادب العربي شعراً ونثراً</p>
+  <main>
+    <h1>أديب</h1>
+    <p>لطباعة الادب العربي شعراً ونثراً</p>
 
-		<div class="container">
-            <ShowCasePoems poems={getPoems.value} grid={'grid'} >
-                <h2 class="poems-title">القصائد</h2>
-            </ShowCasePoems>
+    <div class="container">
+      <ShowCasePoems poems={getPoems.value} grid={"grid"}>
+        <h2 class="poems-title">القصائد</h2>
+      </ShowCasePoems>
 
-			<ShowCasePoets poets={getPoets.value} >
-                <h2 class="poets-title">الشعراء</h2>
-            </ShowCasePoets>
-            <ShowCaseChoseVerse chosenVerses={getChosenVerses.value} routeName={'main'} client:idle/>
+      <ShowCasePoets poets={getPoets.value}>
+        <h2 class="poets-title">الشعراء</h2>
+      </ShowCasePoets>
+      <ShowCaseChoseVerse
+        chosenVerses={getChosenVerses.value}
+        routeName={"main"}
+        client:idle
+      />
 
-            <ShowCaseProse proses={getProses.value} routeName={'main'} client:idle/>
-        </div>
-        <SelectedPrints client:only="vue"/>
-	</main>
+      <ShowCaseProse proses={getProses.value} routeName={"main"} client:idle />
+    </div>
+    <SelectedPrints client:only="vue" />
+  </main>
 </Layout>
 
 <style lang="scss">
-@import '../assets/mixins.scss';
+  @import "../assets/mixins.scss";
 
-h1,
-p {
-	text-align: center;
-}
+  h1,
+  p {
+    text-align: center;
+  }
 
-h1 {
-	font-size: 4rem;
-}
+  h1 {
+    font-size: 4rem;
+  }
 
-p {
-	font-size: 1.5rem;
-}
+  p {
+    font-size: 1.5rem;
+  }
 
-.container {
-	margin-top: 1rem;
-	display: grid;
-	grid-template-columns: 70% 30%;
-}
+  .container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
 
-.poems-title,
-.poets-title {
-	text-align: center;
-	padding: 0.3rem;
-	border-radius: 1.5rem;
-	width: 50%;
-	margin: 1rem auto;
-}
+  .poems-title,
+  .poets-title {
+    text-align: center;
+    padding: 0.3rem;
+    border-radius: 1.5rem;
+    width: 50%;
+    margin: 1rem auto;
+  }
 
-.poems-title {
-	background-color: var(--text1);
-	color: var(--surface3);
-}
+  .poems-title {
+    background-color: var(--text1);
+    color: var(--surface3);
+  }
 
-.poets-title {
-	background-color: var(--text1);
-	color: var(--surface2);
-}
+  .poets-title {
+    background-color: var(--text1);
+    color: var(--surface2);
+  }
 
-@include mQ($breakpoint-lg) {
-	h1 {
-	font-size: 2.5rem;
-	}
+  @include mQ($breakpoint-lg) {
+    h1 {
+      font-size: 2.5rem;
+    }
 
-	p {
-	font-size: 1.5rem;
-	}
+    p {
+      font-size: 1.5rem;
+    }
 
-	.container {
-	grid-template-columns: 65% 35%;
-	}
+    .container {
+      grid-template-columns: 65% 35%;
+    }
 
-	.poems-title,
-	.poets-title {
-	padding: 0.3rem;
-	margin: 0.6rem auto;
-	font-size: 1.3rem;
-	}
-}
+    .poems-title,
+    .poets-title {
+      padding: 0.3rem;
+      margin: 0.6rem auto;
+      font-size: 1.3rem;
+    }
+  }
 
-@include mQ($breakpoint-md) {
-	h1 {
-	font-size: 2rem;
-	}
+  @include mQ($breakpoint-md) {
+    h1 {
+      font-size: 2rem;
+    }
 
-	p {
-	font-size: 1.2rem;
-	}
+    p {
+      font-size: 1.2rem;
+    }
 
-	.container {
-	grid-template-columns: 65% 35%;
-	}
+    .container {
+      grid-template-columns: 65% 35%;
+    }
 
-	.poems-title,
-	.poets-title {
-	padding: 0.2rem;
-	margin: 0.5rem auto;
-	font-size: 1.2rem;
-	}
-}
+    .poems-title,
+    .poets-title {
+      padding: 0.2rem;
+      margin: 0.5rem auto;
+      font-size: 1.2rem;
+    }
+  }
 
-@include mQ($breakpoint-sm) {
-	h1 {
-	font-size: 1.6rem;
-	}
+  @include mQ($breakpoint-sm) {
+    h1 {
+      font-size: 1.6rem;
+    }
 
-	p {
-	font-size: 1rem;
-	}
+    p {
+      font-size: 1rem;
+    }
 
-	.container {
-	grid-template-columns: 65% 35%;
-	}
+    .container {
+      grid-template-columns: 65% 35%;
+    }
 
-	.poems-title,
-	.poets-title {
-	padding: 0.1rem;
-	margin: 0.3rem auto;
-	font-size: 1rem;
-	}
-}
+    .poems-title,
+    .poets-title {
+      padding: 0.1rem;
+      margin: 0.3rem auto;
+      font-size: 1rem;
+    }
+  }
 </style>
-../stores/poems../stores/chosenVerses
+ ../stores/poems../stores/chosenVerses

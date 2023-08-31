@@ -4,55 +4,57 @@ import Layout from "../../layouts/Layout.astro";
 // Components
 import AuthForm from "../../components/AuthForm.vue";
 
-const isAuthenticated = Astro.request.headers.get('cookie')?.includes('accessToken=');
+const isAuthenticated = Astro.request.headers
+  .get("cookie")
+  ?.includes("accessToken=");
 
 if (isAuthenticated) {
-  return Astro.redirect('/');
+  return Astro.redirect("/");
 }
 ---
 
 <Layout title="Adeeb :: Authentication">
-        <h3>يَسعد المتنبي بتقديم الخدمات للشركات والتجار والعملاء المميزين.</h3>
-        <section id="register">
-          <AuthForm client:idle/>
-          <aside>
-            <!-- need something simple like: islamic arts, a transition for list-items and on. -->
-            <h3>سجل الان للاستفادة من جميع الخدمات المُقدمة من المتنبي</h3>
-            <ul>
-              <li>سهولة إعداد الطلبات وتعديلها</li>
-              <li>متابعة الطلبات فى جميع مراحل تنفيذها</li>
-              <li>مراجعة جميع الطلبات السابقة بتفاصيلها</li>
-              <li>امكانية اعداد طلبات مختلفة؛ بمواقيت مختلفة، وتوصيلها لأماكن مختلفة.
-              </li>
-            </ul>
-          </aside>
-        </section>
-        <a href="/partners/ordering" class="direct-Order">للطلب بدون
-          تسجيل</a>
+  <h3>يَسعد المتنبي بتقديم الخدمات للشركات والتجار والعملاء المميزين.</h3>
+  <section id="register">
+    <AuthForm client:idle />
+    <aside>
+      <!-- need something simple like: islamic arts, a transition for list-items and on. -->
+      <h3>سجل الان للاستفادة من جميع الخدمات المُقدمة من المتنبي</h3>
+      <ul>
+        <li>سهولة إعداد الطلبات وتعديلها</li>
+        <li>متابعة الطلبات فى جميع مراحل تنفيذها</li>
+        <li>مراجعة جميع الطلبات السابقة بتفاصيلها</li>
+        <li>
+          امكانية اعداد طلبات مختلفة؛ بمواقيت مختلفة، وتوصيلها لأماكن مختلفة.
+        </li>
+      </ul>
+    </aside>
+  </section>
+  <a href="/partners/ordering" class="direct-Order">للطلب بدون تسجيل</a>
 </Layout>
 
-<style lang="scss" >
-@import '../../assets/mixins.scss';
+<style lang="scss">
+  @import "../../assets/mixins.scss";
 
-h3 {
+  h3 {
     text-align: center;
     font-size: 2rem;
-}
+  }
 
-#register {
+  #register {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
     align-items: center;
-}
+  }
 
-aside {
+  aside {
     h3 {
-    font-size: 1.6rem;
+      font-size: 1.6rem;
     }
-}
+  }
 
-.direct-Order {
+  .direct-Order {
     $mainColor: var(--text1);
     $secondaryColor: var(--surface2);
     position: relative;
@@ -68,15 +70,13 @@ aside {
     border-radius: 1rem;
 
     &:hover {
-    opacity: 100%;
+      opacity: 100%;
     }
 
     @include mQ($breakpoint-sm) {
-    font-size: 0.8rem;
-    padding: 0.1rem 0.2rem;
-    margin: 0.1rem;
+      font-size: 0.8rem;
+      padding: 0.1rem 0.2rem;
+      margin: 0.1rem;
     }
-}
+  }
 </style>
-
-    

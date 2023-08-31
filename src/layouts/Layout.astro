@@ -1,65 +1,68 @@
---- 
+---
 // Components
-import Navbar from '../components/Navbar.vue';
-import ThemeSwitch from '../components/ThemeSwitch.astro';
-import HttpPopUp from '../components/notifications/HttpPopUp.vue';
+import Navbar from "../components/Navbar.vue";
+import ThemeSwitch from "../components/ThemeSwitch.astro";
+import HttpPopUp from "../components/notifications/HttpPopUp.vue";
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<slot name="transition"/>
-		<title>{title}</title>
-	</head>
-	<body>
-		<header>
-			<Navbar client:only="vue" >
-				<ThemeSwitch slot="theme-switch" />
-			</Navbar>
-		    <HttpPopUp />
-		</header>
-		<slot />
-		<footer>
-			<p>
-			  Copyright &copy; 2022 |
-			  <a href="https://m-shrief.github.io/site/" title="Portfolio"
-			   target="_blank" id="profile">M. Shrief</a>
-			</p>
-		</footer>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <Navbar client:only="vue">
+        <ThemeSwitch slot="theme-switch" />
+      </Navbar>
+      <HttpPopUp />
+    </header>
+    <slot />
+    <footer>
+      <p>
+        Copyright &copy; 2022 |
+        <a
+          href="https://m-shrief.github.io/site/"
+          title="Portfolio"
+          target="_blank"
+          id="profile">M. Shrief</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>
+
 <style lang="scss" is:global>
-@import '../assets/base.css';
-@import '../assets/mixins.scss';
+  @import "../assets/base.css";
+  @import "../assets/mixins.scss";
 
-footer {
-  text-align: center;
-  margin-top: 1.6rem;
-  font-size: 1.2rem;
-  font-weight: 700;
+  footer {
+    text-align: center;
+    margin-top: 1.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
 
-  #profile {
-    color: var(--text1);
-    text-decoration: none;
-	&:hover {
-		text-decoration:underline;
-	}
+    #profile {
+      color: var(--text1);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @include mQ($breakpoint-sm) {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
   }
-
-  @include mQ($breakpoint-sm) {
-    margin-top: 1rem;
-    font-size: 1rem;
-  }
-}
 </style>
-	
