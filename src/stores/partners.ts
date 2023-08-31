@@ -1,6 +1,6 @@
 import {ref, computed} from '@vue/reactivity';
 import  { AxiosError } from 'axios';
-import Cookies, {type CookieAttributes} from 'js-cookie';
+import Cookies from 'js-cookie';
 // Utils
 import {baseHttp} from '../utils/axios'
 // Stores
@@ -23,9 +23,9 @@ export const isPartner = computed<boolean>(() => {
   return getPartner.value ? true : false;
 }); 
 
-const tokenCookieOptions: CookieAttributes = {
+const tokenCookieOptions = {
   expires: 1 / 24 / 2,   // default to one day, so we make 1 day / 24 hours = 1 hour then we multiply it by 2
-  sameSite: "strict",
+  sameSite: "strict" as "strict",
   httpOnly: false
 }
 
@@ -33,7 +33,7 @@ export async function signup(partnerData: Partner) {
   try {
     const req = await baseHttp.post(`/partner/signup`, partnerData);
     partner.value = JSON.stringify(req.data.partner);    
-    Cookies.set("accessToken", req.data.accessToken, tokenCookieOptions)
+    Cookies.set("accessToken", req.data.accessToken, tokenCookieOptions);
   } catch (error) {
     if (error instanceof AxiosError) {
       useAxiosError(error);
