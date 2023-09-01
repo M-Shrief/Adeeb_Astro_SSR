@@ -46,8 +46,9 @@ defineEmits(['fontColor', 'backgroundColor']);
       border: none;
       margin-top: 0.25rem;
       border-radius: 1rem;
-      background-color: var(--text1);
-      color: var(--surface2);
+      font-size: 1rem;
+      background-color: var(--surface1);
+      color: var(--text1);
     }
 
     #fontType {
