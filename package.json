@@ -7,11 +7,11 @@
     "test": "vitest",
     "start": "PORT=5173 node ./dist/server/entry.mjs",
     "build": "astro build",
-    "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
+    "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/deno": "^5.0.0",
+    "@astrojs/vercel": "^4.0.3",
     "@astrojs/vue": "^3.0.0",
     "@types/js-cookie": "^3.0.3",
     "@vueuse/core": "^10.3.0",
