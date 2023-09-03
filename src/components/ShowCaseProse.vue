@@ -1,6 +1,6 @@
 <template>
   <section id="proses">
-    <h2 class="title">مختارات نثرية</h2>
+    <h2 class="title">المختارات نثرية<span v-if="proses.length === 0"><br>(غير متوفرة الي الأن)</span></h2>
     <div :class="routeName == 'poet' ? 'grid-poet' : ''">
       <div v-for="prose in proses" :key="prose.id" class="prose-item">
         <p class="qoute">{{ prose.qoute }}</p>

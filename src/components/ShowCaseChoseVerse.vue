@@ -1,6 +1,6 @@
 <template>
   <section id="chosen-verses">
-    <h2 class="title">مختارات شعرية</h2>
+    <h2 class="title">المختارات شعرية<span v-if="chosenVerses.length === 0"><br>(غير متوفرة الي الأن)</span></h2>
     <div :class="routeName == 'main' ? 'grid-main' : 'grid-poet'">
       <div v-for="chosenVerse in chosenVerses" :key="chosenVerse.id"
         class="poetry-item">
