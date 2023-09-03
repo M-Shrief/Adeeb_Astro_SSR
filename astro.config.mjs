@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import vue from "@astrojs/vue";
-import cloudflare from "@astrojs/cloudflare";
+import deno from "@astrojs/deno";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,5 +13,5 @@ export default defineConfig({
     port: 5173
   },
   output: "hybrid",
-  adapter: cloudflare()
+  adapter: deno()
 });
