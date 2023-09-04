@@ -5,17 +5,16 @@
   "scripts": {
     "dev": "astro dev",
     "test": "vitest",
-    "start": "PORT=5173 node ./dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^4.0.3",
+    "@astrojs/node": "^6.0.0",
     "@astrojs/vue": "^3.0.0",
     "@types/js-cookie": "^3.0.3",
     "@vueuse/core": "^10.3.0",
-    "astro": "^3.0.2",
+    "astro": "^0.0.0-fix-mime-20230904023307",
     "axios": "^1.4.0",
     "js-cookie": "^3.0.5",
     "sass": "^1.65.1",
