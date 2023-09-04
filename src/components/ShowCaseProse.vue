@@ -77,19 +77,20 @@ $secondaryColor: var(--surface3);
 .prose-item {
   position: relative;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-  padding: 0.3rem;
+  padding: 0.5rem;
   margin: 0.5rem;
   border-radius: 1.5rem;
   background: $secondaryColor;
   color: $mainColor;
 
   @include mQ($breakpoint-md) {
-    padding: 0.2rem;
+    padding: 0.3rem;
     margin: 0.3rem;
   }
 
   @include mQ($breakpoint-sm) {
     padding: 0.1rem;
+    padding-bottom: 0.3rem;
     margin: 0.2rem;
   }
 

@@ -80,6 +80,10 @@ $secondaryColor: var(--surface2);
   @include mQ($breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  @include mQ($breakpoint-sm) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .grid-poet {
@@ -87,7 +91,7 @@ $secondaryColor: var(--surface2);
   grid-template-columns: repeat(4, 1fr);
 
   @include mQ($breakpoint-md) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -115,7 +119,7 @@ $secondaryColor: var(--surface2);
 
   @include mQ($breakpoint-sm) {
     padding: 0.1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1.2rem;
     margin: 0.2rem;
   }
 
@@ -140,7 +144,7 @@ $secondaryColor: var(--surface2);
     }
 
     @include mQ($breakpoint-sm) {
-      font-size: 0.4rem;
+      font-size: 0.6rem;
     }
   }
 

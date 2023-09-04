@@ -6,7 +6,7 @@
     -->
     <slot />
     <div :class="grid">
-      <a v-for="poem in poems" :key="poem.id"
+      <a v-for="poem, index in poems" :key="poem.id"
         :href="`/poem/${poem.id}`" class="poem" replace>
         <!-- for Main & Poem pages -->
         <p v-if="poem.poet">{{ poem.intro }} - {{ poem.poet.name }}</p>
@@ -56,10 +56,8 @@ $secondaryColor: var(--surface3);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@include mQ($breakpoint-lg) {
-  #poems {
+  @include mQ($breakpoint-lg) {
     padding: 0.4rem;
     margin: 0 0.7rem;
 
@@ -71,27 +69,10 @@ $secondaryColor: var(--surface3);
       grid-template-columns: repeat(2, 1fr);
     }
   }
-}
 
-@include mQ($breakpoint-md) {
-  #poems {
+  @include mQ($breakpoint-md) {
     padding: 0.3rem;
     margin: 0 0.6rem;
-
-    .poem {
-      font-size: 0.9rem;
-    }
-
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-
-@include mQ($breakpoint-sm) {
-  #poems {
-    padding: 0.2rem;
-    margin: 0 0.4rem;
 
     .poem {
       font-size: 0.8rem;
@@ -99,6 +80,21 @@ $secondaryColor: var(--surface3);
 
     .grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include mQ($breakpoint-sm) {
+    padding: 0.2rem;
+    margin: 0 0.4rem;
+    // margin: 0;
+
+    .poem {
+      font-size: 1rem;
+      margin: 0.1rem auto;
+    }
+
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

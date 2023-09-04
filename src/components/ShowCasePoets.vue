@@ -47,10 +47,8 @@ $secondaryColor: var(--surface2);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@include mQ($breakpoint-lg) {
-  #poets {
+  @include mQ($breakpoint-lg) {
     padding: 0.3rem;
     margin: 0 0.6rem;
 
@@ -63,10 +61,8 @@ $secondaryColor: var(--surface2);
       grid-template-columns: repeat(2, 1fr);
     }
   }
-}
 
-@include mQ($breakpoint-md) {
-  #poets {
+  @include mQ($breakpoint-md) {
     padding: 0.2rem;
     margin: 0 0.5rem;
 
@@ -79,20 +75,19 @@ $secondaryColor: var(--surface2);
       grid-template-columns: repeat(2, 1fr);
     }
   }
-}
 
-@include mQ($breakpoint-sm) {
-  #poets {
+  @include mQ($breakpoint-sm) {
     padding: 0.1rem;
     margin: 0 0.3rem;
+    
 
     .poet {
-      font-size: 0.8rem;
-      margin: 0.1rem;
+      font-size: 1rem;
+      margin: 0.1rem auto;
     }
 
     .grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }
