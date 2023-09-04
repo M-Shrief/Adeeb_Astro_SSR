@@ -7,7 +7,8 @@
     "test": "vitest",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "pm2 start ecosystem.config.cjs --env production"
   },
   "dependencies": {
     "@astrojs/node": "^6.0.0",
