@@ -205,8 +205,22 @@ $secondaryColor: var(--surface2);
       border: 1px solid $mainColor;
       list-style: none;
       border-radius: 5px;
-      padding: 0.5rem;
-      margin: 0.5rem;
+      padding: 0.5rem 0;
+      margin: 0.5rem 0;
+
+      .verse,
+      .qoute {
+        padding: 0 0.6rem;
+        font-size: 1rem;
+        font-weight: 400;
+        @include mQ($breakpoint-md) {
+          font-size: 0.7rem;
+        }
+
+        @include mQ($breakpoint-sm) {
+          font-size: 0.6rem;
+        }
+      }
 
       .qoute {
         text-align: center;
@@ -219,16 +233,20 @@ $secondaryColor: var(--surface2);
         button {
           background: $mainColor;
           color: $secondaryColor;
+          font-size: 1rem;
+          font-weight: 400;
           padding: 0.4rem;
           border: none;
           border-radius: 0.7rem;
           cursor: pointer;
 
           @include mQ($breakpoint-md) {
+            font-size: 0.7rem;
             padding: 0.15rem;
           }
 
           @include mQ($breakpoint-sm) {
+            font-size: 0.6rem;
             padding: 0.1rem;
           }
         }

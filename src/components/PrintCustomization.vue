@@ -53,6 +53,10 @@ defineEmits(['fontColor', 'backgroundColor']);
 
     #fontType {
       margin-top: 0.3rem;
+      @include mQ($breakpoint-sm) {
+        font-size: 0.7rem;
+      }
+
     }
   }
 

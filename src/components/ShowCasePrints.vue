@@ -50,38 +50,37 @@ $secondaryColor: var(--surface2);
   border-radius: 5px;
   padding: 0.5rem;
   margin: 0.5rem;
-
-  .verse,
-  .qoute {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .qoute {
-    padding-top: 1rem;
-    text-align: center;
-  }
-
   @include mQ($breakpoint-md) {
     padding: 0.5rem;
     margin: 0.5rem;
-
-    .verse, .qoute {
-      font-size: 0.7rem;
-    }
-    .qoute {
-      padding-top: 0.5rem;
-    }
   }
 
   @include mQ($breakpoint-sm) {
     padding: 0.3rem;
     margin: 0.3rem;
+  }
 
-    .verse, .qoute {
+
+  .verse,
+  .qoute {
+    font-size: 1rem;
+    font-weight: 400;
+    @include mQ($breakpoint-md) {
+      font-size: 0.7rem;
+    }
+
+    @include mQ($breakpoint-sm) {
       font-size: 0.6rem;
     }
-    .qoute {
+  }
+
+  .qoute {
+    padding-top: 1rem;
+    text-align: center;
+    @include mQ($breakpoint-md) {
+      padding-top: 0.5rem;
+    }
+    @include mQ($breakpoint-sm) {
       padding-top: 0.3rem;
     }
   }
@@ -98,11 +97,11 @@ $secondaryColor: var(--surface2);
     cursor: pointer;
 
     @include mQ($breakpoint-md) {
-      padding: 0.15rem;
+      padding: 0.3rem;
     }
 
     @include mQ($breakpoint-sm) {
-      padding: 0.1rem;
+      padding: 0.1rem 0.2rem;
     }
   }
 }
