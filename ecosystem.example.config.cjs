@@ -22,7 +22,6 @@ cmodule.exports = { // very good docs at http://pm2.keymetrics.io/docs/usage/app
         // choose which env with --env (name after _ )
         env_production: {
           NODE_ENV: 'production',
-          PUBLIC_API:''
         }
       }
     ],
