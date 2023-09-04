@@ -30,7 +30,7 @@
             <p>العنوان</p><span>{{ order.address }}</span>
           </div>
           <div>
-            <p>تاريخ الطلب</p><span>{{ order.createdAt?.slice(0, 10) }}</span>
+            <p>تاريخ الطلب</p><span>{{ order.created_at?.slice(0, 10) }}</span>
           </div>
           <p><span>{{ order.reviewed ? 'تمت المراجعة' : 'غير مراجع' }}</span></p>
           <p><span>{{ order.completed ? 'تم التسليم' : 'لم يتم التسليم' }}</span>
@@ -132,12 +132,27 @@
       justify-content: space-around;
       margin: 1rem;
   
+      // p {
+      //   margin: 0.5rem;
+      // }
       p {
         margin: 0.5rem;
+        @include mQ($breakpoint-md) {
+          font-size: 1rem;
+        }
+        @include mQ($breakpoint-sm) {
+          font-size: 0.8rem;
+        }
       }
   
       span {
         font-weight: 600;
+        @include mQ($breakpoint-md) {
+          font-size: 9rem;
+        }
+        @include mQ($breakpoint-sm) {
+          font-size: 0.7rem;
+        }
       }
     }
   
@@ -153,30 +168,23 @@
         margin: 0.3rem 2rem;
         border-radius: 1.5rem;
         border: 1px solid $mainColor;
-  
-        p {
-          margin: 0 0.6rem;
-        }
-  
         @include mQ($breakpoint-md) {
-          padding: 0.15rem;
-          margin: 0.15rem;
-  
-          p {
+          padding: 0.15rem;  
+        }
+        @include mQ($breakpoint-sm) {
+          padding: 0.1rem;  
+        }
+
+        p {
+          margin: 0 0.6rem;  
+          @include mQ($breakpoint-md) {
             font-size: 0.8rem;
           }
-        }
-  
-        @include mQ($breakpoint-sm) {
-          padding: 0.1rem;
-          margin: 0.1rem;
-  
-          p {
+          @include mQ($breakpoint-sm) {
             font-size: 0.7rem;
           }
         }
       }
-  
     }
   }
   </style>
