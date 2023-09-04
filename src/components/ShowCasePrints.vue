@@ -66,6 +66,9 @@ $secondaryColor: var(--surface2);
     padding: 0.5rem;
     margin: 0.5rem;
 
+    .verse, .qoute {
+      font-size: 0.7rem;
+    }
     .qoute {
       padding-top: 0.5rem;
     }
@@ -75,6 +78,9 @@ $secondaryColor: var(--surface2);
     padding: 0.3rem;
     margin: 0.3rem;
 
+    .verse, .qoute {
+      font-size: 0.6rem;
+    }
     .qoute {
       padding-top: 0.3rem;
     }
