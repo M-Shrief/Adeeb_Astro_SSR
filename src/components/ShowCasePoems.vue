@@ -89,12 +89,12 @@ $secondaryColor: var(--surface3);
     // margin: 0;
 
     .poem {
-      font-size: 1rem;
+      font-size: 0.7rem;
       margin: 0.1rem auto;
     }
 
     .grid {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }

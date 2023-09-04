@@ -83,7 +83,6 @@ $secondaryColor: var(--text1);
     .prints-item {
       padding: 0.2rem;
       margin-left: 0.3rem;
-      // background: rgba($color: $mainColor, $alpha: 0.8);
       background: $mainColor;
       color: $secondaryColor;
       cursor: pointer;
@@ -102,8 +101,6 @@ $secondaryColor: var(--text1);
       }
 
       @include mQ($breakpoint-sm) {
-        padding: 0.1rem;
-
         &:hover p {
           font-size: 0.8rem;
         }

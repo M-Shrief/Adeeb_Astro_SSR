@@ -26,7 +26,7 @@ await Promise.allSettled([
     <h1>أديب</h1>
     <p>لطباعة الادب العربي شعراً ونثراً</p>
 
-    <div class="container">
+    <div class="poet-poem-container">
       <ShowCasePoems poems={getPoems.value} grid={"grid"}>
         <h2 class="poems-title">القصائد</h2>
       </ShowCasePoems>
@@ -34,6 +34,8 @@ await Promise.allSettled([
       <ShowCasePoets poets={getPoets.value}>
         <h2 class="poets-title">الشعراء</h2>
       </ShowCasePoets>
+    </div>
+    <div class="choseverse-prose-container">
       <ShowCaseChoseVerse
         chosenVerses={getChosenVerses.value}
         routeName={"main"}
@@ -82,8 +84,7 @@ await Promise.allSettled([
       font-size: 1rem;
     }
   }
-
-  .container {
+  .poet-poem-container {
     margin-top: 1rem;
     display: grid;
     grid-template-columns: 70% 30%;
@@ -92,7 +93,19 @@ await Promise.allSettled([
     }
 
     @include mQ($breakpoint-sm) {
-      grid-template-columns: 55% 45%;
+      grid-template-columns: 75% 25%;
+    }
+  }
+  .choseverse-prose-container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    @include mQ($breakpoint-lg) {
+      grid-template-columns: 65% 35%;
+    }
+
+    @include mQ($breakpoint-sm) {
+      grid-template-columns: 50% 50%;
     }
   }
 

@@ -69,16 +69,19 @@ $secondaryColor: var(--surface2);
       font-weight: 600;
     }
 
-    @include mQ($breakpoint-lg) {
-      font-size: 1.25rem;
-    }
-
     @include mQ($breakpoint-md) {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     @include mQ($breakpoint-sm) {
-      font-size: 1rem;
+      font-size: 0.8rem;
+      .first {
+        margin-right: 0.2rem;
+      }
+
+      .sec {
+        margin-left: 0.2rem;
+      }
     }
   }
 }
