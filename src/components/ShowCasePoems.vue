@@ -40,60 +40,50 @@ $secondaryColor: var(--surface3);
   border-radius: 2rem;
   margin: 0 1rem;
   background-color: $secondaryColor;
+  @include mQ($breakpoint-lg) {
+    padding: 0.4rem;
+    margin: 0 0.7rem;
+  }
+  @include mQ($breakpoint-md) {
+    padding: 0.3rem;
+    margin: 0 0.6rem;
+  }
+  @include mQ($breakpoint-sm) {
+    padding: 0.2rem;
+    margin: 0 0.4rem;
+  }
 
   .poem {
     // color: rgba($color: $mainColor, $alpha: .8);
     color: $mainColor;
     text-decoration: none;
     font-size: 1.1rem;
-
+    text-align: center;
     &:hover {
       font-weight: 700;
+    }
+    @include mQ($breakpoint-lg) {
+      font-size: 1rem;
+    }
+    @include mQ($breakpoint-md) {
+      font-size: 0.8rem;
+    }
+    @include mQ($breakpoint-sm) {
+      font-size: 0.7rem;
+      margin: 0.1rem auto;
     }
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include mQ($breakpoint-lg) {
-    padding: 0.4rem;
-    margin: 0 0.7rem;
-
-    .poem {
-      font-size: 1rem;
-    }
-
-    .grid {
+    @include mQ($breakpoint-lg) {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
-
-  @include mQ($breakpoint-md) {
-    padding: 0.3rem;
-    margin: 0 0.6rem;
-
-    .poem {
-      font-size: 0.8rem;
-    }
-
-    .grid {
+    @include mQ($breakpoint-md) {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
-
-  @include mQ($breakpoint-sm) {
-    padding: 0.2rem;
-    margin: 0 0.4rem;
-    // margin: 0;
-
-    .poem {
-      font-size: 0.7rem;
-      margin: 0.1rem auto;
-    }
-
-    .grid {
+    @include mQ($breakpoint-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
   }
