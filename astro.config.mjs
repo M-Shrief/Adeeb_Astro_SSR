@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 import vue from "@astrojs/vue";
-// import node from "@astrojs/node";
-
-import netlify from "@astrojs/netlify/functions";
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,11 +11,9 @@ export default defineConfig({
     port: 5173
   },
   output: "hybrid",
-  adapter: netlify()
-
-  // adapter: node({
-  //   mode: "standalone"
-  // }),
+  adapter: node({
+    mode: "standalone"
+  }),
   // vite: {
   //   ssr: {
   //     noExternal: ['path-to-regexp'],
