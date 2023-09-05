@@ -1,7 +1,4 @@
 <template>
-  <!-- Navigation Raws -->
-  <nav id="nav-raw" dir="rtl">
-    <a href="/" id="logo">أديب</a>
     <div class="nav-row-group">
       <a :href="getPartner ? '/partners/ordering' : '/ordering'"
         class="nav-item" active-class="active">طلباتك</a>
@@ -16,9 +13,7 @@
         الخروج</span>
       <a href="/partners/auth" class="nav-item" active-class="active" v-else >كن
         شريكاً</a>
-      <slot name="theme-switch" />
     </div>
-  </nav>
 </template>
 
 <script lang="ts" setup>
@@ -28,31 +23,6 @@ import { getPartner, logout } from '../stores/partners';
 
 <style lang="scss" scoped>
 @import '../assets/mixins.scss';
-
-#nav-raw {
-  display: flex;
-  flex-direction: row;
-  background-color: #1f2124;
-  justify-content: space-between;
-
-  #logo {
-    color: rgba($color: #f6b352, $alpha: .8);
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 700;
-    padding: 0.2rem 0.4rem;
-    margin: 0.4rem;
-
-    &:hover {
-      color: #f6b352;
-    }
-
-    @include mQ($breakpoint-sm) {
-      font-size: 1rem;
-      padding: 0.1rem 0.2rem;
-      margin: 0.1rem;
-    }
-  }
 
   .nav-row-group {
     display: flex;
@@ -101,5 +71,4 @@ import { getPartner, logout } from '../stores/partners';
       }
     }
   }
-}
 </style>
