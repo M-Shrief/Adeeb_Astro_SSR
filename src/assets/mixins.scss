@@ -1,6 +1,6 @@
-$breakpoint-sm: 640px;
+$breakpoint-sm: 576px;
 $breakpoint-md: 760px;
-$breakpoint-lg: 1024px;
+$breakpoint-lg: 992px;
 $breakpoint-xl: 1280px; // default development size
 
 @mixin mQ($arg...) {
@@ -13,31 +13,6 @@ $breakpoint-xl: 1280px; // default development size
     @media screen and (max-width: nth($arg, 1)) and (min-width: nth($arg, 2)) {
       @content;
     }
-  }
-}
-
-@mixin add-print-btn {
-  background: $secondaryColor;
-  border: 1px solid $mainColor;
-  position: absolute;
-  bottom: 0.7rem;
-  left: 0.7rem;
-  border-radius: 1.5rem;
-  color: $mainColor;
-  padding: 0.1rem;
-  cursor: pointer;
-  &:hover {
-    background: $mainColor;
-    color: $secondaryColor;
-  }
-  @include mQ($breakpoint-sm) {
-    font-size: 0.5rem;
-  }
-  @include mQ($breakpoint-md) {
-    font-size: 0.6rem;
-  }
-  @include mQ($breakpoint-lg) {
-    font-size: 0.6rem;
   }
 }
 

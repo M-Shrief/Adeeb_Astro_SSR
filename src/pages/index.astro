@@ -4,20 +4,17 @@ import Layout from "../layouts/Layout.astro";
 // Components
 import ShowCasePoems from "../components/ShowCasePoems.vue";
 import ShowCasePoets from "../components/ShowCasePoets.vue";
-import ShowCaseChoseVerse from "../components/ShowCaseChoseVerse.vue";
-import ShowCaseProse from "../components/ShowCaseProse.vue";
+import ShowCasePoetry from "../components/ShowCasePoetry.vue";
 import SelectedPrints from "../components/SelectedPrints.vue";
 // Stores
 import { getPoems, fetchPoems } from "../stores/poems";
 import { getPoets, fetchPoets } from "../stores/poets";
-import { getChosenVerses, fetchChosenVerses } from "../stores/chosenVerses";
-import { getProses, fetchProses } from "../stores/proses";
+import { getPoetry, fetchPoetry } from "../stores/poetry";
 
 await Promise.allSettled([
   await fetchPoems(),
   await fetchPoets(),
-  await fetchChosenVerses(),
-  await fetchProses(),
+  await fetchPoetry(),
 ]);
 ---
 
@@ -35,15 +32,9 @@ await Promise.allSettled([
         <h2 class="poets-title">الشعراء</h2>
       </ShowCasePoets>
     </div>
-    <div class="choseverse-prose-container">
-      <ShowCaseChoseVerse
-        chosenVerses={getChosenVerses.value}
-        routeName={"main"}
-        client:idle
-      />
 
-      <ShowCaseProse proses={getProses.value} routeName={"main"} client:idle />
-    </div>
+    <ShowCasePoetry poetry={getPoetry.value} routeName="index" client:idle />
+
     <SelectedPrints client:only="vue" />
   </main>
 </Layout>
@@ -93,7 +84,8 @@ await Promise.allSettled([
     }
 
     @include mQ($breakpoint-sm) {
-      grid-template-columns: 75% 25%;
+      // grid-template-columns: 70% 30%;
+      display: block;
     }
   }
   .choseverse-prose-container {
@@ -105,7 +97,8 @@ await Promise.allSettled([
     }
 
     @include mQ($breakpoint-sm) {
-      grid-template-columns: 50% 50%;
+      // grid-template-columns: 50% 50%;
+      display: block;
     }
   }
 

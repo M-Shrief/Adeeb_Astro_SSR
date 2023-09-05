@@ -43,6 +43,8 @@ export interface Prose {
   updatedAt: string;
 }
 
+export interface Poetry extends ChosenVerse, Prose {};
+
 export interface Print {
   id: string;
   poem?: string;

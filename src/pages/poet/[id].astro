@@ -4,17 +4,27 @@ import Layout from "../../layouts/Layout.astro";
 // Components
 import ShowCasePoet from "../../components/ShowCasePoet.vue";
 import ShowCasePoems from "../../components/ShowCasePoems.vue";
-import ShowCaseChoseVerse from "../../components/ShowCaseChoseVerse.vue";
-import ShowCaseProse from "../../components/ShowCaseProse.vue";
+import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
 // Stores
 import { fetchPoet, getPoet } from "../../stores/poets";
+// Types
+import type { Poetry } from "../../stores/__types__";
+// utils
+import { shuffle } from "../../utils/shuffle";
 
 export const prerender = false;
 const { id } = Astro.params;
 
 if (!id) Astro.redirect("/");
 else await fetchPoet(id);
+
+// Combining Poet's poetry and shuffling it.
+const poetry = [
+  ...getPoet.value.chosenVerses,
+  ...getPoet.value.proses,
+] as Poetry[];
+shuffle(poetry);
 ---
 
 <Layout title="Adeeb :: Poet">
@@ -33,17 +43,7 @@ else await fetchPoet(id);
       </ShowCasePoems>
     </div>
 
-    <ShowCaseChoseVerse
-      chosenVerses={getPoet.value.chosenVerses}
-      routeName={"poet"}
-      client:idle
-    />
-
-    <ShowCaseProse
-      proses={getPoet.value.proses}
-      routeName={"poet"}
-      client:idle
-    />
+    <ShowCasePoetry poetry={poetry} routeName="poet" client:idle />
 
     <SelectedPrints client:only="vue" />
   </main>
