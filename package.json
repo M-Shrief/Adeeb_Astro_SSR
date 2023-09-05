@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^7.0.1",
+    "@astrojs/netlify": "^3.0.1",
     "@astrojs/node": "^6.0.0",
     "@astrojs/vercel": "^4.0.3",
     "@astrojs/vue": "^3.0.0",
