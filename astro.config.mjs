@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import vue from "@astrojs/vue";
 // import node from "@astrojs/node";
 
-import cloudflare from "@astrojs/cloudflare";
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,7 +13,6 @@ export default defineConfig({
     port: 5173
   },
   output: "hybrid",
-  adapter: cloudflare(),
   // adapter: node({
   //   mode: "standalone"
   // }),
@@ -22,4 +21,5 @@ export default defineConfig({
   //     noExternal: ['path-to-regexp'],
   //   },
   // },
+  adapter: vercel()
 });
