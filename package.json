@@ -11,6 +11,7 @@
     "start": "pm2 start ecosystem.config.cjs --env production"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^7.0.1",
     "@astrojs/node": "^6.0.0",
     "@astrojs/vue": "^3.0.0",
     "@types/js-cookie": "^3.0.3",
