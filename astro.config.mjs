@@ -2,18 +2,26 @@ import { defineConfig } from 'astro/config';
 import vue from "@astrojs/vue";
 import node from "@astrojs/node";
 
+import prefetch from "@astrojs/prefetch";
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [vue({
-    // appEntrypoint: '/src/pages/_app' 
-  })],
+  integrations: [
+    vue({
+      // appEntrypoint: '/src/pages/_app' 
+    }),
+    prefetch({
+      selector: ["a[href^='/ordering']", "a[href^='/partners/ordering']"],
+      throttle: 1,
+    })
+  ],
   server: {
     port: 5173
   },
   output: "hybrid",
   adapter: node({
     mode: "standalone"
-  }),
+  })
   // vite: {
   //   ssr: {
   //     noExternal: ['path-to-regexp'],
