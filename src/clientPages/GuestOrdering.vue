@@ -56,7 +56,7 @@ import { ref } from 'vue';
 import { getPrints, removePrint } from "../stores/prints";
 import { getRandomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
 import { getRandomProses, fetchRandomProses } from "../stores/proses";
-import { colors, newOrder, reset, getProducts, addProduct } from '../stores/orders';
+import { colors, newGuestOrder, reset, getProducts, addProduct } from '../stores/orders';
 // components
 import PrintCustomization from '../components/PrintCustomization.vue';
 import OrderForm from "../components/OrderForm.vue";
@@ -71,7 +71,7 @@ let fontColor = ref(colors[0]);
 let backgroundColor = ref(colors[1]);
 
 const onGuestOrder = async (order: Order) => {
-  await newOrder(order);
+  await newGuestOrder(order);
   reset();
   window.location.href = '/history/';
 }

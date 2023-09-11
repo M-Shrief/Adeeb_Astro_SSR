@@ -41,7 +41,7 @@ import { fetchRandomChosenVerses, getRandomChosenVerses } from "../stores/chosen
 import { fetchRandomProses, getRandomProses } from "../stores/proses";
 import { getPrints, removePrint, prepPrints, emptyPrints } from "../stores/prints";
 import { getPartner } from '../stores/partners';
-import { colors, getProductGroups, addProductGroup, newOrder, reset } from "../stores/orders";
+import { colors, getProductGroups, addProductGroup, newPartnerOrder, reset } from "../stores/orders";
 // types
 import type { Order, Print } from '../stores/__types__'
 
@@ -59,7 +59,7 @@ function onAddProductGroup(prints: Print[], colors: string[]) {
 }
 
 const onPartnerOrder = async (order: Order) => {
-    await newOrder(order)
+  await newPartnerOrder(order)
     reset()
     window.location.href = '/partners/history';
 }

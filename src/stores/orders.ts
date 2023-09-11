@@ -44,7 +44,7 @@ export async function fetchOrders(name: string, phone: string) {
 export async function fetchPartnerOrders(partner: string) {
     try {
         const accessToken = Cookies.get("accessToken") ?? '';
-        const req = await withAuthHttp(accessToken).get(`/orders/${partner}`);
+        const req = await withAuthHttp(accessToken).get(`/orders/partner`);
         orders.value = req.data;
     } catch (error) {
     if (error instanceof AxiosError) {
@@ -54,10 +54,23 @@ export async function fetchPartnerOrders(partner: string) {
     alert(error);
     }
 };
-export async function newOrder(order: Order) {
+export async function newGuestOrder(order: Order) {
     try {
-        let apiOrder = `/order`;
-        await baseHttp.post(apiOrder, order);
+        await baseHttp.post(`/order/guest`, order);
+        // useSuccessNotsification('Operation was made successfully');
+    } catch (error) {
+    if (error instanceof AxiosError) {
+        useAxiosError(error);
+        return;
+    }
+    alert(error);
+    }
+};
+
+export async function newPartnerOrder(order: Order) {
+    try {
+        const accessToken = Cookies.get("accessToken") ?? '';
+        await withAuthHttp(accessToken).post(`/order/partner`, order);
         // useSuccessNotsification('Operation was made successfully');
     } catch (error) {
     if (error instanceof AxiosError) {
