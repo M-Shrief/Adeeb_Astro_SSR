@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions, fade } from "astro:transitions";
 // Components
 import NavbarRoutes from "../components/NavbarRoutes.vue";
 import ThemeSwitch from "../components/ThemeSwitch.astro";
@@ -19,8 +20,9 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
-  <body>
+  <body  transition:animate={fade({duration: '0.4s'})}>
     <header>
       <nav id="nav-raw">
         <a href="/" id="logo">أديب</a>
