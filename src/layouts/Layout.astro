@@ -27,7 +27,7 @@ const { title } = Astro.props;
       <nav id="nav-raw">
         <a href="/" id="logo">أديب</a>
         <div>
-          <NavbarRoutes client:only="vue" />
+          <NavbarRoutes activeUrl={Astro.url.pathname} client:only="vue" />
           <ThemeSwitch />
         </div>
       </nav>
