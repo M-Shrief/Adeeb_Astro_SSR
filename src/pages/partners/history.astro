@@ -4,10 +4,10 @@ import Layout from "../../layouts/Layout.astro";
 // Client Page
 import PartnerHistory from "../../clientPages/PartnerHistory.vue";
 
-const isAuthenticated = Astro.request.headers
-  .get("cookie")
-  ?.includes("accessToken=");
+// to force server side rendering to read the cookie.
+export const prerender = false;
 
+const isAuthenticated = Astro.cookies.has('accessToken')
 if (!isAuthenticated) return Astro.redirect("/partners/auth");
 ---
 

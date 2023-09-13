@@ -4,13 +4,12 @@ import Layout from "../../layouts/Layout.astro";
 // Components
 import AuthForm from "../../components/AuthForm.vue";
 
-const isAuthenticated = Astro.request.headers
-  .get("cookie")
-  ?.includes("accessToken=");
+// to force server side rendering to read the cookie.
+export const prerender = false;
 
-if (isAuthenticated) {
-  return Astro.redirect("/");
-}
+const isAuthenticated = Astro.cookies.has('accessToken')
+if (isAuthenticated) return Astro.redirect("/");
+
 ---
 
 <Layout title="Adeeb :: Authentication">
