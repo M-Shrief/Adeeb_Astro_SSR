@@ -12,7 +12,7 @@ import type { Partner } from './__types__';
 import { useAxiosError } from '../composables/errorsNotifications';
 import { useSessionStorage } from '@vueuse/core';
 
-const partner =  ref(useSessionStorage< string | null>('partner', null as string | null));
+export const partner =  ref(useSessionStorage< string | null>('partner', null as string | null));
 
 export const getPartner =  computed<Partner | null>(() => {
   if(partner && typeof partner.value == 'string') return JSON.parse(partner.value);
@@ -29,7 +29,7 @@ const tokenCookieOptions = {
   httpOnly: false
 }
 
-export async function signup(partnerData: Partner) {
+async function signup(partnerData: Partner) {
   try {
     const req = await baseHttp.post(`/partner/signup`, partnerData);
     partner.value = JSON.stringify(req.data.partner);    
@@ -43,7 +43,7 @@ export async function signup(partnerData: Partner) {
   }
 };
 
-export async function login(partnerData: Partner) {
+async function login(partnerData: Partner) {
   try {
     const req = await baseHttp.post(`/partner/login`, partnerData);
     partner.value = JSON.stringify(req.data.partner);
@@ -63,10 +63,16 @@ const removeAllCookies = () => {
   });
 }
 
-export async function logout() {
+async function logout() {
   // reset orders value
   reset();
   removeAllCookies()
   partner.value = null;
   window.location.href = '/'
 };
+
+export const actions = {
+  login,
+  signup,
+  logout,
+}

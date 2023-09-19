@@ -32,7 +32,7 @@ import { ref } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import { nameRules, phoneRules, passwordRules } from '../utils/forms.schema'
 // stores
-import { isPartner, login, signup } from '../stores/partners';
+import { actions as partnerActions, isPartner } from '../stores/partners';
 // Composables
 import { useAxiosError } from '../composables/errorsNotifications';
 
@@ -42,14 +42,14 @@ const isRegistered = ref(true);
 async function onSubmit(values: any) {
   if (isRegistered.value) {
     // emits('login', values)
-    await login(values)
+    await partnerActions.login(values)
     .then(() => {
       if (isPartner.value) window.location.href = '/';
     })
     .catch(error => useAxiosError(error));
   } else {
     // emits('signup', values)
-    await signup(values)
+    await partnerActions.signup(values)
     .then(() => {
       if (isPartner.value) window.location.href = '/';
     })
