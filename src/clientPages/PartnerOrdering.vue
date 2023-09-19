@@ -22,7 +22,7 @@
     <div class="preview-prints">
       <ShowCasePrints :prints="getPrints"
         :colors="[computed(() => fontColor as string), computed(() => backgroundColor as string)]"
-        @remove="(print: Print) => removePrint(print)" />
+        @remove="(print: Print) => printsActions.remove(print)" />
     </div>
     <button @click="onAddProductGroup(getPrints, [fontColor, backgroundColor])">
       اضافة الطلبات</button>
@@ -39,7 +39,7 @@ import OrderForm from '../components/OrderForm.vue';
 // stores
 import { fetchRandomChosenVerses, getRandomChosenVerses } from "../stores/chosenVerses";
 import { fetchRandomProses, getRandomProses } from "../stores/proses";
-import { getPrints, removePrint, prepPrints, emptyPrints } from "../stores/prints";
+import { getPrints, actions as printsActions } from "../stores/prints";
 import { getPartner } from '../stores/partners';
 import { colors, getProductGroups, addProductGroup, newPartnerOrder, reset } from "../stores/orders";
 // types
@@ -55,7 +55,7 @@ function onAddProductGroup(prints: Print[], colors: string[]) {
     addProductGroup(prints, colors);
   }
   // empty prints store
-  emptyPrints();
+  printsActions.removeAll();
 }
 
 const onPartnerOrder = async (order: Order) => {
@@ -69,14 +69,13 @@ const onPartnerOrder = async (order: Order) => {
 async function preparePoetry() {
   const num = (document.getElementById('poetry') as HTMLInputElement).valueAsNumber;
   await fetchRandomChosenVerses(num).then((res) => {
-    console.log(getRandomChosenVerses);
-    prepPrints(getRandomChosenVerses.value);
+    printsActions.prep(getRandomChosenVerses.value);
   });
 }
 async function prepareProse() {
   const num = (document.getElementById('prose') as HTMLInputElement).valueAsNumber;
   await fetchRandomProses(num).then(() => {
-    prepPrints(getRandomProses.value);
+    printsActions.prep(getRandomProses.value);
   });
 }
 </script>

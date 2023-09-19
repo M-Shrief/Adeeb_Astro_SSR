@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <ShowCasePrints :prints="getPrints" @remove="(print) => removePrint(print)"
+      <ShowCasePrints :prints="getPrints" @remove="(print) => printActions.remove(print)"
         @print="(print: Print) => preview = print" />
     </section>
   </main>
@@ -53,7 +53,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 // stores
-import { getPrints, removePrint } from "../stores/prints";
+import { getPrints, actions as printActions } from "../stores/prints";
 import { getRandomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
 import { getRandomProses, fetchRandomProses } from "../stores/proses";
 import { colors, newGuestOrder, reset, getProducts, addProduct } from '../stores/orders';
