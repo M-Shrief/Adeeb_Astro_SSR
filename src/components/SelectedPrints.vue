@@ -4,7 +4,7 @@
         class="title">للطباعة</a> </p>
     <ul class="prints">
       <li class="prints-item" v-for="print in getPrints" :key="print.id"
-        @dblclick="removePrint(print)">
+        @dblclick="printsActions.remove(print)">
         <!-- poetry -->
         <p v-if="print.verses">{{ print.verses[0].first }}..</p>
         <!-- prose -->
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import {getPrints, removePrint} from '../stores/prints'
+import {actions as printsActions, getPrints} from '../stores/prints'
 import { isPartner } from '../stores/partners';
 
 </script>
