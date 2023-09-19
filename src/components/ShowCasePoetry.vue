@@ -10,7 +10,7 @@
                         singlePiece.poet.name}}
                     </a>
 
-                    <button @click="addPrint({ id: singlePiece.id, qoute: singlePiece.qoute })"
+                    <button @click="printsActions.add({ id: singlePiece.id, qoute: singlePiece.qoute })"
                         class="print-button">
                         أضف للطباعة
                     </button>
@@ -27,7 +27,7 @@
                         : singlePiece.poet.name + ' - القصيدة الكاملة'}}
                     </a>
                     <button
-                        @click="addPrint({ id: singlePiece.id, verses: singlePiece.verses })"
+                        @click="printsActions.add({ id: singlePiece.id, verses: singlePiece.verses })"
                         class="print-button">
                         أضف للطباعة
                     </button>
@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 // Stores
-import {addPrint} from '../stores/prints'
+import {actions as printsActions} from '../stores/prints'
 // Types
 import type { Poetry } from '../stores/__types__';
 defineProps<{
