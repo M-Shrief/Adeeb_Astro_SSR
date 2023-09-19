@@ -1,15 +1,15 @@
 <template>
     <div class="nav-row-group">
-      <a :href="getPartner ? '/partners/ordering' : '/ordering'"
+      <a :href="isPartner ? '/partners/ordering' : '/ordering'"
         class="nav-item" >طلباتك</a>
-      <a :href="getPartner ? '/partners/history' : '/history'"
+      <a :href="isPartner ? '/partners/history' : '/history'"
         class="nav-item" >مراجعة
         الطلبات</a>
       <a :href="'/about'" class="nav-item"
         >قصتنا</a>
 
       <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
-      <span v-if="getPartner" class="nav-item" @click="logout">تسجيل
+      <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">تسجيل
         الخروج</span>
       <a href="/partners/auth" class="nav-item"  v-else >كن
         شريكاً</a>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 // Stores
 import { onMounted } from 'vue';
-import { getPartner, logout } from '../stores/partners';
+import { getPartner, actions as partnerActions, isPartner } from '../stores/partners';
 
 const props = defineProps<{
   activeUrl: string; 
