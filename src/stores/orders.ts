@@ -8,7 +8,7 @@ import type { Order, Product, ProductGroup, Print } from './__types__';
 // Composables
 import {useSessionStorage} from '@vueuse/core';
 import { useAxiosError } from '../composables/errorsNotifications';
-// import { useSuccessNotification } from '../composables/successNotifiers';
+import { useSuccessNotification } from '../composables/successNotifications';
 
 // should resemble our storage
 export const colors =  [
@@ -57,7 +57,7 @@ export async function fetchPartnerOrders(partner: string) {
 export async function newGuestOrder(order: Order) {
     try {
         await baseHttp.post(`/order/guest`, order);
-        // useSuccessNotsification('Operation was made successfully');
+        useSuccessNotification('Order was made successfully');
     } catch (error) {
     if (error instanceof AxiosError) {
         useAxiosError(error);
@@ -71,7 +71,7 @@ export async function newPartnerOrder(order: Order) {
     try {
         const accessToken = Cookies.get("accessToken") ?? '';
         await withAuthHttp(accessToken).post(`/order/partner`, order);
-        // useSuccessNotsification('Operation was made successfully');
+        useSuccessNotification('Order was made successfully');
     } catch (error) {
     if (error instanceof AxiosError) {
         useAxiosError(error);

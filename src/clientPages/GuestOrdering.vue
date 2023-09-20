@@ -73,7 +73,7 @@ let backgroundColor = ref(colors[1]);
 const onGuestOrder = async (order: Order) => {
   await newGuestOrder(order);
   reset();
-  window.location.href = '/history/';
+  preview.value = {} as Print;
 }
 
 function getRandomPoetry(num: number) {
