@@ -3,6 +3,7 @@
 import Layout from "../../layouts/Layout.astro";
 // Components
 import AuthForm from "../../components/AuthForm.vue";
+import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
 
 // to force server side rendering to read the cookie.
 export const prerender = false;
@@ -13,6 +14,7 @@ if (isAuthenticated) return Astro.redirect("/");
 ---
 
 <Layout title="Adeeb :: Authentication">
+  <HttpPopUp client:idle slot="http-popup"/>
   <h3>يَسعد المتنبي بتقديم الخدمات للشركات والتجار والعملاء المميزين.</h3>
   <section id="register">
     <AuthForm client:idle />

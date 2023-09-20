@@ -31,7 +31,8 @@ const { title } = Astro.props;
           <ThemeSwitch />
         </div>
       </nav>
-      <HttpPopUp />
+      <!-- <HttpPopUp /> -->
+      <slot name="http-popup"/>
     </header>
     <slot />
     <footer>

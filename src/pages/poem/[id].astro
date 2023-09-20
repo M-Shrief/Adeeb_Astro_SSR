@@ -6,6 +6,7 @@ import ShowCasePoem from "../../components/ShowCasePoem.vue";
 import ShowCasePoems from "../../components/ShowCasePoems.vue";
 import ShowCasePoet from "../../components/ShowCasePoet.vue";
 import SelectedPrints from "../../components/SelectedPrints.vue";
+import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
 // Stores
 import { getPoem, getOtherPoems, fetchPoem } from "../../stores/poems";
 
@@ -17,6 +18,7 @@ await fetchPoem(id);
 ---
 
 <Layout title="Adeeb :: Poem">
+  <HttpPopUp slot="http-popup"/>
   <main>
     <div class="container">
       <section id="related-data">
