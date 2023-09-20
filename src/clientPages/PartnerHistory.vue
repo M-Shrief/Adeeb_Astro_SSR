@@ -8,7 +8,7 @@
           <p>العنوان</p><span>{{ order.address }}</span>
         </div>
         <div>
-          <p>تاريخ الطلب</p><span>{{ order.createdAt?.slice(0, 10) }}</span>
+          <p>تاريخ الطلب</p><span>{{ order.created_at?.slice(0, 10) }}</span>
         </div>
         <p><span>{{ order.reviewed ? 'تمت المراجعة' : 'غير مراجع' }}</span></p>
         <p><span>{{ order.completed ? 'تم التسليم' : 'لم يتم التسليم' }}</span>
