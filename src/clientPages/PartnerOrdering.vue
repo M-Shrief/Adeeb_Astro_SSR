@@ -60,8 +60,7 @@ function onAddProductGroup(prints: Print[], colors: string[]) {
 
 const onPartnerOrder = async (order: Order) => {
   await newPartnerOrder(order)
-    reset()
-    window.location.href = '/partners/history';
+  reset()
 }
 
 

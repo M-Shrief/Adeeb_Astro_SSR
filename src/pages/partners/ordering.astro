@@ -3,8 +3,11 @@
 import Layout from "../../layouts/Layout.astro";
 // Client Page
 import PartnerOrdering from "../../clientPages/PartnerOrdering.vue";
+// Components
+import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
 ---
 
 <Layout title="Adeeb :: Ordering">
+  <HttpPopUp client:idle slot="http-popup"/>
   <PartnerOrdering client:idle />
 </Layout>

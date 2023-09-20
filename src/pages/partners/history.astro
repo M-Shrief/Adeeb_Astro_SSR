@@ -3,6 +3,8 @@
 import Layout from "../../layouts/Layout.astro";
 // Client Page
 import PartnerHistory from "../../clientPages/PartnerHistory.vue";
+// Components
+import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
 
 // to force server side rendering to read the cookie.
 export const prerender = false;
@@ -12,5 +14,6 @@ if (!isAuthenticated) return Astro.redirect("/partners/auth");
 ---
 
 <Layout title="Adeeb :: History">
+  <HttpPopUp client:idle slot="http-popup"/>
   <PartnerHistory client:idle />
 </Layout>
