@@ -5,10 +5,11 @@ import NavbarRoutes from "../components/NavbarRoutes.vue";
 import ThemeSwitch from "../components/ThemeSwitch.astro";
 import HttpPopUp from "../components/notifications/HttpPopUp.vue";
 interface Props {
-  title: string;
+  title: string; // Recommended length: 150 - 160 characters 
+  description: string; // Recommended dimension: 1200 x 630 pixels 
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,6 +21,22 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Meta Tags Generated via https://opengraph.dev -->
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://m-shrief.tech">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>    
+    <meta property="og:image" content="/poster.png">  
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="m-shrief.tech">
+    <meta property="twitter:url" content="https://m-shrief.tech">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content="/poster.png">
     <ViewTransitions />
   </head>
   <body  transition:animate={fade({duration: '0.4s'})}>

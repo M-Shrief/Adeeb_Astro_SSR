@@ -15,9 +15,11 @@ const { id } = Astro.params;
 
 if (!id) return Astro.redirect("/");
 await fetchPoem(id);
+
+const {intro, poet} = getPoem.value;
 ---
 
-<Layout title="Adeeb :: Poem">
+<Layout title={intro} description={intro + ' - ' + poet}>
   <HttpPopUp slot="http-popup"/>
   <main>
     <div class="container">

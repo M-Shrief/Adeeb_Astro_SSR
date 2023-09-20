@@ -13,7 +13,7 @@ const isAuthenticated = Astro.cookies.has('accessToken')
 if (!isAuthenticated) return Astro.redirect("/partners/auth");
 ---
 
-<Layout title="Adeeb :: History">
+<Layout title="أديب :: مراجعة الطلبات" description="Check your ordering history">
   <HttpPopUp client:idle slot="http-popup"/>
   <PartnerHistory client:idle />
 </Layout>

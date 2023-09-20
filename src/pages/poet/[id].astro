@@ -13,6 +13,7 @@ import { fetchPoet, getPoet } from "../../stores/poets";
 import type { Poetry } from "../../stores/__types__";
 // utils
 import { shuffle } from "../../utils/shuffle";
+import { get } from "@vueuse/core";
 
 export const prerender = false;
 const { id } = Astro.params;
@@ -28,7 +29,7 @@ const poetry = [
 shuffle(poetry);
 ---
 
-<Layout title="Adeeb :: Poet">
+<Layout title={getPoet.value.name} description={getPoet.value.bio}>
   <HttpPopUp slot="http-popup"/>
   <main>
     <div class="container">
