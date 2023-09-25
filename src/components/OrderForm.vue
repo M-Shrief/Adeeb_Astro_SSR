@@ -39,7 +39,7 @@
         <div v-for="product, index in products" class="product-details"
           :key="index"
           :style="{ color: product.fontColor, background: product.backgroundColor }"
-          @dblclick="deleteProduct(products as Product[], index)">
+          @dblclick="deleteProduct(index)">
           <p>{{ product.fontType }}</p>
           <p v-if="product.print.verses"> {{ product.print.verses[0].first
           }}...</p>
@@ -82,8 +82,8 @@ const props = defineProps<{
 }>();
 
 
-function deleteProduct(products: Product[], index: number) {
-  products.splice(index, 1);
+function deleteProduct(index: number) {
+  if(props.products) props.products.splice(index, 1);
 }
 
 
@@ -91,10 +91,8 @@ function deleteProduct(products: Product[], index: number) {
 function deleteFromProductGroup(groupIndex: number, index: number) {
   if(props.productGroups) {
     if (props.productGroups[groupIndex].prints.length == 1) {
-      // let productGroupIndex = props.productGroups.map(productGroup => productGroup.prints.length).indexOf(1);
       props.productGroups.splice(groupIndex, 1);
     } else {
-      // let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
       props.productGroups[groupIndex].prints.splice(index, 1);
     }
   }
