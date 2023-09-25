@@ -49,14 +49,12 @@ export interface Print {
 }
 
 export interface Product {
-  id: string;
   print: Print;
   fontType: string;
   fontColor: string;
   backgroundColor: string;
 }
 export interface ProductGroup {
-  id: string;
   prints: Print[];
   fontType: string;
   fontColor: string;
