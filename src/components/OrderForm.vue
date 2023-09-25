@@ -87,10 +87,6 @@ function deleteProduct(products: Product[], product: Product) {
   products.splice(productIndex, 1);
 }
 
-function deletePrint(productGroup: ProductGroup, print: Print) {
-  let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
-  productGroup.prints.splice(printIndex, 1);
-}
 
 // ProductGroup
 function deleteFromProductGroup(productGroup: ProductGroup, print: Print) {
@@ -98,7 +94,8 @@ function deleteFromProductGroup(productGroup: ProductGroup, print: Print) {
     let productGroupIndex = props.productGroups.map(productGroup => productGroup.prints.length).indexOf(1);
     props.productGroups.splice(productGroupIndex, 1);
   } else {
-    deletePrint(productGroup, print)
+    let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
+    productGroup.prints.splice(printIndex, 1);
   }
 }
 
