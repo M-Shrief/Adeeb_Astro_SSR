@@ -39,7 +39,7 @@
         <div v-for="product, index in products" class="product-details"
           :key="index"
           :style="{ color: product.fontColor, background: product.backgroundColor }"
-          @dblclick="deleteProduct(products as Product[], product)">
+          @dblclick="deleteProduct(products as Product[], index)">
           <p>{{ product.fontType }}</p>
           <p v-if="product.print.verses"> {{ product.print.verses[0].first
           }}...</p>
@@ -56,7 +56,7 @@
             <div v-for="print, index in productGroup.prints" :key="index"
               class="group-print"
               :style="{ color: productGroup.fontColor, background: productGroup.backgroundColor }"
-              @dblclick="deleteFromProductGroup(productGroup, print)">
+              @dblclick="deleteFromProductGroup(productGroup, index)">
               <p v-if="print.verses"> {{ print.verses[0].first }}...</p>
               <p v-else-if="print.qoute"> {{ print.qoute.slice(0, 30) }}...</p>
             </div>
@@ -82,20 +82,19 @@ const props = defineProps<{
 }>();
 
 
-function deleteProduct(products: Product[], product: Product) {
-  let productIndex = products.map(product => product.print.id).indexOf(product.print.id);
-  products.splice(productIndex, 1);
+function deleteProduct(products: Product[], index: number) {
+  products.splice(index, 1);
 }
 
 
 // ProductGroup
-function deleteFromProductGroup(productGroup: ProductGroup, print: Print) {
+function deleteFromProductGroup(productGroup: ProductGroup, index: number) {
   if (props.productGroups && productGroup.prints.length == 1) {
     let productGroupIndex = props.productGroups.map(productGroup => productGroup.prints.length).indexOf(1);
     props.productGroups.splice(productGroupIndex, 1);
   } else {
-    let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
-    productGroup.prints.splice(printIndex, 1);
+    // let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
+    productGroup.prints.splice(index, 1);
   }
 }
 
