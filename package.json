@@ -25,6 +25,8 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "cypress": "^12.17.4"
+    "@vue/test-utils": "^2.4.1",
+    "cypress": "^12.17.4",
+    "vitest": "^0.34.4"
   }
 }
