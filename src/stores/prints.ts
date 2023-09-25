@@ -43,3 +43,48 @@ export const actions = {
   remove: removePrint,
   removeAll: removeAllPrints
 };
+
+if (import.meta.vitest) {
+  const { describe, it, expect } = import.meta.vitest
+  describe.concurrent('Testing Prints actions', () => {
+    afterEach(() => { prints.value = []})
+    it('addPrint(): addPrint correctly, and it do not duplicate existing prints', async ({ expect }) => {
+      const print: Print = {id: '12', qoute: 'aaa'};
+      addPrint(print);
+      expect(prints.value).toStrictEqual([print]); 
+      addPrint(print);
+      expect(prints.value).toStrictEqual([print]);
+    })
+    it('prepPrints(): it adds an array of prints', async ({ expect }) => {
+      const preparedPrints = [
+        {id: '1', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'aaa'},
+        {id: '2', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'bbb'},
+      ] as Prose[];
+      prepPrints(preparedPrints);
+      expect(prints.value).toMatchInlineSnapshot()
+    })
+    it('removePrint(): it remove specified prints after mapping prints array to know print.id', async({expect}) => {
+      const preparedPrints = [
+        {id: '1', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'aaa'},
+        {id: '2', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'bbb'},
+        {id: '3', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'ccc'},
+      ] as Prose[];
+      prepPrints(preparedPrints);
+      removePrint(preparedPrints[1]);
+      expect(prints.value).toMatchInlineSnapshot([
+        {id: '1', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'aaa'},
+        {id: '3', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'ccc'},
+      ])
+    })
+    it('removeAllPrints(): remove all prints', async ({ expect }) => {
+      const preparedPrints = [
+        {id: '1', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'aaa'},
+        {id: '2', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'bbb'},
+        {id: '3', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'ccc'},
+      ] as Prose[];
+      prepPrints(preparedPrints);
+      removeAllPrints();
+      expect(prints.value.length).toEqual(0);
+    })
+  })
+}
