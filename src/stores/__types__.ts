@@ -20,8 +20,6 @@ export interface Poem {
   poet: Poet;
   verses: Verse[];
   reviewed: boolean;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface ChosenVerse {
@@ -39,8 +37,6 @@ export interface Prose {
   tags: string;
   qoute: string;
   reviewed: boolean;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface Poetry extends ChosenVerse, Prose {};
