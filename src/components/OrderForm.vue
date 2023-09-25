@@ -46,7 +46,7 @@
           <p v-else-if="product.print.qoute">
             {{ product.print.qoute.slice(0, 30) }}...</p>
         </div>
-        <div v-for="productGroup, index in productGroups" :key="index">
+        <div v-for="productGroup, groupIndex in productGroups" :key="groupIndex">
           <div class="group-details"
             :style="{ color: productGroup.fontColor, background: productGroup.backgroundColor }">
             <p>نوع الخط: {{ productGroup.fontType }} </p>
@@ -56,7 +56,7 @@
             <div v-for="print, index in productGroup.prints" :key="index"
               class="group-print"
               :style="{ color: productGroup.fontColor, background: productGroup.backgroundColor }"
-              @dblclick="deleteFromProductGroup(productGroup, index)">
+              @dblclick="deleteFromProductGroup(groupIndex, index)">
               <p v-if="print.verses"> {{ print.verses[0].first }}...</p>
               <p v-else-if="print.qoute"> {{ print.qoute.slice(0, 30) }}...</p>
             </div>
@@ -88,13 +88,15 @@ function deleteProduct(products: Product[], index: number) {
 
 
 // ProductGroup
-function deleteFromProductGroup(productGroup: ProductGroup, index: number) {
-  if (props.productGroups && productGroup.prints.length == 1) {
-    let productGroupIndex = props.productGroups.map(productGroup => productGroup.prints.length).indexOf(1);
-    props.productGroups.splice(productGroupIndex, 1);
-  } else {
-    // let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
-    productGroup.prints.splice(index, 1);
+function deleteFromProductGroup(groupIndex: number, index: number) {
+  if(props.productGroups) {
+    if (props.productGroups[groupIndex].prints.length == 1) {
+      // let productGroupIndex = props.productGroups.map(productGroup => productGroup.prints.length).indexOf(1);
+      props.productGroups.splice(groupIndex, 1);
+    } else {
+      // let printIndex = productGroup.prints.map((print: Print) => print.id).indexOf(print.id);
+      props.productGroups[groupIndex].prints.splice(index, 1);
+    }
   }
 }
 
