@@ -6,15 +6,19 @@ The project's goal is to migrate "Adeeb اديب"'s [SPA frontend](https://githu
 
 - Tech Stack:
 
-  - **TypeScript**
-  - **Astro**
-  - **Vuejs**
 
+  - Full **TypeScript**
+  - **HTML, CSS & SCSS**
+  - **Vite**
+  - **Vuejs**
+  - **Astro**
+  
 - Characteristics:
 
-  - form validation with _vee-validate_ & _Yup_
-  - _JWT_ authentication and authorization
+  - form validation with Vee-validate & Yup
+  - JWT authentication and authorization
   - Dark/Light Theme
+  - Component testing with Cypress
   - ... and more
 
 **Overview, and file structure**:
