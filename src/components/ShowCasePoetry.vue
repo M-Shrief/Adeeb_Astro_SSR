@@ -2,7 +2,7 @@
     <section id="poetry">
         <h2 class="title">المختارات الأدبية<span v-if="poetry.length === 0"><br>(غير متوفرة الي الأن)</span></h2>
         <div class="poetry-container">
-            <div v-for="singlePiece in poetry" :key="singlePiece.id" class="poetry-item">
+            <div v-for="singlePiece in poetry" :key="singlePiece.id">
                 <div v-if="singlePiece.qoute" class="prose-item">
                     <p class="qoute">{{ singlePiece.qoute }}</p>
                     <a v-if="!(routeName === 'poet')"
@@ -87,18 +87,18 @@ $secondaryColor: var(--surface1);
 .poetry-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
+  margin: 0.5rem auto;
+  row-gap: 1.5rem;
+  column-gap: 0.3rem;
   @include mQ($breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   @include mQ($breakpoint-sm) {
     grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
   }
-}
-
-.poetry-item {
-   margin: 0.5rem;
 }
 
 .prose-item, .chosenverse-item {
@@ -166,7 +166,7 @@ $secondaryColor: var(--surface1);
 
   @include mQ($breakpoint-sm) {
     padding: 0.1rem;
-    padding-bottom: 0.3rem;
+    padding-bottom: 1rem;
     margin: 0.2rem;
   }
 
@@ -221,8 +221,6 @@ $secondaryColor: var(--surface1);
   .one-verse {
     font-size: 1.1rem;
     font-weight: 600;
-    margin: auto 0;
-
     .first {
       margin-right: 0.4rem;
     }
@@ -251,8 +249,6 @@ $secondaryColor: var(--surface1);
   .two-verse {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.3rem;
-
     .first {
       margin-right: 0.4rem;
     }
