@@ -37,11 +37,10 @@ $secondaryColor: var(--surface3);
 
 #poems {
   padding: 0.3rem;
-  border-radius: 2rem;
-  margin: 0 1rem;
+  border-radius: 1rem;
+  padding: 0.3rem;
   background-color: $secondaryColor;
   @include mQ($breakpoint-lg) {
-    padding: 0.4rem;
     margin: 0 0.7rem;
   }
   @include mQ($breakpoint-md) {
@@ -69,7 +68,7 @@ $secondaryColor: var(--surface3);
       font-size: 0.8rem;
     }
     @include mQ($breakpoint-sm) {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       margin: 0.1rem auto;
     }
   }

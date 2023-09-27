@@ -78,27 +78,17 @@ await Promise.allSettled([
   .poet-poem-container {
     margin-top: 1rem;
     display: grid;
+    gap: 1rem;
     grid-template-columns: 70% 30%;
     @include mQ($breakpoint-lg) {
       grid-template-columns: 65% 35%;
+      gap: 0.5rem;
     }
 
     @include mQ($breakpoint-sm) {
-      // grid-template-columns: 70% 30%;
-      display: block;
-    }
-  }
-  .choseverse-prose-container {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 70% 30%;
-    @include mQ($breakpoint-lg) {
-      grid-template-columns: 65% 35%;
-    }
-
-    @include mQ($breakpoint-sm) {
-      // grid-template-columns: 50% 50%;
-      display: block;
+      grid-template-columns: 100%;
+      // display: block;
+      gap: 0.3rem;
     }
   }
 

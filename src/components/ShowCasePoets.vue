@@ -29,7 +29,7 @@ $secondaryColor: var(--surface2);
 #poets {
   background-color: $secondaryColor;
   padding: 0.3rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   margin: 0 1rem;
   @include mQ($breakpoint-lg) {
     padding: 0.3rem;
@@ -62,7 +62,7 @@ $secondaryColor: var(--surface2);
       margin: 0.2rem;
     }
     @include mQ($breakpoint-sm) {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       margin: 0.1rem auto;
     }
 
