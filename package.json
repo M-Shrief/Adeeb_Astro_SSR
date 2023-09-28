@@ -30,6 +30,7 @@
     "@vue/test-utils": "^2.4.1",
     "cypress": "^12.17.4",
     "happy-dom": "^12.2.0",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.4",
+    "wait-for-expect": "^3.0.2"
   }
 }
