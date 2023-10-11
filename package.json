@@ -17,7 +17,7 @@
     "@astrojs/vue": "^3.0.0",
     "@types/js-cookie": "^3.0.3",
     "@vueuse/core": "^10.3.0",
-    "astro": "^3.0.13",
+    "astro": "^3.2.4",
     "axios": "^1.4.0",
     "js-cookie": "^3.0.5",
     "sass": "^1.65.1",
@@ -28,7 +28,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/test-utils": "^2.4.1",
-    "cypress": "^12.17.4",
     "happy-dom": "^12.2.0",
     "vitest": "^0.34.4",
     "wait-for-expect": "^3.0.2"
