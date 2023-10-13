@@ -15,9 +15,9 @@
                         أضف للطباعة
                     </button>
                 </div>
-                <div v-if="singlePiece.verses" class="chosenverse-item">
+                <div v-if="singlePiece.poem" class="chosenverse-item">
                     <div v-for="verse, index in singlePiece.verses" :key="index"
-                        :class="singlePiece.verses.length == 1 ? 'one-verse' : 'two-verse'">
+                        :class="singlePiece.verses!.length == 1 ? 'one-verse' : 'two-verse'">
                         <p class="first">{{ verse.first }}</p>
                         <p class="sec">{{ verse.sec }}</p>
                     </div>

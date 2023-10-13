@@ -6,7 +6,7 @@ import ShowCasePoetry from './ShowCasePoetry.vue';
 // Stores
 import {actions as printsActions} from '../stores/prints';
 // Types
-import  type { ChosenVerse, Poetry} from '../stores/__types__'
+import  type { Poetry } from '../stores/__types__'
 
 describe.concurrent('<ShowCasePoetry />', () => {
     it('Renders a ChosenVerse with one Verse', async () => {

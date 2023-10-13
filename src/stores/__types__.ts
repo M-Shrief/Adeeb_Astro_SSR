@@ -1,3 +1,5 @@
+import type {Combine} from '../utils/combineTypes.ts'
+
 export interface Verse {
   first: string;
   sec: string;
@@ -39,7 +41,8 @@ export interface Prose {
   reviewed: boolean;
 }
 
-export interface Poetry extends ChosenVerse, Prose {};
+// export interface Poetry extends  ChosenVerse, Prose{};
+export type Poetry =  Combine<ChosenVerse, Prose>;
 
 export interface Print {
   id: string;

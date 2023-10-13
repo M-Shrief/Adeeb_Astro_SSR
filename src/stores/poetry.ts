@@ -23,7 +23,7 @@ export async function fetchPoetry() {
             await fetchProses(),
         ]);
 
-        poetry.value = [...getChosenVerses.value, ...getProses.value] as Poetry[];
+        poetry.value = [...getChosenVerses.value, ...getProses.value];
         await shuffle(poetry.value);
     } catch (error) {
         if (error instanceof AxiosError) {
