@@ -1,4 +1,4 @@
-import {ref, computed} from '@vue/reactivity';
+import {shallowRef, computed} from '@vue/reactivity';
 // Composables
 import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
@@ -7,7 +7,7 @@ import {baseHttp} from '../utils/axios';
 import type {Prose} from './__types__';
 import {AxiosError} from 'axios';
 
-const proses = ref<Prose[]>([]);
+const proses = shallowRef<Prose[]>([]);
 
 export const getProses = computed<Prose[]>(() => {
   return proses.value;
@@ -26,7 +26,7 @@ export async function fetchProses() {
   }
 }
 
-const randomProses = ref<Prose[]>([]);
+const randomProses = shallowRef<Prose[]>([]);
 
 export const getRandomProses = computed<Prose[]>(() => {
   return randomProses.value;

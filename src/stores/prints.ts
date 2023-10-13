@@ -45,7 +45,7 @@ export const actions = {
 };
 
 if (import.meta.vitest) {
-  const { describe, it, expect } = import.meta.vitest
+  const { describe, it, expect, afterEach } = import.meta.vitest
   describe.concurrent('Testing Prints actions', () => {
     afterEach(() => { prints.value = []})
     it('addPrint(): addPrint correctly, and it do not duplicate existing prints', async ({ expect }) => {

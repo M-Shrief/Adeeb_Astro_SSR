@@ -1,4 +1,4 @@
-import {ref, computed} from '@vue/reactivity';
+import {shallowRef, computed} from '@vue/reactivity';
 // Stores
 import {fetchChosenVerses, getChosenVerses} from './chosenVerses'
 import {fetchProses, getProses} from './proses'
@@ -10,7 +10,7 @@ import {shuffle} from '../utils/shuffle';
 import type {Poetry} from './__types__';
 import {AxiosError} from 'axios';
 
-const poetry = ref<Poetry[]>([]);
+const poetry = shallowRef<Poetry[]>([]);
 
 export const getPoetry = computed(() => {
     return poetry.value;

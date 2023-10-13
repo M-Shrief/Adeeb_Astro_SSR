@@ -1,4 +1,4 @@
-import {ref, computed} from '@vue/reactivity';
+import {shallowRef, computed} from '@vue/reactivity';
 // Composables
 import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
@@ -7,7 +7,7 @@ import {baseHttp} from '../utils/axios';
 import type {Poet} from './__types__';
 import {AxiosError} from 'axios';
 
-const poets = ref<Poet[]>([]);
+const poets = shallowRef<Poet[]>([]);
 
 export const getPoets = computed<Poet[]>(() => {
     return poets.value;
@@ -26,7 +26,7 @@ export const fetchPoets = async () => {
     }
 };
 
-const poet = ref<Poet>({} as Poet);
+const poet = shallowRef<Poet>({} as Poet);
 
 export const getPoet = computed<Poet>(() => {
     return poet.value;

@@ -1,4 +1,4 @@
-import {ref, computed} from '@vue/reactivity';
+import {shallowRef, computed} from '@vue/reactivity';
 // Composables
 import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
@@ -7,7 +7,7 @@ import {baseHttp} from '../utils/axios';
 import type {ChosenVerse} from './__types__';
 import {AxiosError} from 'axios';
 
-const chosenVerses = ref<ChosenVerse[]>([]);
+const chosenVerses = shallowRef<ChosenVerse[]>([]);
 
 export const getChosenVerses = computed<ChosenVerse[]>(() => {
   return chosenVerses.value;
@@ -26,7 +26,7 @@ export async function fetchChosenVerses() {
   }
 }
 
-const randomChosenVerses = ref<ChosenVerse[]>([]);
+const randomChosenVerses = shallowRef<ChosenVerse[]>([]);
 
 export const getRandomChosenVerses = computed<ChosenVerse[]>(() => {
   return randomChosenVerses.value;

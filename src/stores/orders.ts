@@ -1,4 +1,4 @@
-import {ref, computed} from '@vue/reactivity';
+import {ref, shallowRef, computed} from '@vue/reactivity';
 import  { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 // Utils
@@ -22,7 +22,7 @@ export const colors =  [
     '#f6b352',
 ];
 
-const orders =  ref<Order[]>([]);
+const orders =  shallowRef<Order[]>([]);
 
 export const getOrders = computed<Order[]>(() => {
     return orders.value;
