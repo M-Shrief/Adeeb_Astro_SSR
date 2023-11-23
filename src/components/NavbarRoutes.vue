@@ -11,7 +11,7 @@
       <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
       <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">تسجيل
         الخروج</span>
-      <a href="/partners/auth" class="nav-item"  v-else >كن
+      <a href="/partners/auth" class="nav-item" data-astro-prefetch v-else >كن
         شريكاً</a>
     </div>
 </template>
