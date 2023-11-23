@@ -16,7 +16,7 @@ const { id } = Astro.params;
 if (!id) return Astro.redirect("/");
 await fetchPoem(id);
 
-const {intro, poet} = getPoem.value;
+const {intro, poet, verses} = getPoem.value;
 ---
 
 <Layout title={intro} description={intro + ' - ' + poet}>
@@ -24,15 +24,15 @@ const {intro, poet} = getPoem.value;
   <main>
     <div class="container">
       <section id="related-data">
-        <a href=`/poet/${getPoem.value.poet.id}` class="link">
-          <ShowCasePoet details={getPoem.value.poet} client:idle />
+        <a href=`/poet/${poet.id}` class="link">
+          <ShowCasePoet details={poet} client:idle />
         </a>
 
         <ShowCasePoems poems={getOtherPoems.value}>
           <h2>قصائد اخري</h2>
         </ShowCasePoems>
       </section>
-      <ShowCasePoem verses={getPoem.value.verses} client:idle />
+      <ShowCasePoem verses={verses} client:idle />
     </div>
     <SelectedPrints client:only="vue" />
   </main>
