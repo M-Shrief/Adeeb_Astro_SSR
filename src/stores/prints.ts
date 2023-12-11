@@ -61,7 +61,7 @@ if (import.meta.vitest) {
         {id: '2', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'bbb'},
       ] as Prose[];
       prepPrints(preparedPrints);
-      expect(prints.value).toMatchInlineSnapshot()
+      expect(prints.value).toStrictEqual(preparedPrints)
     })
     it('removePrint(): it remove specified prints after mapping prints array to know print.id', async({expect}) => {
       const preparedPrints = [
@@ -71,7 +71,7 @@ if (import.meta.vitest) {
       ] as Prose[];
       prepPrints(preparedPrints);
       removePrint(preparedPrints[1]);
-      expect(prints.value).toMatchInlineSnapshot([
+      expect(prints.value).toStrictEqual([
         {id: '1', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'aaa'},
         {id: '3', poet: {id: "1"}, tags: 'الشجاعة', reviewed: true, qoute: 'ccc'},
       ])
