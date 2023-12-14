@@ -12,6 +12,7 @@ The project's goal is to migrate "Adeeb اديب"'s [SPA frontend](https://githu
   - **Vite**
   - **Vuejs**
   - **Astro**
+  - **Docker** Containerization for production
   
 - Characteristics:
 
@@ -19,21 +20,35 @@ The project's goal is to migrate "Adeeb اديب"'s [SPA frontend](https://githu
   - JWT authentication and authorization
   - Dark/Light Theme
   - Vitest for Component testing and In-source unit testing. 
+  - CI using Github actions for testing
   - ... and more
 
 **Overview, and file structure**:
 
-- _./assets_ for our base.css and mixins.scss
+- _./github_ for Github actions
+- _./src_:
 
-- _./components_ for our reusable Vuejs components across the app.
+  - _./assets_ for our base.css and mixins.scss
 
-- _./composables_ for Vuejs composables.
+  - _./components_ for our reusable Vuejs components across the app.
 
-- _./pages_ every pages defines a route and what it should render.
+  - _./composables_ for Vuejs composables.
 
-- _./clientPages_ full Vuejs pages that goes for full reactivity when rendered and doesn't need to be searchable or SEO optimized.
+  - _./pages_ every pages defines a route and what it should render.
 
-- _./stores_ for to manage our app state, logic and api requests, while
-  leveraging its reactivity with @vue/reactivity package.
+  - _./clientPages_ full Vuejs pages that goes for full reactivity when rendered and doesn't need to be searchable or SEO optimized.
 
-- _./utils_ shared utilities across the app
+  - _./stores_ for to manage our app state, logic and api requests, while
+    leveraging its reactivity with @vue/reactivity package.
+
+  - _./utils_ shared utilities across the app
+
+- _.env.example_ as example for ENVs.
+
+- _astro.config.mjs_ for Astro configs.
+
+- _Dockerfile_, _.dockerignore_ and _compose.example.yaml_ for production containerization.
+
+- _tsconfig.json_ for TypeScript config.
+
+- _vitest.config.js_ for Vitest config.
