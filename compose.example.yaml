@@ -13,7 +13,7 @@ services:
       context: .
       # Supplying needed envs for build as Args
       args: 
-        PUBLIC_API: https://server.m-shrief.tech/api
+        PUBLIC_API: 
     restart: unless-stopped
     ports:
       - 5173:5173
