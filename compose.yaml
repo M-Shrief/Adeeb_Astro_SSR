@@ -1,0 +1,19 @@
+# This is for production environment which connects with a published API.
+# For local develpment use your node directly from your machine
+# Because Astro adapter will not be able to connect with your local api from docker container
+# It will need a network bridge AND it will require another env to use for client-components.
+# because they ran in the browser and can't access docker inner network from there.
+# So you'll need to change the code to use different env for development only, which is inconvenient for me with little value.
+
+# This service is built from the Dockerfile in the current directory.
+services:
+  server:
+    container_name: frontend
+    build:
+      context: .
+      # Supplying needed envs for build as Args
+      args: 
+        PUBLIC_API: https://server.m-shrief.tech/api
+    restart: unless-stopped
+    ports:
+      - 5173:5173

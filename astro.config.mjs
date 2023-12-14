@@ -17,7 +17,8 @@ export default defineConfig({
     })
   ],
   server: {
-    port: 5173
+    port: 5173,
+    host: "0.0.0.0"
   },
   output: "hybrid",
   adapter: node({
@@ -27,9 +28,12 @@ export default defineConfig({
     prefetchAll: false,
     defaultStrategy: 'viewport'
   },
-  // vite: {
-  //   ssr: {
-  //     noExternal: ['path-to-regexp'],
-  //   },
-  // },
+  vite: {
+    ssr: {
+      // Users with strict package installations need to manually install these themselves if they use the related features.
+      external: [
+        'sharp', // For sharp image service
+      ]    
+    },
+  },
 });
