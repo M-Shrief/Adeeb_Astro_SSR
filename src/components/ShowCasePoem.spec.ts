@@ -27,11 +27,14 @@ describe('Renders poem properly', () => {
 
         await wrapper.find('.verse').trigger('dblclick')
         expect(addPrint).toHaveBeenCalled()
-        expect(addPrint).toHaveBeenCalledWith({id: "0", verses: [
-            {
-                "first": "فهوَ أمواجُ ظلامٍ .. لا تَرَى",
-                "sec": "لا تُبَالي .. لا تَعِي .. لا تَحْتَمي"
-            },
-        ]})
+        expect(addPrint).toHaveBeenCalledWith({
+            id:  "فهوَ أمواجُ ظلامٍ .. لا تَرَى".slice(0,5), 
+            verses: [
+                {
+                    "first": "فهوَ أمواجُ ظلامٍ .. لا تَرَى",
+                    "sec": "لا تُبَالي .. لا تَعِي .. لا تَحْتَمي"
+                },
+            ]
+            })
     })
 })
