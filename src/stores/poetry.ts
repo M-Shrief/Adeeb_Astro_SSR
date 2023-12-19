@@ -17,19 +17,11 @@ export const getPoetry = computed(() => {
 })
 
 export async function fetchPoetry() {
-    try {
-        await Promise.allSettled([
-            await fetchChosenVerses(),
-            await fetchProses(),
-        ]);
+    await Promise.allSettled([
+        await fetchChosenVerses(),
+        await fetchProses(),
+    ]);
 
-        poetry.value = [...getChosenVerses.value, ...getProses.value];
-        await shuffle(poetry.value);
-    } catch (error) {
-        if (error instanceof AxiosError) {
-            useAxiosError(error);
-            return;
-        }
-        alert(error);
-    }
+    poetry.value = [...getChosenVerses.value, ...getProses.value];
+    await shuffle(poetry.value);
 }
