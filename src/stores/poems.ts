@@ -1,8 +1,9 @@
 import {shallowRef,computed} from '@vue/reactivity';
 // Composables
-import {useAxiosError} from '../composables/errorsNotifications';
+import {useAxiosError, useFetchError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
+import {apiURL} from '../utils/fetch';
 // Types
 import type {Poem} from './__types__';
 import {AxiosError} from 'axios';
@@ -12,16 +13,18 @@ const poems = shallowRef<Poem[]>([]);
 export const getPoems = computed<Poem[]>(() => { return poems.value });
 
 export async function fetchPoems() {
-  try {
-    const req = await baseHttp.get(`/poems_intros`);
-    poems.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
+  const res = await fetch(
+    apiURL(`/poems_intros`), 
+    {
+      method: "GET"
     }
-    alert(error);
-}
+  )
+
+  if (res.ok) {
+    poems.value = await res.json()
+  } else {
+    useFetchError(await res.json())
+  }
 }
 
 const poem = shallowRef<Poem>({} as Poem);
@@ -48,16 +51,17 @@ export async function fetchOtherPoems(id: string) {
 }
 
 export async function fetchPoem(id: string) {
-  try {
-    let reqPoem = await baseHttp.get(`/poem/${id}`);
-    poem.value = reqPoem.data;
-
-    await fetchOtherPoems(id)
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
+  const res = await fetch(
+    apiURL(`/poem/${id}`), 
+    {
+      method: "GET"
     }
-    alert(error);
+  )
+
+  if (res.ok) {
+    poem.value = await res.json()
+    await fetchOtherPoems(id)
+  } else {
+    useFetchError(await res.json())
   }
 }
