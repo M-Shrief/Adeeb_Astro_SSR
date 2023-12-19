@@ -1,11 +1,10 @@
 import {shallowRef, computed} from '@vue/reactivity';
 // Composables
-import {useAxiosError} from '../composables/errorsNotifications';
+import { useFetchError} from '../composables/errorsNotifications';
 // Utils
-import {baseHttp} from '../utils/axios';
+import {apiURL} from '../utils/fetch';
 // Types
 import type {Prose} from './__types__';
-import {AxiosError} from 'axios';
 
 const proses = shallowRef<Prose[]>([]);
 
@@ -14,15 +13,17 @@ export const getProses = computed<Prose[]>(() => {
 });
 
 export async function fetchProses() {
-  try {
-    const req = await baseHttp.get(`/proses`);
-    proses.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
+  const res = await fetch(
+    apiURL(`/proses`), 
+    {
+      method: "GET"
     }
-    alert(error);
+  )
+
+  if (res.ok) {
+    proses.value = await res.json()
+  } else {
+    useFetchError(await res.json())
   }
 }
 
@@ -33,14 +34,16 @@ export const getRandomProses = computed<Prose[]>(() => {
 });
 
 export async function fetchRandomProses(num: number) {
-  try {
-    const req = await baseHttp.get(`/proses/random?num=${num}`);
-    randomProses.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
+  const res = await fetch(
+    apiURL(`/proses/random?num=${num}`), 
+    {
+      method: "GET"
     }
-    alert(error);
+  )
+
+  if (res.ok) {
+    randomProses.value = await res.json()
+  } else {
+    useFetchError(await res.json())
   }
 }

@@ -2,13 +2,10 @@ import {shallowRef, computed} from '@vue/reactivity';
 // Stores
 import {fetchChosenVerses, getChosenVerses} from './chosenVerses'
 import {fetchProses, getProses} from './proses'
-// Composables
-import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
 import {shuffle} from '../utils/shuffle';
 // Types
 import type {Poetry} from './__types__';
-import {AxiosError} from 'axios';
 
 const poetry = shallowRef<Poetry[]>([]);
 
@@ -17,19 +14,11 @@ export const getPoetry = computed(() => {
 })
 
 export async function fetchPoetry() {
-    try {
-        await Promise.allSettled([
-            await fetchChosenVerses(),
-            await fetchProses(),
-        ]);
+    await Promise.allSettled([
+        await fetchChosenVerses(),
+        await fetchProses(),
+    ]);
 
-        poetry.value = [...getChosenVerses.value, ...getProses.value];
-        await shuffle(poetry.value);
-    } catch (error) {
-        if (error instanceof AxiosError) {
-            useAxiosError(error);
-            return;
-        }
-        alert(error);
-    }
+    poetry.value = [...getChosenVerses.value, ...getProses.value];
+    await shuffle(poetry.value);
 }

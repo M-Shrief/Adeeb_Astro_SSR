@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 
-export let successMsg = ref<string | null>(null);
+export let httpSuccess = ref<{message: string} | null>();
 
 export const useSuccessNotification = async (message: string) => {
-    successMsg.value = message ;
+  httpSuccess.value = { message };
 
   setTimeout(() => {
-    successMsg.value = null;
+    httpSuccess.value = null;
   }, 3000);
 };
