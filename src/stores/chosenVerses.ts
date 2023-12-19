@@ -1,8 +1,9 @@
 import {shallowRef, computed} from '@vue/reactivity';
 // Composables
-import {useAxiosError} from '../composables/errorsNotifications';
+import {useAxiosError, useFetchError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
+import {apiURL} from '../utils/fetch';
 // Types
 import type {ChosenVerse} from './__types__';
 import {AxiosError} from 'axios';
@@ -14,15 +15,17 @@ export const getChosenVerses = computed<ChosenVerse[]>(() => {
 })
 
 export async function fetchChosenVerses() {
-  try {
-    const req = await baseHttp.get(`/chosenverses`);
-    chosenVerses.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
+  const res = await fetch(
+    apiURL(`/chosenverses`), 
+    {
+      method: "GET"
     }
-    alert(error);
+  )
+
+  if (res.ok) {
+    chosenVerses.value = await res.json()
+  } else {
+    useFetchError(await res.json())
   }
 }
 
@@ -33,14 +36,16 @@ export const getRandomChosenVerses = computed<ChosenVerse[]>(() => {
 })
 
 export async function fetchRandomChosenVerses(num: number) {
-  try {
-    const req = await baseHttp.get(`/chosenverses/random?num=${num}`);
-    randomChosenVerses.value = req.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
+  const res = await fetch(
+    apiURL(`/chosenverses/random?num=${num}`), 
+    {
+      method: "GET",
     }
-    alert(error);
+  )
+
+  if (res.ok) {
+    randomChosenVerses.value = await res.json()
+  } else {
+    useFetchError(await res.json())
   }
 }
