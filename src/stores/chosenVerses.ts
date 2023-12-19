@@ -2,11 +2,9 @@ import {shallowRef, computed} from '@vue/reactivity';
 // Composables
 import {useFetchError} from '../composables/errorsNotifications';
 // Utils
-import {baseHttp} from '../utils/axios';
 import {apiURL} from '../utils/fetch';
 // Types
 import type {ChosenVerse} from './__types__';
-import {AxiosError} from 'axios';
 
 const chosenVerses = shallowRef<ChosenVerse[]>([]);
 

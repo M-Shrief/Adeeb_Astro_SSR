@@ -1,8 +1,6 @@
 import {ref, shallowRef, computed} from '@vue/reactivity';
-import  { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 // Utils
-import {baseHttp, withAuthHttp } from '../utils/axios'
 import { ContentType, apiURL } from '../utils/fetch';
 // types
 import type { Order, Product, ProductGroup, Print } from './__types__';

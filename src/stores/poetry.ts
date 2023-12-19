@@ -6,7 +6,6 @@ import {fetchProses, getProses} from './proses'
 import {shuffle} from '../utils/shuffle';
 // Types
 import type {Poetry} from './__types__';
-import {AxiosError} from 'axios';
 
 const poetry = shallowRef<Poetry[]>([]);
 
