@@ -8,7 +8,7 @@ import { actions as partnerActions} from '../stores/partners';
 
 describe('<AuthForm />',  async () => {
     it('Login', async() => {
-        const loginSpy = vi.spyOn(partnerActions, "login")
+        const loginSpy = vi.spyOn(partnerActions, "login").mockResolvedValue()
         const wrapper = mount(AuthForm);
 
         await wrapper.find('#phone').setValue('01235554567');
@@ -24,7 +24,7 @@ describe('<AuthForm />',  async () => {
     })
 
     it('Signup', async () => {
-        const signup = vi.spyOn(partnerActions, 'signup');
+        const signup = vi.spyOn(partnerActions, 'signup').mockResolvedValue();
         const wrapper = mount(AuthForm);
         
         await wrapper.find('#toggle').trigger('click')
