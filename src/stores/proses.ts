@@ -1,6 +1,6 @@
 import {shallowRef, computed} from '@vue/reactivity';
 // Composables
-import {useAxiosError, useFetchError} from '../composables/errorsNotifications';
+import { useFetchError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
 import {apiURL} from '../utils/fetch';

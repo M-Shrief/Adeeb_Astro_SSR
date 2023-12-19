@@ -10,7 +10,7 @@ import { reset } from './orders';
 import type { Partner } from './__types__';
 
 // Composables
-import { useAxiosError, useFetchError } from '../composables/errorsNotifications';
+import { useFetchError } from '../composables/errorsNotifications';
 import { useSessionStorage } from '@vueuse/core';
 
 export const partner =  ref(useSessionStorage< string | null>('partner', null as string | null));

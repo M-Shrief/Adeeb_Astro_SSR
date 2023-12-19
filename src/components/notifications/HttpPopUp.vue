@@ -1,12 +1,12 @@
 <template>
   <div class="flex-center" >
-    <div v-if="httpError?.message" class="popup popup-error">
+    <div v-if="httpError" class="popup popup-error">
       <p>
         {{ httpError.message }}
       </p>
     </div>
-    <div v-if="successMsg" class="popup popup-success">
-      <p>{{ successMsg }}</p>
+    <div v-if="httpSuccess" class="popup popup-success">
+      <p>{{ httpSuccess.message }}</p>
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
   import { httpError } from '../../composables/errorsNotifications'
-  import { successMsg } from '../../composables/successNotifications'
+  import { httpSuccess } from '../../composables/successNotifications'
 </script>
   
 <style lang="scss">

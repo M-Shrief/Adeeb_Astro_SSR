@@ -1,6 +1,6 @@
 import {shallowRef,computed} from '@vue/reactivity';
 // Composables
-import {useAxiosError, useFetchError} from '../composables/errorsNotifications';
+import {useFetchError} from '../composables/errorsNotifications';
 // Utils
 import {baseHttp} from '../utils/axios';
 import {apiURL} from '../utils/fetch';
@@ -35,19 +35,11 @@ const otherPoems = shallowRef<Poem[]>([]);
 export const getOtherPoems = computed<Poem[]>(() => { return otherPoems.value});
 
 export async function fetchOtherPoems(id: string) {
-  try {
-    if(getPoems.value.length === 0) await fetchPoems();
-    const poemsArr = [...getPoems.value];
-    let poemIndex = poemsArr.map((poem: Poem) => poem.id).indexOf(id);
-    poemsArr.splice(poemIndex, 1);
-    otherPoems.value = poemsArr;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      useAxiosError(error);
-      return;
-    }
-    alert(error);
-  }
+  if(getPoems.value.length === 0) await fetchPoems();
+  const poemsArr = [...getPoems.value];
+  let poemIndex = poemsArr.map((poem: Poem) => poem.id).indexOf(id);
+  poemsArr.splice(poemIndex, 1);
+  otherPoems.value = poemsArr;
 }
 
 export async function fetchPoem(id: string) {

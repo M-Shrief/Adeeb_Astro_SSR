@@ -2,8 +2,6 @@ import {shallowRef, computed} from '@vue/reactivity';
 // Stores
 import {fetchChosenVerses, getChosenVerses} from './chosenVerses'
 import {fetchProses, getProses} from './proses'
-// Composables
-import {useAxiosError} from '../composables/errorsNotifications';
 // Utils
 import {shuffle} from '../utils/shuffle';
 // Types

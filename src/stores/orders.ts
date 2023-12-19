@@ -8,7 +8,7 @@ import { ContentType, apiURL } from '../utils/fetch';
 import type { Order, Product, ProductGroup, Print } from './__types__';
 // Composables
 import {useSessionStorage} from '@vueuse/core';
-import { useAxiosError, useFetchError } from '../composables/errorsNotifications';
+import { useFetchError } from '../composables/errorsNotifications';
 import { useSuccessNotification } from '../composables/successNotifications';
 
 // should resemble our storage
