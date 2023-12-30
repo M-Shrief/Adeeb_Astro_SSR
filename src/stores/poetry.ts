@@ -14,6 +14,8 @@ export const getPoetry = computed(() => {
 })
 
 export async function fetchPoetry() {
+    if(poetry.value.length != 0) return
+    
     await Promise.allSettled([
         await fetchChosenVerses(),
         await fetchProses(),

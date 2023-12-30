@@ -13,6 +13,8 @@ export const getProses = computed<Prose[]>(() => {
 });
 
 export async function fetchProses() {
+  if(proses.value.length != 0) return
+  
   const res = await fetch(
     apiURL(`/proses`), 
     {

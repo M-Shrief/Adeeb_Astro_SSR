@@ -13,6 +13,8 @@ export const getChosenVerses = computed<ChosenVerse[]>(() => {
 })
 
 export async function fetchChosenVerses() {
+  if(chosenVerses.value.length != 0) return
+  
   const res = await fetch(
     apiURL(`/chosenverses`), 
     {
