@@ -44,6 +44,7 @@ export const actions = {
   removeAll: removeAllPrints
 };
 
+// Testing
 if (import.meta.vitest) {
   const { describe, it, expect, afterEach } = import.meta.vitest
   describe.concurrent('Testing Prints actions', () => {
