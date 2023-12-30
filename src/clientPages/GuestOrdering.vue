@@ -28,8 +28,8 @@
       <h3>المختار للطباعة</h3>
       <div id="randoms">
         <div id="buttons">
-          <button @click="getRandomPoetry(1)">شعر عشوائي</button>
-          <button @click="getRandomProse(1)">نثر عشوائي</button>
+          <button @click="getRandomChosenVerse">شعر عشوائي</button>
+          <button @click="getRandomProse">نثر عشوائي</button>
         </div>
         <div v-if="randomPrint">
           <div @click="preview = randomPrint">
@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 // stores
 import { getPrints, actions as printActions } from "../stores/prints";
 import { getRandomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
@@ -62,10 +62,21 @@ import PrintCustomization from '../components/PrintCustomization.vue';
 import OrderForm from "../components/OrderForm.vue";
 import ShowCasePrints from '../components/ShowCasePrints.vue';
 // Types
-import type { Order,Prose, ChosenVerse, Print } from '../stores/__types__';
+import type { Order, Print } from '../stores/__types__';
 
 let preview = ref({} as Print);
+
 let randomPrint = ref();
+
+async function getRandomChosenVerse() {
+  await fetchRandomChosenVerses(1);
+  randomPrint.value = getRandomChosenVerses.value[0];
+}
+
+async function getRandomProse() {
+  await fetchRandomProses(1);
+  randomPrint.value = getRandomProses.value[0];
+}
 
 let fontColor = ref(colors[0]);
 let backgroundColor = ref(colors[1]);
@@ -74,16 +85,6 @@ const onGuestOrder = async (order: Order) => {
   await newGuestOrder(order);
   reset();
   preview.value = {} as Print;
-}
-
-function getRandomPoetry(num: number) {
-  fetchRandomChosenVerses(num);
-  randomPrint.value = getRandomChosenVerses.value[0];
-}
-
-function getRandomProse(num: number) {
-  fetchRandomProses(num);
-  randomPrint.value = getRandomProses.value[0];
 }
 </script>
 
