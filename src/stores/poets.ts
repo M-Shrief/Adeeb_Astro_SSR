@@ -3,8 +3,10 @@ import {shallowRef, computed} from '@vue/reactivity';
 import { useFetchError} from '../composables/errorsNotifications';
 // Utils
 import {apiURL} from '../utils/fetch';
+import {shuffle} from "../utils/shuffle"
 // Types
-import type {Poet} from './__types__';
+import type {Poet, Poetry} from './__types__';
+
 
 const poets = shallowRef<Poet[]>([]);
 
@@ -13,6 +15,8 @@ export const getPoets = computed<Poet[]>(() => {
 });
 
 export const fetchPoets = async () => {
+    if (poets.value.length != 0) return
+
     const res = await fetch(
         apiURL(`/poets`), 
         {
@@ -34,6 +38,8 @@ export const getPoet = computed<Poet>(() => {
 });
 
 export const fetchPoet = async (id: string) => {
+    if(poet.value.id == id) return
+
     const res = await fetch(
         apiURL(`/poet/${id}`), 
         {
@@ -43,6 +49,13 @@ export const fetchPoet = async (id: string) => {
 
     if (res.ok) {
         poet.value = await res.json()
+        // Combining Poet's poetry and shuffling it.
+        const poetry = [
+            ...poet.value.chosenVerses,
+            ...poet.value.proses,
+        ] as Poetry[];
+        await shuffle(poetry);
+        poet.value.poetry = poetry;
     } else {
         useFetchError(await res.json())
     }

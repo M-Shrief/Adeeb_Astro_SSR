@@ -14,6 +14,7 @@ export interface Poet {
   poems: Poem[];
   chosenVerses: ChosenVerse[];
   proses: Prose[];
+  poetry: Poetry[];
 }
 
 export interface Poem {
