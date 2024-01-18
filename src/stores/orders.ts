@@ -45,7 +45,7 @@ export async function fetchOrders(name: string, phone: string) {
     }
 };
 
-export async function fetchPartnerOrders(partner: string) {
+export async function fetchPartnerOrders() {
     const accessToken = Cookies.get("accessToken") ?? '';
     const res = await fetch(
         apiURL(`/orders/partner`), 
