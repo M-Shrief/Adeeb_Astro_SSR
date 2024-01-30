@@ -16,6 +16,16 @@ export default defineConfig({
       entryLimit: 100
     })
   ],
+  i18n: {
+    defaultLocale: "ar",
+    locales: ["ar", "en"],
+    routing: {
+      prefixDefaultLocale: false
+    },
+    fallback: {
+        en: "ar"
+    }
+  },
   server: {
     port: 5173,
     host: "0.0.0.0"
