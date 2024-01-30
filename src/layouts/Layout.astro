@@ -3,16 +3,22 @@ import { ViewTransitions, fade } from "astro:transitions";
 // Components
 import NavbarRoutes from "../components/NavbarRoutes.vue";
 import ThemeSwitch from "../components/ThemeSwitch.astro";
+import LangPicker from "../components/LangPicker.astro";
+// Utils
+import {getLangFromUrl, useTranslations} from '../i18n/utils'
+import {defaultLang} from '../i18n/ui'
 interface Props {
   title: string; // Recommended length: 150 - 160 characters 
   description: string; // Recommended dimension: 1200 x 630 pixels 
 }
 
 const { title, description } = Astro.props;
+const currentLocale = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLocale);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" dir={currentLocale == defaultLang ? 'rtl' : 'ltr'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -44,9 +50,10 @@ const { title, description } = Astro.props;
   <body  transition:animate={fade({duration: '0.4s'})}>
     <header>
       <nav id="nav-raw">
-        <a href="/" id="logo">أديب</a>
+        <a href={currentLocale == defaultLang ? '/' : `/${currentLocale}`} id="logo">{t('nav').logo}</a>
         <div>
-          <NavbarRoutes activeUrl={Astro.url.pathname} client:only="vue" />
+          <NavbarRoutes activeUrl={Astro.url.pathname} currentLocale={currentLocale} client:only="vue" />
+          <LangPicker currentLocale={currentLocale}/>
           <ThemeSwitch />
         </div>
       </nav>

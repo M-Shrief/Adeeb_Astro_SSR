@@ -97,10 +97,6 @@
   --icon-fill-hover: #fff;
 }
 
-html {
-  direction: rtl;
-}
-
 body {
   padding: 0;
   margin: 0;

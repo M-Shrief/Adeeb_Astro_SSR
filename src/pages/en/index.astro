@@ -1,0 +1,130 @@
+---
+// Layout
+import Layout from "../../layouts/Layout.astro";
+// Components
+import ShowCasePoems from "../../components/ShowCasePoems.vue";
+import ShowCasePoets from "../../components/ShowCasePoets.vue";
+import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
+import SelectedPrints from "../../components/SelectedPrints.vue";
+// Stores
+import { getPoems, fetchPoems } from "../../stores/poems";
+import { getPoets, fetchPoets } from "../../stores/poets";
+import { getPoetry, fetchPoetry } from "../../stores/poetry";
+
+await Promise.allSettled([
+  await fetchPoems(),
+  await fetchPoets(),
+  await fetchPoetry(),
+]);
+---
+
+<Layout title="أديب" description="Adeeb for printing Arabic literature, with various colors and fonts.">
+  <main>
+    <h1>أديب</h1>
+    <p>لطباعة الادب العربي شعراً ونثراً</p>
+
+    <div class="poet-poem-container">
+      <ShowCasePoems poems={getPoems.value} grid={"grid"}>
+        <h2 class="poems-title">القصائد</h2>
+      </ShowCasePoems>
+
+      <ShowCasePoets poets={getPoets.value}>
+        <h2 class="poets-title">الشعراء</h2>
+      </ShowCasePoets>
+    </div>
+
+    <ShowCasePoetry poetry={getPoetry.value} routeName="index" client:idle />
+
+    <SelectedPrints client:only="vue" />
+  </main>
+</Layout>
+
+<style lang="scss">
+  @import "../../assets/mixins.scss";
+
+  h1,
+  p {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 4rem;
+    @include mQ($breakpoint-lg) {
+      font-size: 2.5rem;
+    }
+
+    @include mQ($breakpoint-md) {
+      font-size: 2rem;
+    }
+
+    @include mQ($breakpoint-sm) {
+      font-size: 1.6rem;
+    }
+  }
+
+  p {
+    font-size: 1.5rem;
+    @include mQ($breakpoint-lg) {
+      font-size: 1.5rem;
+    }
+    @include mQ($breakpoint-md) {
+      font-size: 1.2rem;
+    }
+
+    @include mQ($breakpoint-sm) {
+      font-size: 1rem;
+    }
+  }
+  .poet-poem-container {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 70% 30%;
+    @include mQ($breakpoint-lg) {
+      grid-template-columns: 65% 35%;
+      gap: 0.5rem;
+    }
+
+    @include mQ($breakpoint-sm) {
+      grid-template-columns: 100%;
+      // display: block;
+      gap: 0.3rem;
+    }
+  }
+
+  .poems-title {
+    background-color: var(--text1);
+    color: var(--surface3);
+  }
+
+  .poets-title {
+    background-color: var(--text1);
+    color: var(--surface2);
+  }
+  .poems-title,
+  .poets-title {
+    text-align: center;
+    padding: 0.3rem;
+    border-radius: 1.5rem;
+    width: 50%;
+    margin: 1rem auto;
+
+    @include mQ($breakpoint-lg) {
+      padding: 0.3rem;
+      margin: 0.6rem auto;
+      font-size: 1.3rem;
+    }
+
+    @include mQ($breakpoint-md) {
+      padding: 0.2rem;
+      margin: 0.5rem auto;
+      font-size: 1.2rem;
+    }
+
+    @include mQ($breakpoint-sm) {
+      padding: 0.1rem;
+      margin: 0.3rem auto;
+      font-size: 1rem;
+    }
+  }
+</style>
