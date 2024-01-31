@@ -2,24 +2,24 @@
     <div class="nav-row-group">   
       <!-- Ordering page -->
       <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/ordering': `/${currentLocale}/partners/ordering`"
-        class="nav-item" >{{t('nav').ordering}}</a>
+        class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
       <a v-else :href="currentLocale == defaultLang ? '/ordering' : `/${currentLocale}/ordering`"
-        class="nav-item" >{{t('nav').ordering}}</a>
+        class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
 
       <!-- History page -->
       <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/history': `/${currentLocale}/partners/history`"
-        class="nav-item" >{{t('nav').history}}</a>
+        class="nav-item" >{{ui[currentLocale].nav.history}}</a>
       <a v-else :href="currentLocale == defaultLang ? '/history' : `/${currentLocale}/history`"
-        class="nav-item" >{{t('nav').history}}</a>
+        class="nav-item" >{{ui[currentLocale].nav.history}}</a>
         
       <!-- About page -->
-      <a :href="currentLocale == defaultLang ? '/about' : `/${currentLocale}/about`" class="nav-item"        >{{t('nav').about}}</a>
+      <a :href="currentLocale == defaultLang ? '/about' : `/${currentLocale}/about`" class="nav-item"        >{{ui[currentLocale].nav.about}}</a>
 
       <!-- Partner name and logout -->
       <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
-      <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">{{t('nav').logout}}</span>
+      <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">{{ui[currentLocale].nav.logout}}</span>
       <!-- Partner's auth page -->
-      <a href="/partners/auth" class="nav-item" data-astro-prefetch v-else >{{t('nav').partnership}}</a>
+      <a href="/partners/auth" class="nav-item" data-astro-prefetch v-else >{{ui[currentLocale].nav.partnership}}</a>
     </div>
 </template>
 
@@ -28,15 +28,12 @@
 import { onMounted } from 'vue';
 import { getPartner, actions as partnerActions, isPartner } from '../stores/partners';
 // utils
-import {useTranslations} from '../i18n/utils'
 import {defaultLang, ui} from '../i18n/ui'
 
 const props = defineProps<{
   activeUrl: string; 
   currentLocale: keyof typeof ui;
 }>()
-
-const t = useTranslations(props.currentLocale);
 
 onMounted(() => {
   let url: string;

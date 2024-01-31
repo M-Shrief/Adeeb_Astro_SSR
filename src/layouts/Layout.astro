@@ -5,8 +5,9 @@ import NavbarRoutes from "../components/NavbarRoutes.vue";
 import ThemeSwitch from "../components/ThemeSwitch.astro";
 import LangPicker from "../components/LangPicker.astro";
 // Utils
-import {getLangFromUrl, useTranslations} from '../i18n/utils'
-import {defaultLang} from '../i18n/ui'
+import {getLangFromUrl} from '../i18n/utils'
+// UI
+import {defaultLang, ui} from '../i18n/ui'
 interface Props {
   title: string; // Recommended length: 150 - 160 characters 
   description: string; // Recommended dimension: 1200 x 630 pixels 
@@ -14,7 +15,6 @@ interface Props {
 
 const { title, description } = Astro.props;
 const currentLocale = getLangFromUrl(Astro.url)
-const t = useTranslations(currentLocale);
 ---
 
 <!doctype html>
@@ -50,7 +50,7 @@ const t = useTranslations(currentLocale);
   <body  transition:animate={fade({duration: '0.4s'})}>
     <header>
       <nav id="nav-raw">
-        <a href={currentLocale == defaultLang ? '/' : `/${currentLocale}`} id="logo">{t('nav').logo}</a>
+        <a href={currentLocale == defaultLang ? '/' : `/${currentLocale}`} id="logo">{ui[currentLocale].nav.logo}</a>
         <div>
           <NavbarRoutes activeUrl={Astro.url.pathname} currentLocale={currentLocale} client:only="vue" />
           <LangPicker currentLocale={currentLocale}/>
