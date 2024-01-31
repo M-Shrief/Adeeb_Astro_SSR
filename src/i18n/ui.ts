@@ -30,6 +30,9 @@ export const ui = {
             a: "الصفحة الرئيسية",
         },
 
+        poem: {
+            otherPoems: "قصائد اخري"
+        },
         // // Components
         nav: {
             "logo": "أديب",
@@ -71,6 +74,9 @@ export const ui = {
             h1: "404 Not Found",
             p: "Back to",
             a: "home page",
+        },
+        poem: {
+            otherPoems: "Other poems"
         },
         // // Components
         nav: {

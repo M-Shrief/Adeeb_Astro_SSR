@@ -1,16 +1,16 @@
 ---
 // Layout
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 // Components
-import ShowCasePoem from "../../components/ShowCasePoem.vue";
-import ShowCasePoems from "../../components/ShowCasePoems.vue";
-import ShowCasePoet from "../../components/ShowCasePoet.vue";
-import SelectedPrints from "../../components/SelectedPrints.vue";
-import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
+import ShowCasePoem from "../../../components/ShowCasePoem.vue";
+import ShowCasePoems from "../../../components/ShowCasePoems.vue";
+import ShowCasePoet from "../../../components/ShowCasePoet.vue";
+import SelectedPrints from "../../../components/SelectedPrints.vue";
+import HttpPopUp from "../../../components/notifications/HttpPopUp.vue";
 // Stores
-import { getPoem, getOtherPoems, fetchPoem } from "../../stores/poems";
+import { getPoem, getOtherPoems, fetchPoem } from "../../../stores/poems";
 // UI
-import { ui } from '../../i18n/ui'
+import { ui } from '../../../i18n/ui'
 
 export const prerender = false;
 const { id } = Astro.params;
@@ -31,17 +31,17 @@ const {intro, poet, verses} = getPoem.value;
         </a>
 
         <ShowCasePoems poems={getOtherPoems.value}>
-          <h2>{ui.ar.poem.otherPoems}</h2>
+          <h2>{ui.en.poem.otherPoems}</h2>
         </ShowCasePoems>
       </section>
       <ShowCasePoem verses={verses} client:idle />
     </div>
-    <SelectedPrints currentLocale="ar" client:only="vue" />
+    <SelectedPrints currentLocale="en" client:only="vue" />
   </main>
 </Layout>
 
 <style lang="scss">
-  @import "../../assets/mixins.scss";
+  @import "../../../assets/mixins.scss";
 
   .container {
     display: grid;
