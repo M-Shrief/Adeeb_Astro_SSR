@@ -5,13 +5,13 @@
     <div @click="$emit('print', print)">
       <!-- if selected from ShowCasePoetry -->
       <div v-if="print.verses" v-for="verse, index in print.verses" :key="index"
-        class="verse">
-        <p>{{ verse.first }}</p>
+        class="verse" dir="rtl">
+        <p >{{ verse.first }}</p>
         <p dir="ltr">{{ verse.sec }}</p>
       </div>
       <!-- if selected from  ShowCaseProse -->
       <div v-else-if="print.qoute" class="qoute">
-        <p>{{ print.qoute }}</p>
+        <p dir="rtl">{{ print.qoute }}</p>
       </div>
     </div>
     <button :style="{ color: backgroundColor, background: fontColor }"

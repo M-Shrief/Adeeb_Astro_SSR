@@ -71,6 +71,21 @@ export const ui = {
                 asideLi4: "امكانية اعداد طلبات مختلفة؛ بمواقيت مختلفة، وتوصيلها لأماكن مختلفة.",
                 noAuthOrder: "للطلب بدون تسجيل"
             },
+            history: {
+                layoutTitle: "أديب :: مراجعة الطلبات",
+                layoutDesc:"صفحة التسجيل",
+                h3: "تاريخ الطلبات",
+                name: "الاسم",
+                phone: "الهاتف",
+                address: "العنوان",
+                orderDate: "تاريخ الطلب",
+                reviewed: 'تمت المراجعة',
+                notReviewed: 'غير مراجع',
+                completed: 'تم التسليم',
+                notCompleted: 'لم يتم التسليم',
+                fontType: "نوع الخط",
+                prints: "طبعات"
+            },
             ordering: {
                 layoutTitle:"أديب :: طلباتك",
                 layoutDesc:"إكمال صفات الطباعة وتأكيد الطلب",
@@ -186,6 +201,21 @@ export const ui = {
                 asideLi3: "Review your old orders",
                 asideLi4: "Prepare different orders for different adresses/branches.",
                 noAuthOrder: "Order without signing up"
+            },
+            history: {
+                layoutTitle: "History :: Adeeb",
+                layoutDesc: "Check your ordering history",
+                h3: "Orders' History",
+                name: "Name",
+                phone: "Phone",
+                address: "Address",
+                orderDate: "Order date",
+                reviewed: "Reviewed",
+                notReviewed: "Not reviewed",
+                completed: "Completed",
+                notCompleted: "Not completed",
+                fontType: "Font type",
+                prints: "prints"
             },
             ordering: {
                 layoutTitle:"Adeeb::Ordering",

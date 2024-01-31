@@ -1,17 +1,17 @@
 <template>
   <section id="history">
-    <h3 v-if="getPartner">تاريخ طلبات الاستاذ {{ getPartner.name }}</h3>
+    <h3 v-if="getPartner">{{ui[currentLocale].partners.history.h3}}</h3>
     <div v-if="getOrders" v-for="order in getOrders" :key="order.id"
       class="order">
       <div class="order-details">
         <div>
-          <p>العنوان</p><span>{{ order.address }}</span>
+          <p>{{ui[currentLocale].partners.history.address}}</p><span>{{ order.address }}</span>
         </div>
         <div>
-          <p>تاريخ الطلب</p><span>{{ order.created_at?.slice(0, 10) }}</span>
+          <p>{{ui[currentLocale].partners.history.orderDate}}</p><span>{{ order.created_at?.slice(0, 10) }}</span>
         </div>
-        <p><span>{{ order.reviewed ? 'تمت المراجعة' : 'غير مراجع' }}</span></p>
-        <p><span>{{ order.completed ? 'تم التسليم' : 'لم يتم التسليم' }}</span>
+        <p><span>{{ order.reviewed ? ui[currentLocale].partners.history.reviewed : ui[currentLocale].partners.history.notReviewed }}</span></p>
+        <p><span>{{ order.completed ? ui[currentLocale].partners.history.completed : ui[currentLocale].partners.history.notCompleted }}</span>
         </p>
       </div>
       <div class="order-products">
@@ -19,9 +19,9 @@
           :key="index">
           <div class="group-details"
             :style="{ color: productGroup.fontColor, background: productGroup.backgroundColor }">
-            <p>نوع الخط: {{ productGroup.fontType }} </p>
+            <p>{{ ui[currentLocale].partners.history.fontType }}: {{ productGroup.fontType }} </p>
             <p v-if="productGroup.prints">{{ productGroup.prints.length }}
-              طبعات</p>
+              {{ui[currentLocale].partners.history.prints}}</p>
           </div>
           <div class="group-prints">
             <div v-for="print in productGroup.prints" :key="print.id"
@@ -44,8 +44,13 @@ import { onMounted } from 'vue';
 import { getOrders, fetchPartnerOrders } from "../stores/orders";
 import { getPartner } from '../stores/partners';
 // types
-import type { Partner, ProductGroup } from '../stores/__types__'
+import type { ProductGroup } from '../stores/__types__'
+// UI
+import { ui } from '../i18n/ui'
 
+defineProps<{
+  currentLocale: keyof typeof ui;
+}>()
 
 onMounted(() => {
   fetchPartnerOrders();

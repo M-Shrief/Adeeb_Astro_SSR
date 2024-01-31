@@ -5,7 +5,8 @@ import Layout from "../../layouts/Layout.astro";
 import PartnerHistory from "../../clientPages/PartnerHistory.vue";
 // Components
 import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
-
+// UI
+import { ui } from '../../i18n/ui'
 // to force server side rendering to read the cookie.
 export const prerender = false;
 
@@ -13,7 +14,7 @@ const isAuthenticated = Astro.cookies.has('accessToken')
 if (!isAuthenticated) return Astro.redirect("/partners/auth");
 ---
 
-<Layout title="أديب :: مراجعة الطلبات" description="Check your ordering history">
+<Layout title={ui.ar.partners.history.layoutTitle} description={ui.ar.partners.history.layoutDesc}>
   <HttpPopUp client:idle slot="http-popup"/>
-  <PartnerHistory client:idle />
+  <PartnerHistory currentLocale="ar" client:idle />
 </Layout>
