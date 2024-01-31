@@ -1,46 +1,46 @@
 <template>
     <main >
-      <h2>ادخل بيانات الطلب لمتابعته</h2>
+      <h2>{{ui[currentLocale].history.h2 }}</h2>
   
       <Form @submit="onSubmit" >
 
         <div class="container">
-          <label for="name">الاسم: </label>
+          <label for="name">{{ui[currentLocale].history.name }}: </label>
           <Field name="name" id="name" autocomplete="name"  :rules="nameRules" />
           <ErrorMessage name="name" class="error" />
         </div>
         <div class="container">
-          <label for="phone">الهاتف: </label>
+          <label for="phone">{{ui[currentLocale].history.phone }}: </label>
           <Field name="phone" id="phone" autocomplete="phone" :rules="phoneRules" />
           <ErrorMessage name="phone" class="error" />
         </div>
   
-        <button type="submit">تأكـيد</button>
+        <button type="submit">{{ui[currentLocale].history.submit }}</button>
       </Form>
   
       <div v-for="order in getOrders" :key="order.id" class="order">
         <div class="order-details">
           <div>
-            <p>الاسم</p><span>{{ order.name }}</span>
+            <p>{{ui[currentLocale].history.name }}</p><span>{{ order.name }}</span>
           </div>
           <div>
-            <p>الهاتف</p><span>{{ order.phone }}</span>
+            <p>{{ui[currentLocale].history.phone }}</p><span>{{ order.phone }}</span>
           </div>
           <div>
-            <p>العنوان</p><span>{{ order.address }}</span>
+            <p>{{ui[currentLocale].history.address }}</p><span>{{ order.address }}</span>
           </div>
           <div>
-            <p>تاريخ الطلب</p><span>{{ order.created_at?.slice(0, 10) }}</span>
+            <p>{{ui[currentLocale].history.orderDate }}</p><span>{{ order.created_at?.slice(0, 10) }}</span>
           </div>
-          <p><span>{{ order.reviewed ? 'تمت المراجعة' : 'غير مراجع' }}</span></p>
-          <p><span>{{ order.completed ? 'تم التسليم' : 'لم يتم التسليم' }}</span>
+          <p><span>{{ order.reviewed ? ui[currentLocale].history.reviewed  : ui[currentLocale].history.notReviewed }}</span></p>
+          <p><span>{{ order.completed ? ui[currentLocale].history.completed : ui[currentLocale].history.notCompleted }}</span>
           </p>
         </div>
         <div class="order-products">
           <div v-for="product, index in order.products as Product[]" :key="index"
             class="product"
             :style="{ color: product.fontColor, background: product.backgroundColor }">
-            <p>نوع الخط: {{ product.fontType }}</p>
+            <p>{{ui[currentLocale].history.fontType}}: {{ product.fontType }}</p>
             <p v-if="product.print.verses">{{ product.print.verses[0].first }}...
             </p>
             <p v-else-if="product.print.qoute">
@@ -60,11 +60,18 @@
   import { getOrders, fetchOrders } from "../stores/orders";
   // Types
   import type { Product } from '../stores/__types__';
+  // utils 
+  import {ui} from '../i18n/ui'
+
 
   async function onSubmit(values: any) {
     const {name, phone} = values
     await fetchOrders(name, phone);
   }
+
+  defineProps<{
+    currentLocale: keyof typeof ui;
+  }>()
   </script>
   
   <style lang="scss" scoped>
@@ -86,12 +93,8 @@
     margin: 1rem;
     border-radius: 1.5rem;
     padding: 0.5rem;
-  
-    select {
-      padding: 0.2rem;
-      margin-right: 0.5rem;
-    }
-  
+    display: flex;
+    flex-direction: column;
     .container {
       padding: 0.5rem;
       margin-right: 0.2rem;
@@ -114,7 +117,8 @@
   
     button {
       position: relative;
-      right: 50%;
+      width: 15%;
+      margin: 0 auto;
       @include submit-btn
     }
   

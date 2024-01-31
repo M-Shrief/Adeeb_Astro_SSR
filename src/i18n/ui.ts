@@ -35,6 +35,20 @@ export const ui = {
         poet: {
             poems: "قصائدة"
         },
+        history: {
+            layoutTitle: "اديب :: مراجعة الطلبات",
+            layoutDesc: "Check your ordering history",
+            h2: "ادخل بيانات الطلب لمتابعته",
+            name: "الاسم",
+            phone: "الهاتف",
+            address: "العنوان",
+            submit: "تأكـيد",
+            orderDate: "تاريخ الطلب",
+            reviewed: 'تمت المراجعة',
+            notReviewed: 'غير مراجع',
+            completed: 'تم التسليم',
+            notCompleted: 'لم يتم التسليم',
+            fontType: "نوع الخط",        },
         // // Components
         nav: {
             "logo": "أديب",
@@ -82,6 +96,21 @@ export const ui = {
         },
         poet: {
             poems: "Poems"
+        },
+        history: {
+            layoutTitle: "History :: Adeeb",
+            layoutDesc: "Ordering history",
+            h2: "Enter Order's details",
+            name: "Name",
+            phone: "Phone",
+            address: "Address",
+            submit: "Submit",
+            orderDate: "Order date",
+            reviewed: "Reviewed",
+            notReviewed: "Not reviewed",
+            completed: "Completed",
+            notCompleted: "Not completed",
+            fontType: "Font type",
         },
         // // Components
         nav: {

@@ -1,0 +1,15 @@
+---
+// Layout
+import Layout from "../../layouts/Layout.astro";
+// Client Page
+import GuestHistory from "../../clientPages/GuestHistory.vue";
+// Components
+import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
+// UI
+import { ui } from '../../i18n/ui'
+---
+
+<Layout title={ui.en.history.layoutTitle} description={ui.en.history.layoutDesc}>
+  <HttpPopUp client:idle slot="http-popup"/>
+  <GuestHistory currentLocale="en" client:idle />
+</Layout>
