@@ -25,11 +25,11 @@ await Promise.allSettled([
     <p>{ui.en.index.p}</p>
 
     <div class="poet-poem-container">
-      <ShowCasePoems poems={getPoems.value} grid={"grid"}>
+      <ShowCasePoems currentLocale="en" poems={getPoems.value} grid={"grid"}>
         <h2 class="poems-title">{ui.en.index.poems}</h2>
       </ShowCasePoems>
 
-      <ShowCasePoets poets={getPoets.value}>
+      <ShowCasePoets currentLocale="en" poets={getPoets.value}>
         <h2 class="poets-title">{ui.en.index.poets}</h2>
       </ShowCasePoets>
     </div>

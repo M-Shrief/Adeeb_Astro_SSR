@@ -7,7 +7,8 @@
     <slot />
     <div :class="grid">
       <a v-for="poem, index in poems" :key="poem.id"
-        :href="`/poem/${poem.id}`" class="poem" replace>
+        :href="currentLocale == defaultLang ? `/poem/${poem.id}`: `/${currentLocale}/poem/${poem.id}`"
+        class="poem" replace>
         <!-- for Main & Poem pages -->
         <p v-if="poem.poet">{{ poem.intro }} - {{ poem.poet.name }}</p>
         <!-- for Poet's Page -->
@@ -20,11 +21,14 @@
 <script setup lang="ts">
 // types
 import type { Poem } from '../stores/__types__';
+// UI
+import {defaultLang, ui} from '../i18n/ui'
 
 defineProps<{
-  poems: Poem[],
+  poems: Poem[];
   // Don't put in {poet, poem} pages
-  grid?: string
+  grid?: string;
+  currentLocale: keyof typeof ui;
 }>()
 </script>
 

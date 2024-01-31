@@ -20,6 +20,7 @@ describe('ShowCasePoems', () => {
                       reviewed: true,
                     } as Poem
                 ],
+                currentLocale: "ar"
             }
         })
 
@@ -36,6 +37,7 @@ describe('ShowCasePoems', () => {
                         reviewed: true,
                     } as Poem
                 ],
+                currentLocale: "ar"
             }
         })
 

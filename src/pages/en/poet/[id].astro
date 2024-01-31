@@ -31,7 +31,7 @@ else await fetchPoet(id);
         }}
       />
 
-      <ShowCasePoems poems={getPoet.value.poems}>
+      <ShowCasePoems currentLocale="en" poems={getPoet.value.poems}>
         <h3 class="poems-title">{ui.en.poet.poems}</h3>
       </ShowCasePoems>
     </div>

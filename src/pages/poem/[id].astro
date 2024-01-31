@@ -30,7 +30,7 @@ const {intro, poet, verses} = getPoem.value;
           <ShowCasePoet details={poet} client:idle />
         </a>
 
-        <ShowCasePoems poems={getOtherPoems.value}>
+        <ShowCasePoems currentLocale="ar" poems={getOtherPoems.value}>
           <h2>{ui.ar.poem.otherPoems}</h2>
         </ShowCasePoems>
       </section>

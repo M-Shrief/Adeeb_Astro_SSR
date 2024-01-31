@@ -26,11 +26,12 @@ const {intro, poet, verses} = getPoem.value;
   <main>
     <div class="container">
       <section id="related-data">
-        <a href=`/poet/${poet.id}` class="link">
+        <a href=`/en/poet/${poet.id}` 
+        class="link">
           <ShowCasePoet details={poet} client:idle />
         </a>
 
-        <ShowCasePoems poems={getOtherPoems.value}>
+        <ShowCasePoems currentLocale="en" poems={getOtherPoems.value}>
           <h2>{ui.en.poem.otherPoems}</h2>
         </ShowCasePoems>
       </section>

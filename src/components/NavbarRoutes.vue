@@ -27,7 +27,7 @@
 // Stores
 import { onMounted } from 'vue';
 import { getPartner, actions as partnerActions, isPartner } from '../stores/partners';
-// utils
+// UI
 import {defaultLang, ui} from '../i18n/ui'
 
 const props = defineProps<{

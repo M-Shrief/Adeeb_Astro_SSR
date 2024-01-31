@@ -2,7 +2,8 @@
   <section id="poets">
     <slot />
     <div class="grid">
-      <a v-for="poet in poets" :key="poet.id" :href="`/poet/${poet.id}`"
+      <a v-for="poet in poets" :key="poet.id"
+      :href="currentLocale == defaultLang ? `/poet/${poet.id}`: `/${currentLocale}/poet/${poet.id}`"
         class="poet" replace>
         <p>{{ poet.name }}</p>
     </a>
@@ -13,9 +14,12 @@
 <script lang="ts" setup>
 // types
 import type { Poet } from '../stores/__types__';
+// UI
+import {defaultLang, ui} from '../i18n/ui'
 
 defineProps<{
-  poets: Poet[]
+  poets: Poet[];
+  currentLocale: keyof typeof ui;
 }>()
 
 </script>
