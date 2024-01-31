@@ -39,6 +39,9 @@ export const ui = {
             "logout": "تسجيل الخروج",
             "partnership": "كن شريكاً",
         },
+        selectedPrints: {
+            a: "للطباعة"
+        },
         showCasePoetry: {
             "h2": "المختارات الأدبية",
             "notAvailable": "غير متوفرة الي الأن",
@@ -78,6 +81,9 @@ export const ui = {
             about: "About",
             logout: "Logout",
             partnership: "Partnership"
+        },
+        selectedPrints: {
+            a: "To print"
         },
         showCasePoetry: {
             "h2": "Chosen Poetry",

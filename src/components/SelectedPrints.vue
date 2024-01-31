@@ -1,7 +1,7 @@
 <template>
   <div id="selected-prints" >
     <p><a :href="isPartner ? '/partners/ordering' : '/ordering'"
-        class="title">للطباعة</a> </p>
+        class="title">{{ui[currentLocale!].selectedPrints.a}}</a> </p>
     <ul class="prints">
       <li class="prints-item" v-for="print in getPrints" :key="print.id"
         @dblclick="printsActions.remove(print)">
@@ -15,8 +15,15 @@
 </template>
 
 <script lang="ts" setup>
+// Stores
 import {actions as printsActions, getPrints} from '../stores/prints'
 import { isPartner } from '../stores/partners';
+// UI
+import {ui} from '../i18n/ui'
+
+defineProps<{
+  currentLocale?: keyof typeof ui;
+}>()
 
 </script>
 
@@ -29,7 +36,7 @@ $secondaryColor: var(--text1);
 #selected-prints {
   position: fixed;
   bottom: 0.3rem;
-  right: 0.9rem;
+  margin: 0.9rem;
   display: flex;
   flex-direction: row;
   background: $secondaryColor;
