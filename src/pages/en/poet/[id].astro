@@ -1,16 +1,16 @@
 ---
 // Layout
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 // Components
-import ShowCasePoet from "../../components/ShowCasePoet.vue";
-import ShowCasePoems from "../../components/ShowCasePoems.vue";
-import ShowCasePoetry from "../../components/ShowCasePoetry.vue";
-import SelectedPrints from "../../components/SelectedPrints.vue";
-import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
+import ShowCasePoet from "../../../components/ShowCasePoet.vue";
+import ShowCasePoems from "../../../components/ShowCasePoems.vue";
+import ShowCasePoetry from "../../../components/ShowCasePoetry.vue";
+import SelectedPrints from "../../../components/SelectedPrints.vue";
+import HttpPopUp from "../../../components/notifications/HttpPopUp.vue";
 // Stores
-import { fetchPoet, getPoet } from "../../stores/poets";
+import { fetchPoet, getPoet } from "../../../stores/poets";
 // UI
-import { ui } from '../../i18n/ui'
+import { ui } from '../../../i18n/ui'
 
 export const prerender = false;
 const { id } = Astro.params;
@@ -32,18 +32,18 @@ else await fetchPoet(id);
       />
 
       <ShowCasePoems poems={getPoet.value.poems}>
-        <h3 class="poems-title">{ui.ar.poet.poems}</h3>
+        <h3 class="poems-title">{ui.en.poet.poems}</h3>
       </ShowCasePoems>
     </div>
 
-    <ShowCasePoetry poetry={getPoet.value.poetry} currentLocale="ar" routeName="poet" client:idle />
+    <ShowCasePoetry poetry={getPoet.value.poetry} currentLocale="en" routeName="poet" client:idle />
 
-    <SelectedPrints currentLocale="ar" client:only="vue" />
+    <SelectedPrints currentLocale="en" client:only="vue" />
   </main>
 </Layout>
 
 <style lang="scss" scoped>
-  @import "../../assets/mixins.scss";
+  @import "../../../assets/mixins.scss";
 
   .container {
     display: grid;
@@ -52,6 +52,7 @@ else await fetchPoet(id);
     padding: 0.7rem;
     margin: 0.7rem 0.3rem;
     overflow: visible;
+    direction: rtl;
 
     @include mQ($breakpoint-lg) {
       padding: 0.6rem;

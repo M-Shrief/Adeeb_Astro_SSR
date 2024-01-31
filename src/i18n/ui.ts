@@ -29,9 +29,11 @@ export const ui = {
             p: "الرجوع للـ",
             a: "الصفحة الرئيسية",
         },
-
         poem: {
             otherPoems: "قصائد اخري"
+        },
+        poet: {
+            poems: "قصائدة"
         },
         // // Components
         nav: {
@@ -77,6 +79,9 @@ export const ui = {
         },
         poem: {
             otherPoems: "Other poems"
+        },
+        poet: {
+            poems: "Poems"
         },
         // // Components
         nav: {
