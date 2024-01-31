@@ -9,7 +9,11 @@ import { actions as partnerActions} from '../stores/partners';
 describe('<AuthForm />',  async () => {
     it('Login', async() => {
         const loginSpy = vi.spyOn(partnerActions, "login").mockResolvedValue()
-        const wrapper = mount(AuthForm);
+        const wrapper = mount(AuthForm, {
+            props: {
+                currentLocale: "ar"
+            }
+        });
 
         await wrapper.find('#phone').setValue('01235554567');
         await wrapper.find('#password').setValue('P@ssword1');
@@ -25,8 +29,11 @@ describe('<AuthForm />',  async () => {
 
     it('Signup', async () => {
         const signup = vi.spyOn(partnerActions, 'signup').mockResolvedValue();
-        const wrapper = mount(AuthForm);
-        
+        const wrapper = mount(AuthForm, {
+            props: {
+                currentLocale: "ar"
+            }
+        });        
         await wrapper.find('#toggle').trigger('click')
 
         await wrapper.find('#name').setValue('new User')
