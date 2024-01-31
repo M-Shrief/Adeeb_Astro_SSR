@@ -1,32 +1,32 @@
 <template>
-  <Form @submit="onSubmit" dir="rtl">
+  <Form @submit="onSubmit">
     <div id="confirmation">
       <div id="customer-details" v-if="partner">
         <div class="container">
-          <p>الاسم: {{ partner.name }}</p>
+          <p>{{ui[currentLocale].orderForm.name}}: {{ partner.name }}</p>
         </div>
         <div class="container">
-          <p>الهاتف: {{ partner.phone }}</p>
+          <p>{{ui[currentLocale].orderForm.phone}}: {{ partner.phone }}</p>
         </div>
         <div class="container">
-          <label for="address">العنوان: </label>
+          <label for="address">{{ui[currentLocale].orderForm.address}}: </label>
           <Field name="address" id="address" autocomplete="address"  :rules="addressRules" />
           <ErrorMessage name="address" class="error" />
         </div>
       </div>
       <div id="customer-details" v-else>
         <div class="container">
-          <label for="name">الاسم: </label>
+          <label for="name">{{ui[currentLocale].orderForm.name}}: </label>
           <Field name="name" id="name" autocomplete="name"  :rules="nameRules" />
           <ErrorMessage name="name" class="error" />
         </div>
         <div class="container">
-          <label for="phone">الهاتف: </label>
+          <label for="phone">{{ui[currentLocale].orderForm.phone}}: </label>
           <Field name="phone" id="phone" autocomplete="phone" :rules="phoneRules" />
           <ErrorMessage name="phone" class="error" />
         </div>
         <div class="container">
-          <label for="address">العنوان: </label>
+          <label for="address">{{ui[currentLocale].orderForm.address}}: </label>
           <Field name="address" id="address" autocomplete="address" :rules="addressRules" />
           <ErrorMessage name="address" class="error" />
         </div>
@@ -49,8 +49,8 @@
         <div v-for="productGroup, groupIndex in productGroups" :key="groupIndex">
           <div class="group-details"
             :style="{ color: productGroup.fontColor, background: productGroup.backgroundColor }">
-            <p>نوع الخط: {{ productGroup.fontType }} </p>
-            <p>{{ productGroup.prints.length }} طبعات</p>
+            <p>{{ui[currentLocale].orderForm.fontType}}: {{ productGroup.fontType }} </p>
+            <p>{{ productGroup.prints.length }} {{ui[currentLocale].orderForm.prints}}</p>
           </div>
           <div class="group-prints">
             <div v-for="print, index in productGroup.prints" :key="index"
@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-    <button type="submit">تأكيد الطلب</button>
+    <button type="submit">{{ui[currentLocale].orderForm.submit}}</button>
   </Form>
 </template>
 
@@ -74,11 +74,14 @@ import { Form, Field, ErrorMessage } from 'vee-validate';
 import { nameRules, phoneRules, addressRules } from '../utils/forms.schema'
 // types
 import type { Product, Print, ProductGroup, Partner, Order } from '../stores/__types__';
+// UI
+import { ui } from '../i18n/ui'
 
 const props = defineProps<{
   products?:  Array<Product>,
   partner?: Partner | null,
   productGroups?: Array<ProductGroup>,
+  currentLocale: keyof typeof ui;
 }>();
 
 

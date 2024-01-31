@@ -2,7 +2,7 @@
   <main id="printing">
     <div class="container">
       <section id="preview">
-        <h3>اختر من الاشعار للطباعة</h3>
+        <h3>{{ui[currentLocale].ordering.previewH3}}</h3>
         <PrintCustomization :colors="colors"
           @fontColor="(color: string) => fontColor = color"
           @backgroundColor="(color: string) => backgroundColor = color" />
@@ -16,20 +16,19 @@
           :style="{ color: fontColor, background: backgroundColor }">
           <p>{{ preview.qoute }}</p>
         </div>
-        <button @click="addProduct(preview, [fontColor, backgroundColor])">اضافة
-          الطلب</button>
+        <button @click="addProduct(preview, [fontColor, backgroundColor])">{{ui[currentLocale].ordering.addProduct}}</button>
         <div>
         </div>
       </section>
-      <OrderForm :products="getProducts" @guest-order="(order: Order) => onGuestOrder(order)"/>
+      <OrderForm :current-locale="currentLocale" :products="getProducts" @guest-order="(order: Order) => onGuestOrder(order)"/>
     </div>
 
     <section id="prints">
-      <h3>المختار للطباعة</h3>
+      <h3>{{ui[currentLocale].ordering.printsH3}}</h3>
       <div id="randoms">
         <div id="buttons">
-          <button @click="getRandomChosenVerse">شعر عشوائي</button>
-          <button @click="getRandomProse">نثر عشوائي</button>
+          <button @click="getRandomChosenVerse">{{ui[currentLocale].ordering.randomPoetry}}</button>
+          <button @click="getRandomProse">{{ui[currentLocale].ordering.randomProse}}</button>
         </div>
         <div v-if="randomPrint">
           <div @click="preview = randomPrint">
@@ -51,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 // stores
 import { getPrints, actions as printActions } from "../stores/prints";
 import { getRandomChosenVerses, fetchRandomChosenVerses } from "../stores/chosenVerses";
@@ -63,6 +62,12 @@ import OrderForm from "../components/OrderForm.vue";
 import ShowCasePrints from '../components/ShowCasePrints.vue';
 // Types
 import type { Order, Print } from '../stores/__types__';
+// UI
+import { ui } from '../i18n/ui'
+
+defineProps<{
+  currentLocale: keyof typeof ui;
+}>()
 
 let preview = ref({} as Print);
 

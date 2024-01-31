@@ -43,6 +43,7 @@ describe('Confirming Customer order successfully', () => {
                       "backgroundColor":"#2c3e50"
                     }
                 ],
+                currentLocale: "ar"
             }
         });
         await wrapper.find('#name').setValue('Component testing');
@@ -166,6 +167,8 @@ describe('Confirming Customer order successfully', () => {
                     "backgroundColor": "#fff"
                   }
                 ],
+                currentLocale: "ar"
+
             }
         })
 

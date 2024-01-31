@@ -48,7 +48,17 @@ export const ui = {
             notReviewed: 'غير مراجع',
             completed: 'تم التسليم',
             notCompleted: 'لم يتم التسليم',
-            fontType: "نوع الخط",        },
+            fontType: "نوع الخط",
+        },
+        ordering: {
+            layoutTitle:"أديب :: طلباتك",
+            layoutDesc:"إكمال صفات الطباعة وتأكيد الطلب",
+            previewH3: "اختر من الاشعار للطباعة",
+            addProduct: "اضافة الطلب",
+            printsH3: "المختار للطباعة",
+            randomPoetry: "شعر عشوائي",
+            randomProse: "نثر عشوائي",
+        },
         // // Components
         nav: {
             "logo": "أديب",
@@ -66,6 +76,14 @@ export const ui = {
             "notAvailable": "غير متوفرة الي الأن",
             "addPrint": "أضف للطباعة",
             "fullPoem": "القصيدة الكاملة",     
+        },
+        orderForm: {
+            name: "الاسم",
+            phone: "الهاتف",
+            address: "العنوان",
+            fontType: "نوع الخط",
+            prints: "طبعات",
+            submit: "تأكيد الطلب"
         }
     },
     en: {
@@ -112,6 +130,15 @@ export const ui = {
             notCompleted: "Not completed",
             fontType: "Font type",
         },
+        ordering: {
+            layoutTitle:"Adeeb::Ordering",
+            layoutDesc:"Customizing your choosing prints and confirm your order",
+            previewH3: "Choose to Print",
+            addProduct: "Add product",
+            printsH3: "Chosen Prints",
+            randomPoetry: "Random poetry",
+            randomProse: "Random prose",
+        },
         // // Components
         nav: {
             logo: "Adeeb",
@@ -130,6 +157,14 @@ export const ui = {
             "notAvailable": "Not available yet",
             "addPrint": "Add to print",
             "fullPoem": "Full poem", 
+        },
+        orderForm: {
+            name: "Name",
+            phone: "Phone",
+            address: "Address",
+            fontType: "Font type",
+            prints: "prints",
+            submit: "Submit"
         }
     },
 };

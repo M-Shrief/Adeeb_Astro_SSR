@@ -5,9 +5,11 @@ import Layout from "../layouts/Layout.astro";
 import GuestOrdering from "../clientPages/GuestOrdering.vue";
 // Components
 import HttpPopUp from "../components/notifications/HttpPopUp.vue";
+// UI
+import { ui } from '../i18n/ui'
 ---
 
-<Layout title="أديب :: طلباتك" description="Customizing your choosing prints and confirm your order">
+<Layout title={ui.ar.ordering.layoutTitle} description={ui.ar.ordering.layoutDesc}>
   <HttpPopUp client:idle slot="http-popup"/>
-  <GuestOrdering client:idle />
+  <GuestOrdering currentLocale="ar" client:idle />
 </Layout>
