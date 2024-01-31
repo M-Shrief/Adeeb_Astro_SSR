@@ -71,6 +71,16 @@ export const ui = {
                 asideLi4: "امكانية اعداد طلبات مختلفة؛ بمواقيت مختلفة، وتوصيلها لأماكن مختلفة.",
                 noAuthOrder: "للطلب بدون تسجيل"
             },
+            ordering: {
+                layoutTitle:"أديب :: طلباتك",
+                layoutDesc:"إكمال صفات الطباعة وتأكيد الطلب",
+                noSignupOrder: "للطلب مباشرة بدون التسجيل",
+                p: "إعداد مطبوعات من المختارات النثرية والشعرية",
+                prep: "إعداد",
+                poetry: 'شعر',
+                prose: "نثر",
+                addOrders: "اضافة الطلبات"
+            },
         },
         // // Components
         nav: {
@@ -105,6 +115,11 @@ export const ui = {
             phone: "الهاتف",
             password: "كلمة السر",
             submit: "التأكيد"
+        },
+        printCustomization: {
+            fontType: "نوع الخط",
+            font: "الخط",
+            background: "الخلفية"
         }
     },
     en: {
@@ -172,6 +187,16 @@ export const ui = {
                 asideLi4: "Prepare different orders for different adresses/branches.",
                 noAuthOrder: "Order without signing up"
             },
+            ordering: {
+                layoutTitle:"Adeeb::Ordering",
+                layoutDesc:"Customizing your choosing prints and confirm your order",
+                noSignupOrder: "Ordering without signing up",
+                p: "Prepare chosen Poetry",
+                prep: "prepare",
+                poetry: "poetry",
+                prose: "prose",
+                addOrders: "Add orders"
+            },
         },
         // // Components
         nav: {
@@ -207,6 +232,11 @@ export const ui = {
             phone: "Phone",
             password: "Password",
             submit: "Submit"
+        },
+        printCustomization: {
+            fontType: "Font type",
+            font: "Font",
+            background: "Backgound"
         }
     },
 };

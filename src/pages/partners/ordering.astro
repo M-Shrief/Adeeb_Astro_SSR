@@ -5,9 +5,11 @@ import Layout from "../../layouts/Layout.astro";
 import PartnerOrdering from "../../clientPages/PartnerOrdering.vue";
 // Components
 import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
+// UI
+import { ui } from '../../i18n/ui'
 ---
 
-<Layout title="أديب :: طلباتك" description="Customizing your choosing prints and confirm your order">
+<Layout title={ui.ar.partners.ordering.layoutTitle} description={ui.ar.partners.ordering.layoutDesc}>
   <HttpPopUp client:idle slot="http-popup"/>
-  <PartnerOrdering client:idle />
+  <PartnerOrdering currentLocale="ar" client:idle />
 </Layout>

@@ -1,7 +1,7 @@
 <template>
   <div id="customization">
     <div class="select">
-      <label for="fontType">اسلوب الخط</label>
+      <label for="fontType">{{ui[currentLocale].printCustomization.fontType}}</label>
       <select name="fontType" id="fontType">
         <option value="نسخ">نسخ</option>
         <option value="رقعة">رقعة</option>
@@ -9,10 +9,10 @@
       </select>
     </div>
     <PreviewColors :colors="colors"
-      @color="(color: string) => $emit('fontColor', color)">الخط:
+      @color="(color: string) => $emit('fontColor', color)">{{ui[currentLocale].printCustomization.font}}:
     </PreviewColors>
     <PreviewColors :colors="colors"
-      @color="(color: string) => $emit('backgroundColor', color)">الخلفية:
+      @color="(color: string) => $emit('backgroundColor', color)">{{ui[currentLocale].printCustomization.background}}:
     </PreviewColors>
   </div>
 </template>
@@ -22,6 +22,12 @@
 import {colors} from '../stores/orders'
 // components
 import PreviewColors from "./PreviewColors.vue";
+// UI
+import { ui } from '../i18n/ui'
+
+defineProps<{
+  currentLocale: keyof typeof ui;
+}>()
 
 
 defineEmits(['fontColor', 'backgroundColor']);

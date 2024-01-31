@@ -3,7 +3,7 @@
     <div class="container">
       <section id="preview">
         <h3>{{ui[currentLocale].ordering.previewH3}}</h3>
-        <PrintCustomization :colors="colors"
+        <PrintCustomization :colors="colors" :current-locale="currentLocale"
           @fontColor="(color: string) => fontColor = color"
           @backgroundColor="(color: string) => backgroundColor = color" />
         <div v-if="preview.verses" v-for="verse, index in preview.verses"

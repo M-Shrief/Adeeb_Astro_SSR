@@ -1,20 +1,25 @@
 <template>
   <section id="prep-order">
-    <h3>للطلب مباشرة بدون التسجيل</h3>
+    <h3 v-if="!isPartner">{{ ui[currentLocale].partners.ordering.noSignupOrder }}</h3>
     <div class="prep-prints">
-      <p>إعداد مطبوعات من المختارات النثرية والشعرية</p>
-      <div>
-        <label for="poetry">شعر: </label>
-        <input type="number" name="poetry" id="poetry" value="5" min="1" max="10">
+      <p>{{ ui[currentLocale].partners.ordering.p }}</p>
+      <div class="prep">
+        <div>
+          <label for="poetry">{{ ui[currentLocale].partners.ordering.poetry }}: </label>
+          <input type="number" name="poetry" id="poetry" value="5" min="1" max="10">
+        </div>
+        <button type="submit" @click="preparePoetry">{{ ui[currentLocale].partners.ordering.prep }}</button>
       </div>
-      <button type="submit" @click="preparePoetry">إعداد</button>
-      <div>
-        <label for="prose">نثر: </label>
-        <input type="number" name="prose" id="prose" value="5" min="1" max="10">
+
+      <div class="prep">
+        <div>
+          <label for="prose">{{ ui[currentLocale].partners.ordering.prose }}: </label>
+          <input type="number" name="prose" id="prose" value="5" min="1" max="10">
+        </div>
+        <button type="submit" @click="prepareProse">{{ ui[currentLocale].partners.ordering.prep }}</button>
       </div>
-      <button type="submit" @click="prepareProse">إعداد</button>
     </div>
-    <PrintCustomization :colors="colors"
+    <PrintCustomization :colors="colors" :current-locale="currentLocale"
       @fontColor="(color: string) => fontColor = color"
       @backgroundColor="(color: string) => backgroundColor = color">
     </PrintCustomization>
@@ -24,10 +29,9 @@
         :colors="[computed(() => fontColor as string), computed(() => backgroundColor as string)]"
         @remove="(print: Print) => printsActions.remove(print)" />
     </div>
-    <button @click="onAddProductGroup(getPrints, [fontColor, backgroundColor])">
-      اضافة الطلبات</button>
+    <button @click="onAddProductGroup(getPrints, [fontColor, backgroundColor])">{{ ui[currentLocale].partners.ordering.addOrders }}</button>
   </section>
-  <OrderForm :productGroups="getProductGroups" :partner="getPartner" @partner-order="(order: Order) => onPartnerOrder(order)" />
+  <OrderForm :current-locale="currentLocale" :productGroups="getProductGroups" :partner="getPartner" @partner-order="(order: Order) => onPartnerOrder(order)" />
 </template>
 
 <script lang="ts" setup>
@@ -40,10 +44,16 @@ import OrderForm from '../components/OrderForm.vue';
 import { fetchRandomChosenVerses, getRandomChosenVerses } from "../stores/chosenVerses";
 import { fetchRandomProses, getRandomProses } from "../stores/proses";
 import { getPrints, actions as printsActions } from "../stores/prints";
-import { getPartner } from '../stores/partners';
+import { getPartner, isPartner } from '../stores/partners';
 import { colors, getProductGroups, addProductGroup, newPartnerOrder, reset } from "../stores/orders";
 // types
 import type { Order, Print } from '../stores/__types__'
+// UI
+import { ui } from '../i18n/ui'
+
+defineProps<{
+  currentLocale: keyof typeof ui;
+}>()
 
 
 let fontColor = ref(colors[0]);
@@ -135,6 +145,15 @@ async function prepareProse() {
       background: $mainColor;
       color: $secondaryColor;
       border-radius: 0.2rem;
+    }
+    .prep {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 1rem;
+      button {
+        margin: 0.5rem;
+      }
     }
   }
 
