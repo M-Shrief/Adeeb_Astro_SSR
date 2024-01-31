@@ -1,11 +1,17 @@
 ---
 // Layout
 import Layout from "../layouts/Layout.astro";
+// Utils
+import {getLangFromUrl} from '../i18n/utils'
+// UI
+import { ui } from '../i18n/ui'
+
+const currentLocale = getLangFromUrl(Astro.url)
 ---
 
-<Layout title="404 not found" description="Page is not found">
-  <h1>404 Not Found</h1>
-  <p>Back to <a href="/">home page</a></p>
+<Layout title={ui[currentLocale][404].layoutTitle} description={ui[currentLocale][404].layoutDesc}>
+  <h1>{ui[currentLocale][404].h1}</h1>
+  <p>{ui[currentLocale][404].p} <a href="/">{ui[currentLocale][404].a}</a></p>
 </Layout>
 
 <style lang="scss">
