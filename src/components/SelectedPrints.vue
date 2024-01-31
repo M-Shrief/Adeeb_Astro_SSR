@@ -1,7 +1,11 @@
 <template>
   <div id="selected-prints" >
-    <p><a :href="isPartner ? '/partners/ordering' : '/ordering'"
-        class="title">{{ui[currentLocale!].selectedPrints.a}}</a> </p>
+    <p>
+      <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/ordering': `/${currentLocale}/partners/ordering`"
+      class="title">{{ui[currentLocale!].selectedPrints.a}}</a>
+      <a v-else :href="currentLocale == defaultLang ? '/ordering' : `/${currentLocale}/ordering`"
+      class="title">{{ui[currentLocale!].selectedPrints.a}}</a>
+    </p>
     <ul class="prints">
       <li class="prints-item" v-for="print in getPrints" :key="print.id"
         @dblclick="printsActions.remove(print)">
@@ -19,7 +23,7 @@
 import {actions as printsActions, getPrints} from '../stores/prints'
 import { isPartner } from '../stores/partners';
 // UI
-import {ui} from '../i18n/ui'
+import {ui, defaultLang} from '../i18n/ui'
 
 defineProps<{
   currentLocale?: keyof typeof ui;
