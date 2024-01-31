@@ -1,0 +1,24 @@
+---
+// Layout
+import Layout from "../../layouts/Layout.astro";
+// UI
+import { ui } from '../../i18n/ui'
+---
+
+<Layout title={ui.en.about.layoutTitle} description={ui.en.about.layoutDesc}>
+  <main>
+    <section id="about">
+      <h1>{ui.en.about.h1}</h1>
+      <p>{ui.en.about.p}</p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  #about {
+    text-align: center;
+    margin: 1rem;
+    color: var(--text1);
+    font-size: 1.5rem;
+  }
+</style>
