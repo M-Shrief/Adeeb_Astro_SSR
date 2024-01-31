@@ -1,18 +1,19 @@
 <template>
     <section id="poetry">
-        <h2 class="title">المختارات الأدبية<span v-if="poetry.length === 0"><br>(غير متوفرة الي الأن)</span></h2>
+        <h2 class="title">{{ui[currentLocale!].showCasePoetry.h2}}<span v-if="poetry.length === 0"><br>({{ui[currentLocale!].showCasePoetry.notAvailable}})</span></h2>
         <div class="poetry-container">
             <div v-for="singlePiece in poetry" :key="singlePiece.id">
                 <div v-if="singlePiece.qoute" class="prose-item">
-                    <p class="qoute">{{ singlePiece.qoute }}</p>
+                    <p class="qoute" dir="rtl">{{ singlePiece.qoute }}</p>
                     <a v-if="!(routeName === 'poet')"
                         :href="'/poet/' + singlePiece.poet.id" class="details">{{
                         singlePiece.poet.name}}
                     </a>
 
-                    <button @click="printsActions.add({ id: singlePiece.id, qoute: singlePiece.qoute })"
-                        class="print-button">
-                        أضف للطباعة
+                    <button 
+                      @click="printsActions.add({ id: singlePiece.id, qoute: singlePiece.qoute })"
+                      class="print-button">
+                      {{ui[currentLocale!].showCasePoetry.addPrint}}
                     </button>
                 </div>
                 <div v-if="singlePiece.poem" class="chosenverse-item">
@@ -21,15 +22,15 @@
                         <p class="first">{{ verse.first }}</p>
                         <p class="sec">{{ verse.sec }}</p>
                     </div>
-                    <a :href="'/poem/' + singlePiece.poem.id" class="details">{{
+                    <a :href="'/poem/' + singlePiece.poem.id" class="details" dir="rtl">{{
                         routeName == 'poet'
-                        ? 'القصيدة الكاملة'
-                        : singlePiece.poet.name + ' - القصيدة الكاملة'}}
+                        ? ui[currentLocale!].showCasePoetry.fullPoem
+                        : singlePiece.poet.name + ' - ' + ui[currentLocale!].showCasePoetry.fullPoem}}
                     </a>
                     <button
                         @click="printsActions.add({ id: singlePiece.id, verses: singlePiece.verses })"
                         class="print-button">
-                        أضف للطباعة
+                        {{ui[currentLocale!].showCasePoetry.addPrint}}
                     </button>
                 </div>
             </div>
@@ -44,10 +45,15 @@
 import {actions as printsActions} from '../stores/prints'
 // Types
 import type { Poetry } from '../stores/__types__';
-defineProps<{
-    poetry: Poetry[];
-    routeName?: string
+// Utils
+import {ui} from '../i18n/ui'
+
+const props = defineProps<{
+  poetry: Poetry[];
+  routeName?: string;
+  currentLocale?: keyof typeof ui;
 }>()
+
 </script>
 
 <style lang="scss" scoped>
@@ -223,6 +229,7 @@ $secondaryColor: var(--surface1);
     font-weight: 600;
     .first {
       margin-right: 0.4rem;
+      direction: rtl;
     }
 
     .sec {
@@ -251,6 +258,7 @@ $secondaryColor: var(--surface1);
     font-weight: 600;
     .first {
       margin-right: 0.4rem;
+      direction: rtl;
     }
 
     .sec {
