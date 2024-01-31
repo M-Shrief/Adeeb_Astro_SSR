@@ -1,27 +1,27 @@
 <template>
   <section id="authentication">
-    <h3>{{ isRegistered ? "تسجيل الدخول" : "تسجيل حساب جديد" }} </h3>
+    <h3>{{ isRegistered ? ui[currentLocale].authForm.login : ui[currentLocale].authForm.signup }} </h3>
     <Form @submit="onSubmit" id="auth-form">
       <div v-if="!isRegistered" class="input-cont">
-        <label for="name">الاسم: </label>
+        <label for="name">{{ui[currentLocale].authForm.name}}: </label>
         <Field name="name" id="name" autocomplete="name"  :rules="nameRules" />
         <ErrorMessage name="name" class="error" />
       </div>
       <div class="input-cont">
-        <label for="phone">رقم الهاتف: </label>
+        <label for="phone">{{ ui[currentLocale].authForm.phone }}: </label>
         <Field name="phone" id="phone" autocomplete="phone"  :rules="phoneRules" />
         <ErrorMessage name="phone" class="error" />
       </div>
       <div class="input-cont">
-        <label for="password">كلمة السر: </label>
+        <label for="password">{{ui[currentLocale].authForm.password}}: </label>
         <Field type="password" name="password" id="password" 
           :rules="passwordRules" />
-        <ErrorMessage name="password" class="error" />
+          <ErrorMessage name="password" class="error" />
       </div>
-      <button type="submit">التأكيد</button>
+      <button type="submit">{{ui[currentLocale].authForm.submit}}</button>
     </Form>
-    <button id="toggle" @click="isRegistered = !isRegistered">
-      {{ !isRegistered ? "تسجيل الدخول" : "تسجيل حساب جديد" }}
+    <button id="toggle" @click="isRegistered = !isRegistered" >
+      {{ !isRegistered ? ui[currentLocale].authForm.login : ui[currentLocale].authForm.signup }}
     </button>
   </section>
 </template>
@@ -33,6 +33,12 @@ import { Form, Field, ErrorMessage } from 'vee-validate';
 import { nameRules, phoneRules, passwordRules } from '../utils/forms.schema'
 // stores
 import { actions as partnerActions, isPartner } from '../stores/partners';
+// UI
+import { ui } from '../i18n/ui'
+
+defineProps<{
+  currentLocale: keyof typeof ui;
+}>();
 
 const isRegistered = ref(true);
 
@@ -63,7 +69,7 @@ $inputsColor: var(--surface1);
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 40vh;
+  height: 30vh;
   margin: 1rem;
   padding: 4rem;
   background-color: $secondaryColor;
@@ -116,7 +122,8 @@ $inputsColor: var(--surface1);
 
   #toggle {
     position: absolute;
-    left: 1rem;
+    place-self: end;
+    margin: 0;
     bottom: 1rem;
   }
 }

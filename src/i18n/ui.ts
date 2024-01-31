@@ -59,6 +59,19 @@ export const ui = {
             randomPoetry: "شعر عشوائي",
             randomProse: "نثر عشوائي",
         },
+        partners: {
+            auth: {
+                layoutTitle:"أديب :: شركائنا",
+                layoutDesc:"صفحة التسجيل",
+                h3: "يَسعد أديب بتقديم الخدمات للشركات والتجار والعملاء المميزين.",
+                asideH3: "سجل الان للاستفادة من جميع الخدمات المُقدمة من أديب",
+                asideLi1: "سهولة إعداد الطلبات وتعديلها",
+                asideLi2: "متابعة الطلبات فى جميع مراحل تنفيذها",
+                asideLi3: "مراجعة جميع الطلبات السابقة بتفاصيلها",
+                asideLi4: "امكانية اعداد طلبات مختلفة؛ بمواقيت مختلفة، وتوصيلها لأماكن مختلفة.",
+                noAuthOrder: "للطلب بدون تسجيل"
+            },
+        },
         // // Components
         nav: {
             "logo": "أديب",
@@ -84,6 +97,14 @@ export const ui = {
             fontType: "نوع الخط",
             prints: "طبعات",
             submit: "تأكيد الطلب"
+        },
+        authForm: {
+            login: "تسجيل الدخول",
+            signup: "تسجيل حساب جديد",
+            name: "الاسم",
+            phone: "الهاتف",
+            password: "كلمة السر",
+            submit: "التأكيد"
         }
     },
     en: {
@@ -139,6 +160,19 @@ export const ui = {
             randomPoetry: "Random poetry",
             randomProse: "Random prose",
         },
+        partners: {
+            auth: {
+                layoutTitle:"Partners :: Adeeb",
+                layoutDesc:"Partners' authentication page for Adeeb",
+                h3: "Adeeb is happy to offer his services to businesses and partners",
+                asideH3: "Signup now, to benefit from our services",
+                asideLi1: "Prepare and edit orders easily",
+                asideLi2: "Check your orders progress in different phases",
+                asideLi3: "Review your old orders",
+                asideLi4: "Prepare different orders for different adresses/branches.",
+                noAuthOrder: "Order without signing up"
+            },
+        },
         // // Components
         nav: {
             logo: "Adeeb",
@@ -164,6 +198,14 @@ export const ui = {
             address: "Address",
             fontType: "Font type",
             prints: "prints",
+            submit: "Submit"
+        },
+        authForm: {
+            login: "Login",
+            signup: "Sign up",
+            name: "Name",
+            phone: "Phone",
+            password: "Password",
             submit: "Submit"
         }
     },

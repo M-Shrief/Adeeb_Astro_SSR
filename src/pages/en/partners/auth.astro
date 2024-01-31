@@ -1,11 +1,11 @@
 ---
 // Layout
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 // Components
-import AuthForm from "../../components/AuthForm.vue";
-import HttpPopUp from "../../components/notifications/HttpPopUp.vue";
+import AuthForm from "../../../components/AuthForm.vue";
+import HttpPopUp from "../../../components/notifications/HttpPopUp.vue";
 // UI
-import { ui } from '../../i18n/ui'
+import { ui } from '../../../i18n/ui'
 
 // to force server side rendering to read the cookie.
 export const prerender = false;
@@ -15,27 +15,27 @@ if (isAuthenticated) return Astro.redirect("/");
 
 ---
 
-<Layout title={ui.ar.partners.auth.layoutTitle} description={ui.ar.partners.auth.layoutDesc}>
+<Layout title={ui.en.partners.auth.layoutTitle} description={ui.en.partners.auth.layoutDesc}>
   <HttpPopUp client:idle slot="http-popup"/>
-  <h3>{ui.ar.partners.auth.h3}</h3>
-  <section id="register">
-    <AuthForm currentLocale="ar" client:idle />
+  <h3>{ui.en.partners.auth.h3}</h3>
+  <section id="register" dir="rtl">
+    <AuthForm currentLocale="en" client:idle dir="ltr"/>
     <aside>
       <!-- need something simple like: islamic arts, a transition for list-items and on. -->
-      <h3>{ui.ar.partners.auth.asideH3}</h3>
-      <ul>
-        <li>{ui.ar.partners.auth.asideLi1}</li>
-        <li>{ui.ar.partners.auth.asideLi2}</li>
-        <li>{ui.ar.partners.auth.asideLi3}</li>
-        <li>{ui.ar.partners.auth.asideLi4}</li>
+      <h3>{ui.en.partners.auth.asideH3}</h3>
+      <ul dir="ltr">
+        <li>{ui.en.partners.auth.asideLi1}</li>
+        <li>{ui.en.partners.auth.asideLi2}</li>
+        <li>{ui.en.partners.auth.asideLi3}</li>
+        <li>{ui.en.partners.auth.asideLi4}</li>
       </ul>
     </aside>
   </section>
-  <a href="/partners/ordering" class="direct-Order">{ui.ar.partners.auth.noAuthOrder}</a>
+  <a href="/partners/ordering" class="direct-Order">{ui.en.partners.auth.noAuthOrder}</a>
 </Layout>
 
 <style lang="scss">
-  @import "../../assets/mixins.scss";
+  @import "../../../assets/mixins.scss";
 
   h3 {
     text-align: center;
@@ -66,7 +66,7 @@ if (isAuthenticated) return Astro.redirect("/");
     $secondaryColor: var(--surface1);
     // ////////
     position: relative;
-    right: 45%;
+    left: 40%;
     text-decoration: none;
     padding: 0.3rem 0.5rem;
     margin: 0.4rem;
