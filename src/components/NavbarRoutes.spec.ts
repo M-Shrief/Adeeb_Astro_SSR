@@ -9,7 +9,8 @@ describe('Navbar links', () => {
     it('renders alright and reference right page when partner = null', async () => {
         const wrapper = mount(NavbarRoutes, {
             props: {
-                activeUrl: '/ordering'
+                activeUrl: '/ordering',
+                currentLocale: "ar"
             }
         })
 
@@ -28,6 +29,7 @@ describe('Navbar links', () => {
         const wrapper = mount(NavbarRoutes, {
             props: {
                 activeUrl: '/',
+                currentLocale: "ar"
             }
         })
         expect(wrapper.find('a[href="/partners/ordering"]').exists()).equal(true);

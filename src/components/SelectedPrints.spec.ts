@@ -21,7 +21,11 @@ describe('<SelectedPrints />', () => {
               ],
             }
         ];
-        const wrapper = mount(SelectedPrints);
+        const wrapper = mount(SelectedPrints, {
+          props: {
+            currentLocale: "ar"
+          }
+        });
 
         expect(wrapper.find('.prints-item>p').text()).equal('حُكمُ المَنِيَّةِ في البَرِيَّةِ جاري..')
         expect(wrapper.find('.title').attributes()).toHaveProperty('href', '/ordering')

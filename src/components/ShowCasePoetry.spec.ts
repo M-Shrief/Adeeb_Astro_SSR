@@ -31,6 +31,7 @@ describe.concurrent('<ShowCasePoetry />', () => {
                   },
                 ] as Poetry[],
                 routeName: 'main',
+                currentLocale: "ar"
             },
         })
 
@@ -80,6 +81,7 @@ describe.concurrent('<ShowCasePoetry />', () => {
                     },
                 ] as Poetry[],
                 routeName: 'poet',
+                currentLocale: "ar"
             },
         })
 
@@ -124,6 +126,7 @@ describe.concurrent('<ShowCasePoetry />', () => {
                     },
                 ] as Poetry[],
                 routeName: 'main',
+                currentLocale: "ar"
             }
         })
 
@@ -158,6 +161,7 @@ describe.concurrent('<ShowCasePoetry />', () => {
                     },
                 ] as Poetry[],
                 routeName: 'main',
+                currentLocale: "ar"
             }
         })
 
