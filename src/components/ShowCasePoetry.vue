@@ -5,8 +5,9 @@
             <div v-for="singlePiece in poetry" :key="singlePiece.id">
                 <div v-if="singlePiece.qoute" class="prose-item">
                     <p class="qoute" dir="rtl">{{ singlePiece.qoute }}</p>
-                    <a v-if="!(routeName === 'poet')"
-                        :href="'/poet/' + singlePiece.poet.id" class="details">{{
+                    <a v-if="!(routeName === 'poet')" class="details"
+                        :href="currentLocale == defaultLang ? `/poet/${singlePiece.poet.id}` : `/${currentLocale}/poet/${singlePiece.poet.id}`"
+                        >{{
                         singlePiece.poet.name}}
                     </a>
 
@@ -22,7 +23,9 @@
                         <p class="first">{{ verse.first }}</p>
                         <p class="sec">{{ verse.sec }}</p>
                     </div>
-                    <a :href="'/poem/' + singlePiece.poem.id" class="details" dir="rtl">{{
+                    <a class="details" dir="rtl"
+                    :href="currentLocale == defaultLang ? `/poem/${singlePiece.poem.id}` : `/${currentLocale}/poem/${singlePiece.poem.id}`"
+                    >{{
                         routeName == 'poet'
                         ? ui[currentLocale!].showCasePoetry.fullPoem
                         : singlePiece.poet.name + ' - ' + ui[currentLocale!].showCasePoetry.fullPoem}}
@@ -46,7 +49,7 @@ import {actions as printsActions} from '../stores/prints'
 // Types
 import type { Poetry } from '../stores/__types__';
 // Utils
-import {ui} from '../i18n/ui'
+import {ui, defaultLang} from '../i18n/ui'
 
 const props = defineProps<{
   poetry: Poetry[];
@@ -114,7 +117,7 @@ $secondaryColor: var(--surface1);
         text-decoration: none;
         color: $mainColor;
         position: absolute;
-        bottom: 0.7rem;
+        bottom: 1.1rem;
         right: 0.7rem;
 
         &:hover {
