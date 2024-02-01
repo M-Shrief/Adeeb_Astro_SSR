@@ -212,7 +212,7 @@ $secondaryColor: var(--surface2);
       list-style: none;
       border-radius: 5px;
       padding: 0.5rem 0;
-      margin: 0.5rem 0;
+      margin: 0.5rem;
 
       .verse,
       .qoute {
