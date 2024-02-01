@@ -19,6 +19,7 @@ The project's goal is to migrate "Adeeb اديب"'s [SPA frontend](https://githu
   - form validation with Vee-validate & Yup
   - JWT authentication and authorization
   - Dark/Light Theme
+  - Internationalization
   - Vitest for Component testing and In-source unit testing. 
   - CI using Github actions for testing
   - ... and more
