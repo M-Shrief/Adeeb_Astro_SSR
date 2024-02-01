@@ -19,7 +19,8 @@
       <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
       <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">{{ui[currentLocale].nav.logout}}</span>
       <!-- Partner's auth page -->
-      <a href="/partners/auth" class="nav-item" data-astro-prefetch v-else >{{ui[currentLocale].nav.partnership}}</a>
+      <a :href="currentLocale == defaultLang ? '/partners/auth': `/${currentLocale}/partners/auth`"
+      class="nav-item" data-astro-prefetch v-else >{{ui[currentLocale].nav.partnership}}</a>
     </div>
 </template>
 
