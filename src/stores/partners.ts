@@ -41,8 +41,8 @@ async function signup(partnerData: Partner) {
   )
   if(res.ok) {
     const data = await res.json()
-    partner.value = JSON.stringify(data.user)
-    Cookies.set("accessToken", data.token, tokenCookieOptions);
+    partner.value = JSON.stringify(data.partner)
+    Cookies.set("accessToken", data.accessToken, tokenCookieOptions);
   } else {
     useFetchError(await res.json())
   }
@@ -62,8 +62,8 @@ async function login(partnerData: Partner) {
   if(res.ok) {
     const data = await res.json()
     console.log(data)
-    partner.value = JSON.stringify(data.user)
-    Cookies.set("accessToken", data.token, tokenCookieOptions);
+    partner.value = JSON.stringify(data.partner)
+    Cookies.set("accessToken", data.accessToken, tokenCookieOptions);
   } else {
     useFetchError(await res.json())
   }
