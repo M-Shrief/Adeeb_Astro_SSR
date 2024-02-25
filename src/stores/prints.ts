@@ -10,10 +10,17 @@ import {useSessionStorage} from '@vueuse/core';
 
 export const prints =  ref(useSessionStorage('prints', [] as Print[]));
 
+/**
+ * Get Prints computed value
+ */
 export const getPrints =  computed<Print[]>(() => {
   return prints.value;
 });
 
+/**
+ * Add Print to prints ref, if it doesn't exist already.
+ * @param {Print} print 
+ */
 function addPrint(print: Print) {
   const printsIds = prints.value.map((printItem) => printItem.id);
   if (!printsIds.includes(print.id)) {
@@ -21,11 +28,19 @@ function addPrint(print: Print) {
   }
 };
 
+/**
+ * Add multiple prints without checking if they already exists or not.
+ * @param printsData 
+ */
 function prepPrints(printsData: ChosenVerse[] | Prose[]) {
   // it's normal in big orders to repeat the same print
   prints.value = prints.value.concat(printsData as Print[]);
 };
 
+/**
+ * Remove print from prints.value
+ * @param print 
+ */
 function removePrint(print: Print) {
   let printIndex = prints.value
     .map((verse) => verse.id)
@@ -33,6 +48,9 @@ function removePrint(print: Print) {
   prints.value.splice(printIndex, 1);
 };
 
+/**
+ * Remove all Prints
+ */
 function removeAllPrints(): void {
   prints.value = []
 }

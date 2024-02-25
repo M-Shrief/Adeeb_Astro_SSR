@@ -10,10 +10,16 @@ import type {Poet, Poetry} from './__types__';
 
 const poets = shallowRef<Poet[]>([]);
 
+/**
+ * Get Poets computed value
+ */
 export const getPoets = computed<Poet[]>(() => {
     return poets.value;
 });
 
+/**
+ * Fetch poets from API, and assign it to poets.value
+ */
 export const fetchPoets = async () => {
     if (poets.value.length != 0) return
 
@@ -33,10 +39,17 @@ export const fetchPoets = async () => {
 
 const poet = shallowRef<Poet>({} as Poet);
 
+/**
+ * Get Poet computed value
+ */
 export const getPoet = computed<Poet>(() => {
     return poet.value;
 });
 
+/**
+ * Fetch Poet from API, and assign it to poet.value
+ * @returns 
+ */
 export const fetchPoet = async (id: string) => {
     if(poet.value.id == id) return
 

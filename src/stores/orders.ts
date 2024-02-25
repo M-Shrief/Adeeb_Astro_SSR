@@ -9,7 +9,9 @@ import {useSessionStorage} from '@vueuse/core';
 import { useFetchError } from '../composables/errorsNotifications';
 import { useSuccessNotification } from '../composables/successNotifications';
 
-// should resemble our storage
+/**
+ * colors array, should resemble our storage
+ */ 
 export const colors =  [
     '#fff',
     '#000',
@@ -23,10 +25,18 @@ export const colors =  [
 
 const orders =  shallowRef<Order[]>([]);
 
+/**
+ * Get orders computed value
+ */
 export const getOrders = computed<Order[]>(() => {
     return orders.value;
 });
 
+/**
+ * Fetch guest's orders from API, and assign it to orders ref.
+ * @param {string} name - guest's name 
+ * @param {string} phone - guest's phone
+ */
 export async function fetchOrders(name: string, phone: string) {
     const res = await fetch(
         apiURL(`/orders/guest`), 
@@ -45,6 +55,11 @@ export async function fetchOrders(name: string, phone: string) {
     }
 };
 
+/**
+ * Fetch partner's orders from API, and assign it to orders ref.
+ * 
+ * Uses accessToken cookie.
+ */
 export async function fetchPartnerOrders() {
     const accessToken = Cookies.get("accessToken") ?? '';
     const res = await fetch(
@@ -64,6 +79,10 @@ export async function fetchPartnerOrders() {
     }
 };
 
+/**
+ * Create a new Guest order
+ * @param {Order} order - guest's order 
+ */
 export async function newGuestOrder(order: Order) {
     const res = await fetch(
         apiURL(`/order/guest`),
@@ -83,6 +102,12 @@ export async function newGuestOrder(order: Order) {
     }
 };
 
+/**
+ * Create a new Partner order
+ * 
+ * Uses accessToken cookie
+ * @param {Order} order - partner's order 
+ */
 export async function newPartnerOrder(order: Order) {
     const accessToken = Cookies.get("accessToken") ?? '';
     const res = await fetch(
@@ -108,15 +133,24 @@ export async function newPartnerOrder(order: Order) {
 
 const productGroups =  ref(useSessionStorage('productsGroups', [] as ProductGroup[]));
 
+/**
+ * Get ProductGroups computed value
+ */
 export const getProductGroups = computed<ProductGroup[]>(() => {
     return productGroups.value;
 });
 
-export function addProductGroup(printsGroup: Print[], colors: string[]) {
+/**
+ * Add ProductGroup to productGroups ref.
+ * 
+ * @param {Print[]} prints - an array of prints
+ * @param {string[]}colors - [fontColor, backgroundColor] in hex code
+ */
+export function addProductGroup(prints: Print[], colors: string[]) {
     let fontType = (document.getElementById('fontType') as HTMLInputElement).value;
 
     let productGroup = {
-        prints: printsGroup,
+        prints: prints,
         fontType,
         fontColor: colors[0],
         backgroundColor: colors[1],
@@ -126,10 +160,19 @@ export function addProductGroup(printsGroup: Print[], colors: string[]) {
 
 const products = ref(useSessionStorage('products', [] as Product[]));
 
+/**
+ * Get Products computed value
+ */
 export const getProducts = computed<Product[]>(() => {
     return products.value;
 });
 
+/**
+ * Add Product to products ref.
+ * 
+ * @param {Print} print - print item 
+ * @param {string[]}colors - [fontColor, backgroundColor] in hex code
+ */
 export function addProduct(print: Print, colors: string[]) {
     let fontType = (document.getElementById('fontType') as HTMLSelectElement).value;
     let product = {
@@ -143,6 +186,9 @@ export function addProduct(print: Print, colors: string[]) {
     products.value.push(product as Product);
 };
 
+/**
+ * Reset orders, productGroups, product values.
+ */
 export function reset() {
     orders.value = [];
     productGroups.value = [];

@@ -8,10 +8,17 @@ import type {ChosenVerse} from './__types__';
 
 const chosenVerses = shallowRef<ChosenVerse[]>([]);
 
+/**
+ * Get chosenVerses computed value.
+ */
 export const getChosenVerses = computed<ChosenVerse[]>(() => {
   return chosenVerses.value;
 })
 
+/**
+ * Fetch chosenVerses from API, and assign it to chosenVerses ref.
+ * @returns 
+ */
 export async function fetchChosenVerses() {
   if(chosenVerses.value.length != 0) return
   
@@ -31,10 +38,17 @@ export async function fetchChosenVerses() {
 
 const randomChosenVerses = shallowRef<ChosenVerse[]>([]);
 
+/**
+ * Get randomChosenVerses computed value.
+ */
 export const getRandomChosenVerses = computed<ChosenVerse[]>(() => {
   return randomChosenVerses.value;
 })
 
+/**
+ * Fetch random chosenVerses from API, and assign it to randomChosenVerses ref.
+ * @param {number} num - number of random chosenVerses
+ */
 export async function fetchRandomChosenVerses(num: number) {
   const res = await fetch(
     apiURL(`/chosenverses/random?num=${num}`), 
