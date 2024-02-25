@@ -37,19 +37,19 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 // components
-import PrintCustomization from '../components/PrintCustomization.vue';
-import ShowCasePrints from '../components/ShowCasePrints.vue';
-import OrderForm from '../components/OrderForm.vue';
+import PrintCustomization from '../../components/PrintCustomization.vue';
+import ShowCasePrints from '../../components/ShowCasePrints.vue';
+import OrderForm from '../../components/OrderForm.vue';
 // stores
-import { fetchRandomChosenVerses, getRandomChosenVerses } from "../stores/chosenVerses";
-import { fetchRandomProses, getRandomProses } from "../stores/proses";
-import { getPrints, actions as printsActions } from "../stores/prints";
-import { getPartner, isPartner } from '../stores/partners';
-import { colors, getProductGroups, addProductGroup, newPartnerOrder, reset } from "../stores/orders";
+import { fetchRandomChosenVerses, getRandomChosenVerses } from "../../stores/chosenVerses";
+import { fetchRandomProses, getRandomProses } from "../../stores/proses";
+import { getPrints, actions as printsActions } from "../../stores/prints";
+import { getPartner, isPartner } from '../../stores/partners';
+import { colors, getProductGroups, addProductGroup, newPartnerOrder, reset } from "../../stores/orders";
 // types
-import type { Order, Print } from '../stores/__types__'
+import type { Order, Print } from '../../stores/__types__'
 // UI
-import { ui } from '../i18n/ui'
+import { ui } from '../../i18n/ui'
 
 defineProps<{
   currentLocale: keyof typeof ui;
@@ -90,7 +90,7 @@ async function prepareProse() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/mixins.scss';
+@import '../../assets/mixins.scss';
 
 #prep-order {
   $mainColor: var(--text1);

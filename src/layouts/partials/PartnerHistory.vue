@@ -41,12 +41,12 @@
 // Only show for authenticated Partners
 import { onMounted } from 'vue';
 // Stores
-import { getOrders, fetchPartnerOrders } from "../stores/orders";
-import { getPartner } from '../stores/partners';
+import { getOrders, fetchPartnerOrders } from "../../stores/orders";
+import { getPartner } from '../../stores/partners';
 // types
-import type { ProductGroup } from '../stores/__types__'
+import type { ProductGroup } from '../../stores/__types__'
 // UI
-import { ui } from '../i18n/ui'
+import { ui } from '../../i18n/ui'
 
 defineProps<{
   currentLocale: keyof typeof ui;
@@ -59,7 +59,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/mixins.scss';
+@import '../../assets/mixins.scss';
 
 $mainColor: var(--text1);
 $secondaryColor: var(--surface2);
