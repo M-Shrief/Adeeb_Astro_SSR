@@ -106,7 +106,7 @@ const { currentLocale } = Astro.props;
 
   .theme-selector {
     color: rgba($color: #FBE6C2, $alpha: 0.8);
-    background-color: #1f2124;
+    background-color: transparent;
     border: none;
     padding: 0.1rem 0.3rem 0.3rem;
     margin: 0.2rem;
@@ -119,6 +119,9 @@ const { currentLocale } = Astro.props;
     }
     @include mQ($breakpoint-sm) {
       font-size: 0.75rem;
+    }
+    option {
+      background-color: #1f2124;
     }
   }
 </style>

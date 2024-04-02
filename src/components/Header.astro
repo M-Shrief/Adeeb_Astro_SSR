@@ -18,7 +18,7 @@ const i18nPrefix = getI18nPrefix(currentLocale);
 ---
 
 <header>
-  <a href=`${i18nPrefix}/` id="logo">{ui[currentLocale].nav.logo}</a>
+  <a href=`${i18nPrefix}/` class="logo">{ui[currentLocale].nav.logo}</a>
 
   <MobNav currentLocale={currentLocale} />
 
@@ -58,7 +58,8 @@ const i18nPrefix = getI18nPrefix(currentLocale);
       padding: 0 var(--size-1);
     }
 
-    #logo {
+    .logo {
+      z-index: 10;
       color: rgba($color: #f6b352, $alpha: 0.8);
       text-decoration: none;
       font-size: 1.4rem;
@@ -71,7 +72,7 @@ const i18nPrefix = getI18nPrefix(currentLocale);
       }
 
       @include mQ($breakpoint-sm) {
-        font-size: 1rem;
+        font-size: 0.75rem;
         padding: 0.1rem 0.2rem;
         margin: 0.1rem;
       }
