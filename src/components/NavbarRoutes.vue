@@ -1,24 +1,26 @@
 <template>
     <!-- Ordering page -->
-    <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/ordering': `/${currentLocale}/partners/ordering`"
+    <a v-if="isPartner" :href="`${i18nPrefix}/partners/ordering`"
       class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
-    <a v-else :href="currentLocale == defaultLang ? '/ordering' : `/${currentLocale}/ordering`"
+    <a v-else :href="`${i18nPrefix}/ordering`"
       class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
 
     <!-- History page -->
-    <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/history': `/${currentLocale}/partners/history`"
+    <a v-if="isPartner" :href="`${i18nPrefix}/partners/history`"
       class="nav-item" >{{ui[currentLocale].nav.history}}</a>
-    <a v-else :href="currentLocale == defaultLang ? '/history' : `/${currentLocale}/history`"
+    <a v-else :href="`${i18nPrefix}/history`"
       class="nav-item" >{{ui[currentLocale].nav.history}}</a>
       
     <!-- About page -->
-    <a :href="currentLocale == defaultLang ? '/about' : `/${currentLocale}/about`" class="nav-item"        >{{ui[currentLocale].nav.about}}</a>
+    <a :href="`${i18nPrefix}/about`" class="nav-item">
+      {{ui[currentLocale].nav.about}}
+    </a>
 
     <!-- Partner name and logout -->
     <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
     <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">{{ui[currentLocale].nav.logout}}</span>
     <!-- Partner's auth page -->
-    <a :href="currentLocale == defaultLang ? '/partners/auth': `/${currentLocale}/partners/auth`"
+    <a :href="`${i18nPrefix}/partners/auth`"
     class="nav-item" data-astro-prefetch v-else >{{ui[currentLocale].nav.partnership}}</a>
 </template>
 
@@ -28,6 +30,7 @@ import { onMounted } from 'vue';
 import { getPartner, actions as partnerActions, isPartner } from '../stores/partners';
 // UI
 import {defaultLang, ui} from '../i18n/ui'
+import { getI18nPrefix } from '../i18n/utils';
 
 const props = defineProps<{
   activeUrl: string; 
@@ -45,6 +48,8 @@ onMounted(() => {
 
   if(activeLink) activeLink.classList.add('active')}
 )
+
+const i18nPrefix = getI18nPrefix(props.currentLocale);
 </script>
 
 <style lang="scss" scoped>
