@@ -49,12 +49,14 @@ const currentLocale = getLangFromUrl(Astro.url)
   </head>
   <body  transition:animate={fade({duration: '0.4s'})}>
     <header>
-      <nav id="nav-raw">
+      <nav>
         <a href={currentLocale == defaultLang ? '/' : `/${currentLocale}`} id="logo">{ui[currentLocale].nav.logo}</a>
-        <div>
+        <div class="nav-links">
           <NavbarRoutes activeUrl={Astro.url.pathname} currentLocale={currentLocale} client:only="vue" />
+        </div>
+        <div>
           <LangPicker currentLocale={currentLocale}/>
-          <ThemeSwitch />
+          <ThemeSwitch currentLocale={currentLocale}/>
         </div>
       </nav>
       <!-- <HttpPopUp /> -->
@@ -79,11 +81,12 @@ const currentLocale = getLangFromUrl(Astro.url)
   @import "../assets/base.css";
   @import "../assets/mixins.scss";
 
-  #nav-raw {
+  nav {
     display: flex;
     flex-direction: row;
     background-color: #1f2124;
     justify-content: space-between;
+    padding: 0 1rem;
 
     #logo {
       color: rgba($color: #f6b352, $alpha: 0.8);
@@ -104,6 +107,12 @@ const currentLocale = getLangFromUrl(Astro.url)
       }
     }
 
+    .nav-links {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
     div {
       display: flex;
       flex-direction: row;

@@ -1,27 +1,25 @@
 <template>
-    <div class="nav-row-group">   
-      <!-- Ordering page -->
-      <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/ordering': `/${currentLocale}/partners/ordering`"
-        class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
-      <a v-else :href="currentLocale == defaultLang ? '/ordering' : `/${currentLocale}/ordering`"
-        class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
+    <!-- Ordering page -->
+    <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/ordering': `/${currentLocale}/partners/ordering`"
+      class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
+    <a v-else :href="currentLocale == defaultLang ? '/ordering' : `/${currentLocale}/ordering`"
+      class="nav-item" >{{ui[currentLocale].nav.ordering}}</a>
 
-      <!-- History page -->
-      <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/history': `/${currentLocale}/partners/history`"
-        class="nav-item" >{{ui[currentLocale].nav.history}}</a>
-      <a v-else :href="currentLocale == defaultLang ? '/history' : `/${currentLocale}/history`"
-        class="nav-item" >{{ui[currentLocale].nav.history}}</a>
-        
-      <!-- About page -->
-      <a :href="currentLocale == defaultLang ? '/about' : `/${currentLocale}/about`" class="nav-item"        >{{ui[currentLocale].nav.about}}</a>
+    <!-- History page -->
+    <a v-if="isPartner" :href="currentLocale == defaultLang ? '/partners/history': `/${currentLocale}/partners/history`"
+      class="nav-item" >{{ui[currentLocale].nav.history}}</a>
+    <a v-else :href="currentLocale == defaultLang ? '/history' : `/${currentLocale}/history`"
+      class="nav-item" >{{ui[currentLocale].nav.history}}</a>
+      
+    <!-- About page -->
+    <a :href="currentLocale == defaultLang ? '/about' : `/${currentLocale}/about`" class="nav-item"        >{{ui[currentLocale].nav.about}}</a>
 
-      <!-- Partner name and logout -->
-      <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
-      <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">{{ui[currentLocale].nav.logout}}</span>
-      <!-- Partner's auth page -->
-      <a :href="currentLocale == defaultLang ? '/partners/auth': `/${currentLocale}/partners/auth`"
-      class="nav-item" data-astro-prefetch v-else >{{ui[currentLocale].nav.partnership}}</a>
-    </div>
+    <!-- Partner name and logout -->
+    <span v-if="getPartner" class="partner-name">{{ getPartner.name }}</span>
+    <span v-if="isPartner" class="nav-item" @click="partnerActions.logout">{{ui[currentLocale].nav.logout}}</span>
+    <!-- Partner's auth page -->
+    <a :href="currentLocale == defaultLang ? '/partners/auth': `/${currentLocale}/partners/auth`"
+    class="nav-item" data-astro-prefetch v-else >{{ui[currentLocale].nav.partnership}}</a>
 </template>
 
 <script lang="ts" setup>
@@ -51,12 +49,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @import '../assets/mixins.scss';
-
-  .nav-row-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 
     $mainColor: #FBE6C2;
 
@@ -101,5 +93,4 @@ onMounted(() => {
         margin: 0.1rem;
       }
     }
-  }
 </style>
