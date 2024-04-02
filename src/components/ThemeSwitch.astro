@@ -1,59 +1,37 @@
-<button
-  class="theme-toggle"
-  id="theme-toggle"
-  title="Toggles light & dark"
-  aria-label="auto"
-  aria-live="polite"
->
-  <svg
-    class="sun-and-moon"
-    aria-hidden="true"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-  >
-    <mask class="moon" id="moon-mask">
-      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-      <circle cx="24" cy="10" r="6" fill="black"></circle>
-    </mask>
-    <circle
-      class="sun"
-      cx="12"
-      cy="12"
-      r="6"
-      mask="url(#moon-mask)"
-      fill="currentColor"></circle>
-    <g class="sun-beams" stroke="currentColor">
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </g>
-  </svg>
-</button>
+---
+// UI
+import { themes } from "../i18n/themes";
+import { languages } from "../i18n/langs";
+
+interface Props {
+  // Used to make the current local a selected option
+  currentLocale: keyof typeof languages;
+}
+
+const { currentLocale } = Astro.props;
+---
+
+<select id="theme-selector" class="theme-selector" aria-label="Theme Selector">
+  {
+    Object.entries(themes[currentLocale]).map(([theme, themeLabel]) => (
+      <option value={theme}>{themeLabel}</option>
+    ))
+  }
+</select>
 
 <script>
   //  Inspired by https://web.dev/patterns/theming/
   const storageKey = "theme-preference";
 
-  const onClick = () => {
-    // flip current value
-    theme.value = theme.value === "light" ? "dark" : "light";
-
+  const onClick = (ev: Event) => {
+    theme.value = (ev.target as HTMLSelectElement).value;
     setPreference();
   };
 
   const getColorPreference = () => {
     if (localStorage.getItem(storageKey))
       return localStorage.getItem(storageKey);
-    else
-      return window.matchMedia("(prefers-color-scheme: light)").matches
-        ? "light"
-        : "dark";
+    else return "dark";
   };
 
   const setPreference = () => {
@@ -64,12 +42,22 @@
   const reflectPreference = () => {
     document.firstElementChild?.setAttribute(
       "color-scheme",
-      theme.value as string
+      theme.value as string,
     );
 
     document
-      .querySelector("#theme-toggle")
-      ?.setAttribute("aria-label", theme.value as string);
+      .querySelectorAll(`.theme-selector option[value='${theme.value}']`)
+      .forEach(node => {
+        node.setAttribute("selected", "");
+      })
+      
+
+    // document
+    //   .querySelectorAll(".theme-selector")
+    //   .forEach(node => {
+    //     node.setAttribute("aria-label", theme.value as string);
+    //   })
+      
   };
 
   const theme = {
@@ -79,20 +67,29 @@
   // set early so no page flashes / CSS is made aware
   reflectPreference();
 
+  // ReflectPrefernce, and addEventListener on first page load
   window.onload = () => {
     // set on load so screen readers can see latest value on the button
     reflectPreference();
 
     // now this script can find and listen for clicks on the control
-    document.querySelector("#theme-toggle")?.addEventListener("click", onClick);
+    document
+      .querySelectorAll(".theme-selector")
+      .forEach(node => {
+        node.addEventListener("click", onClick);
+      })  
   };
 
-    // ReflectPrefernce, and addEventListener on ViewTransition
-  document.addEventListener('astro:page-load', () => {
+  // ReflectPrefernce, and addEventListener on ViewTransition
+  document.addEventListener("astro:page-load", () => {
     // set on load so screen readers can see latest value on the button
     reflectPreference();
     // now this script can find and listen for clicks on the control
-    document.querySelector('#theme-toggle')?.addEventListener('click', onClick)
+    document
+      .querySelectorAll(".theme-selector")
+      .forEach(node => {
+        node.addEventListener("click", onClick);
+      })
   });
 
   // sync with system changes
@@ -104,89 +101,24 @@
     });
 </script>
 
-<style is:inline>
-  button {
-    background-color: transparent;
+<style lang="scss">
+  @import "../assets/mixins.scss";
+
+  .theme-selector {
+    color: rgba($color: #FBE6C2, $alpha: 0.8);
+    background-color: #1f2124;
     border: none;
-    margin: auto 0;
+    padding: 0.1rem 0.3rem 0.3rem;
+    margin: 0.2rem;
     cursor: pointer;
-  }
-
-  .sun-and-moon > :is(.moon, .sun, .sun-beams) {
-    transform-origin: center;
-  }
-
-  .sun-and-moon > :is(.moon, .sun) {
-    fill: var(--icon-fill);
-  }
-
-  .theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
-    fill: var(--icon-fill-hover);
-  }
-
-  .sun-and-moon > .sun-beams {
-    stroke: var(--icon-fill);
-    stroke-width: 2px;
-  }
-
-  .theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
-    stroke: var(--icon-fill-hover);
-  }
-
-  [color-scheme="dark"] .sun-and-moon > .sun {
-    transform: scale(1.75);
-  }
-
-  [color-scheme="dark"] .sun-and-moon > .sun-beams {
-    opacity: 0;
-  }
-
-  [color-scheme="dark"] .sun-and-moon > .moon > circle {
-    transform: translateX(-7px);
-  }
-
-  @supports (cx: 1) {
-    [color-scheme="dark"] .sun-and-moon > .moon > circle {
-      cx: 17;
-      transform: translateX(0);
+    text-decoration: none;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
     }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .sun-and-moon > .sun {
-      transition: transform 0.5s var(--ease-elastic-3);
-    }
-
-    .sun-and-moon > .sun-beams {
-      transition:
-        transform 0.5s var(--ease-elastic-4),
-        opacity 0.5s var(--ease-3);
-    }
-
-    .sun-and-moon .moon > circle {
-      transition: transform 0.25s var(--ease-out-5);
-    }
-
-    @supports (cx: 1) {
-      .sun-and-moon .moon > circle {
-        transition: cx 0.25s var(--ease-out-5);
-      }
-    }
-
-    [color-scheme="dark"] .sun-and-moon > .sun {
-      transition-timing-function: var(--ease-3);
-      transition-duration: 0.25s;
-      transform: scale(1.75);
-    }
-
-    [color-scheme="dark"] .sun-and-moon > .sun-beams {
-      transition-duration: 0.15s;
-      transform: rotateZ(-25deg);
-    }
-
-    [color-scheme="dark"] .sun-and-moon > .moon > circle {
-      transition-duration: 0.5s;
-      transition-delay: 0.25s;
+    @include mQ($breakpoint-sm) {
+      font-size: 0.75rem;
     }
   }
 </style>
