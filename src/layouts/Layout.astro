@@ -2,6 +2,7 @@
 import { ViewTransitions, fade } from "astro:transitions";
 // Components
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 // Utils
 import {getLangFromUrl} from '../i18n/utils'
 // UI
@@ -51,43 +52,13 @@ const currentLocale = getLangFromUrl(Astro.url)
       <!-- <HttpPopUp /> -->
       <slot name="http-popup"/>
     </header>
+
     <slot />
-    <footer>
-      <p>
-        Copyright &copy; 2022 |
-        <a
-          href="https://m-shrief.tech"
-          title="Portfolio"
-          target="_blank"
-          id="profile">M. Shrief</a
-        >
-      </p>
-    </footer>
+
+    <Footer />
+    <style lang="scss" is:global>
+      @import "../assets/color-scheme.css";
+      @import "../assets/base.css";
+    </style>
   </body>
 </html>
-
-<style lang="scss" is:global>
-  @import "../assets/base.css";
-  @import "../assets/color-scheme.css";
-  @import "../assets/mixins.scss";
-
-  footer {
-    text-align: center;
-    margin-top: 1.6rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-
-    #profile {
-      color: var(--text1);
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    @include mQ($breakpoint-sm) {
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
-  }
-</style>
