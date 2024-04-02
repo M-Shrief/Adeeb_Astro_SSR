@@ -62,11 +62,17 @@ onMounted(() => {
       &:hover {
         color: $mainColor;
       }
-
-      @include mQ($breakpoint-sm) {
-        font-size: 0.8rem;
+      @include mQ($breakpoint-md) {
+        font-size: 1rem;
         padding: 0.1rem 0.2rem;
         margin: 0.1rem;
+        display: block;
+      }
+      @include mQ($breakpoint-sm) {
+        font-size: 0.75rem;
+        padding: 0.1rem 0.2rem;
+        margin: 0.1rem;
+        display: block;
       }
     }
 
@@ -87,10 +93,17 @@ onMounted(() => {
       margin: 0.4rem;
       font-size: 1rem;
 
-      @include mQ($breakpoint-sm) {
-        font-size: 0.8rem;
+      @include mQ($breakpoint-md) {
+        font-size: 1rem;
         padding: 0.1rem 0.2rem;
         margin: 0.1rem;
+        display: block;
+      }
+      @include mQ($breakpoint-sm) {
+        font-size: 0.75rem;
+        padding: 0.1rem 0.2rem;
+        margin: 0.1rem;
+        display: block;
       }
     }
 </style>

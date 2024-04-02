@@ -1,0 +1,126 @@
+---
+// Components
+import MobNav from "./MobNav.astro";
+import NavbarRoutes from "../components/NavbarRoutes.vue";
+import ThemeSwitch from "./ThemeSwitch.astro";
+import LangPicker from "./LangPicker.astro";
+// I18n
+import {ui} from '../i18n/ui'
+import type { languages } from "../i18n/langs";
+import { getI18nPrefix } from "../i18n/utils";
+
+interface Props {
+  currentLocale: keyof typeof languages
+}
+const {currentLocale} = Astro.props;
+
+const i18nPrefix = getI18nPrefix(currentLocale);
+---
+
+<header>
+  <a href=`${i18nPrefix}/` id="logo">{ui[currentLocale].nav.logo}</a>
+
+  <MobNav currentLocale={currentLocale} />
+
+  <nav class="nav-links non-mobile">
+    <NavbarRoutes activeUrl={Astro.url.pathname} currentLocale={currentLocale} client:only="vue" />
+  </nav>
+
+  <div class="non-mobile">
+    <LangPicker currentLocale={currentLocale} />
+    <ThemeSwitch currentLocale={currentLocale} />
+  </div>
+</header>
+
+<style lang="scss">
+  @import "../assets/mixins.scss";
+
+  header {
+    background-color: #1f2124;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    position: sticky;
+    top: 0;
+    padding: 0 var(--size-3);
+    z-index: 1000;
+    font-weight: 600;
+
+    @include mQ($breakpoint-md) {
+      font-size: var(--font-size-2);
+      padding: 0 var(--size-2);
+    }
+
+    @include mQ($breakpoint-sm) {
+      font-size: var(--font-size-0);
+      padding: 0 var(--size-1);
+    }
+
+    #logo {
+      color: rgba($color: #f6b352, $alpha: 0.8);
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      padding: 0.2rem 0.4rem;
+      margin: 0.4rem;
+
+      &:hover {
+        color: #f6b352;
+      }
+
+      @include mQ($breakpoint-sm) {
+        font-size: 1rem;
+        padding: 0.1rem 0.2rem;
+        margin: 0.1rem;
+      }
+    }
+
+
+    .nav-links {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .non-mobile {
+      @include mQ($breakpoint-md) {
+        display: none;
+      }
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      a {
+        text-decoration: none;
+        color: var(--text-main);
+        padding: var(--size-2);
+        margin-inline-start: var(--size-2);
+        opacity: 80%;
+        &:hover {
+          opacity: 100%;
+        }
+        @include mQ($breakpoint-sm) {
+          padding: var(--size-1);
+          margin-inline-start: var(--size-1);
+        }
+        svg {
+          width: 24px;
+          height: 24px;
+          fill: currentColor;
+          @include mQ($breakpoint-md) {
+            width: 16px;
+            height: 16px;
+          }
+          @include mQ($breakpoint-sm) {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+    }
+  }
+</style>

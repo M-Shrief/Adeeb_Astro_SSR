@@ -1,9 +1,7 @@
 ---
 import { ViewTransitions, fade } from "astro:transitions";
 // Components
-import NavbarRoutes from "../components/NavbarRoutes.vue";
-import ThemeSwitch from "../components/ThemeSwitch.astro";
-import LangPicker from "../components/LangPicker.astro";
+import Header from "../components/Header.astro";
 // Utils
 import {getLangFromUrl} from '../i18n/utils'
 // UI
@@ -49,16 +47,7 @@ const currentLocale = getLangFromUrl(Astro.url)
   </head>
   <body  transition:animate={fade({duration: '0.4s'})}>
     <header>
-      <nav>
-        <a href={currentLocale == defaultLang ? '/' : `/${currentLocale}`} id="logo">{ui[currentLocale].nav.logo}</a>
-        <div class="nav-links">
-          <NavbarRoutes activeUrl={Astro.url.pathname} currentLocale={currentLocale} client:only="vue" />
-        </div>
-        <div>
-          <LangPicker currentLocale={currentLocale}/>
-          <ThemeSwitch currentLocale={currentLocale}/>
-        </div>
-      </nav>
+      <Header currentLocale={currentLocale} />
       <!-- <HttpPopUp /> -->
       <slot name="http-popup"/>
     </header>
@@ -80,44 +69,6 @@ const currentLocale = getLangFromUrl(Astro.url)
 <style lang="scss" is:global>
   @import "../assets/base.css";
   @import "../assets/mixins.scss";
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    background-color: #1f2124;
-    justify-content: space-between;
-    padding: 0 1rem;
-
-    #logo {
-      color: rgba($color: #f6b352, $alpha: 0.8);
-      text-decoration: none;
-      font-size: 1.4rem;
-      font-weight: 700;
-      padding: 0.2rem 0.4rem;
-      margin: 0.4rem;
-
-      &:hover {
-        color: #f6b352;
-      }
-
-      @include mQ($breakpoint-sm) {
-        font-size: 1rem;
-        padding: 0.1rem 0.2rem;
-        margin: 0.1rem;
-      }
-    }
-
-    .nav-links {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-    div {
-      display: flex;
-      flex-direction: row;
-    }
-  }
 
   footer {
     text-align: center;
