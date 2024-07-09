@@ -42,9 +42,7 @@ function prepPrints(printsData: ChosenVerse[] | Prose[]) {
  * @param print 
  */
 function removePrint(print: Print) {
-  let printIndex = prints.value
-    .map((verse) => verse.id)
-    .indexOf(print.id);
+  let printIndex = prints.value.findIndex((item) => item.id === print.id)
   prints.value.splice(printIndex, 1);
 };
 
